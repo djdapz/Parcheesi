@@ -56,59 +56,12 @@ public class Game implements GameInterface {
     }
 
     public void play(){
-        Dice die = new Dice();
-        int die1;
-        int die2;
-        int numberOfDoubles;
-        Move currentMove;
-        MoveResult mr;
-        int cheatCount;
-        int numMoves;
-
         while(!isWinner()) {
             for(int i = 0; i < players.length && !isWinner(); i ++){
-                numberOfDoubles = 0;
-                players[i].resetCheatCount();
-                do{
-                    List<Integer> moves = new ArrayList<>();
-                    die1 = die.rollOne();
-                    die2 = die.rollOne();
-                    moves.add(die1);
-                    moves.add(die2);
-                    if(die1==die2){
-                        moves.add(7-die1);
-                        moves.add(7-die1);
-                        numberOfDoubles++;
-                    }
-
-                    numMoves = moves.size();
-                    for(int j = 0; j < numMoves && !players[i].isKickedOut(); j++){
-
-                        // deep copy moves list incase user cheats and needs to try again
-                        List<Integer> clone = new ArrayList<Integer>();
-                        for(Integer move : moves){
-                            clone.add(move);
-                        }
-
-                        currentMove = players[i].doMove(board, moves);
-                        mr = currentMove.run(board);
+                Turn turn = new Turn(players[i], board);
+                turn.play();
 
 
-
-                        if(mr == MoveResult.BLOCKED || mr == MoveResult.OVERSHOT){
-                            cheatCount = players[i].increaseCheatCount();
-                            //reset and try again
-                            moves = clone;
-                            j--;
-                        }
-
-                        if(players[i].isKickedOut()){
-                            kickOutPlayer(players[i]);
-                        }
-
-                    }
-
-                }while(die1 != die2 && numberOfDoubles < 3);
 
                 //TODO - Continue turn
 
@@ -126,10 +79,6 @@ public class Game implements GameInterface {
         }
         return true;
     }
-
-    private void kickOutPlayer(Player player){
-
-    };
 
     public Player[] getPlayers() {
         return players;

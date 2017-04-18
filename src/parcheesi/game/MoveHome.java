@@ -18,7 +18,39 @@ public class MoveHome implements Move {
     }
 
     @Override
+    public int getDistance() {
+        return distance;
+    }
+
+    @Override
     public MoveResult run(Board board) {
+        Home home = board.getHome();
+        Vector<Space> homeRow = board.getHomeRows().get(pawn.getColor());
+        int target = start + distance;
+
+
+        MoveResult valididityCheck = this.isValid(board);
+
+        if(valididityCheck != MoveResult.SUCCESS){
+            return valididityCheck;
+        }
+
+        //so we can move into the home row from outside of the homerow using this function.
+        if(start >=0){
+            homeRow.get(start).removeOccupant(pawn);
+        }
+
+        if(target == homeRow.size()){
+            home.addPawn(pawn);
+            return MoveResult.HOME;
+        }else{
+            return homeRow.get(target).addOccupant(pawn);
+        }
+    }
+
+
+
+    public MoveResult isValid(Board board){
         Home home = board.getHome();
         Vector<Space> homeRow = board.getHomeRows().get(pawn.getColor());
 
@@ -35,18 +67,6 @@ public class MoveHome implements Move {
             };
         }
 
-        //so we can move into the home row from outside of the homerow using this function.
-        if(start >=0){
-            homeRow.get(start).removeOccupant(pawn);
-        }
-
-        if(target == homeRow.size()){
-            home.addPawn(pawn);
-            return MoveResult.HOME;
-        }else{
-            return homeRow.get(target).addOccupant(pawn);
-        }
-
-
+        return MoveResult.SUCCESS;
     }
 }

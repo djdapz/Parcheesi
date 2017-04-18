@@ -22,18 +22,29 @@ public class Player implements PlayerInterface {
 
     @Override
     public Move doMove(Board brd, List<Integer> dice) {
+
         if(this.playerType == PlayerType.HUMAN){
-            this.askUserForMove(brd, dice);
+            return askUserForMove(brd, dice);
         }else{
-            this.decideBestMove(brd, dice);
+            return decideBestMove(brd, dice);
         }
-        return null;
     }
 
     @Override
     public void DoublesPenalty() {
 
     }
+
+
+    boolean canMove(List<Integer> moves, Board board){
+        for(int i =0; i < pawns.length; i ++){
+            if(pawns[i].canMove(moves, board)){
+                return true;
+            };
+        }
+
+        return false;
+    };
 
     private Move askUserForMove(Board brd, List<Integer> dice){
 

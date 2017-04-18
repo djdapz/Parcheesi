@@ -134,6 +134,7 @@ public class SpaceTest {
         SpaceSafe ss = new SpaceSafe(Color.BLUE, -1);
     }
 
+    @Test
     public void hasOccupantWorks() throws Exception {
         SpaceSafe ss = new SpaceSafe(Color.RED, 1);
         Pawn pawn1 = new Pawn(1, Color.RED);
@@ -142,7 +143,8 @@ public class SpaceTest {
         ss.addOccupant(pawn1);
         assertTrue(ss.hasOccupant(pawn1));
         assertTrue(!ss.hasOccupant(pawn2));
-
     }
+
+
 
 }

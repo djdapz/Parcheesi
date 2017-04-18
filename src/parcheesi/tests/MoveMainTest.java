@@ -108,7 +108,8 @@ public class MoveMainTest {
         startSpace.addOccupant(testPawn);
 
         MoveMain thisMove = new MoveMain(testPawn, startSpace.getId(), 6);
-        Assert.assertEquals(thisMove.run(board), MoveResult.BLOCKED);
+        MoveResult mr = thisMove.run(board);
+        Assert.assertEquals(mr, MoveResult.BLOCKED);
         Space endSpace = board.getSpaceAt(6);
         assertEquals(endSpace.getOccupant1(), blockadePawn1);
         assertEquals(startSpace.getOccupant1(), testPawn);
@@ -117,8 +118,8 @@ public class MoveMainTest {
     @Test
     public void  cannotMoveIfBlockadeOfPlayerInDestinationWrapAround() throws Exception{
         Space startSpace = board.getSpaceAt(65);
-        Space blockedSpace = board.getSpaceAt(3);
-        Space endSpace = board.getSpaceAt(3);
+        Space blockedSpace = board.getSpaceAt(2);
+        Space endSpace = board.getSpaceAt(2);
         Pawn testPawn = players[0].getPawns()[0];
         Pawn blockadePawn1 = players[0].getPawns()[1];
         Pawn blockadePawn2 = players[0].getPawns()[2];
@@ -185,7 +186,7 @@ public class MoveMainTest {
         // 8 is enterance space so a move of 5 would be 6 -> 7 -> 8 -> home0 -> home1
         Vector<Space> homeRow = board.getHomeRows().get(mainPawn.getColor());
         Space startSpace = board.getSpaceAt(6); // 8 is enterance space
-        Space endSpace = homeRow.get(1);
+        Space endSpace = homeRow.get(2);
 
         startSpace.addOccupant(mainPawn);
 
@@ -197,7 +198,7 @@ public class MoveMainTest {
     }
 
     @Test
-    public void  canBeBlockadeInHomeRow() throws Exception{
+    public void  canBeBlockadedInHomeRow() throws Exception{
         Pawn mainPawn = players[0].getPawns()[0];
         Pawn blockadePawn1 = players[0].getPawns()[1];
         Pawn blockadePawn2 = players[0].getPawns()[2];
@@ -213,6 +214,7 @@ public class MoveMainTest {
         blockedSpot.addOccupant(blockadePawn2);
 
         MoveMain thisMove = new MoveMain(mainPawn, startSpace.getId(), 5);
+
 
         Assert.assertEquals(thisMove.run(board), MoveResult.BLOCKED);
         assertEquals(startSpace.getOccupant1(), mainPawn);

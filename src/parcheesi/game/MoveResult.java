@@ -1,5 +1,7 @@
 package parcheesi.game;
 
+import java.util.HashSet;
+
 /**
  * Created by devondapuzzo on 4/11/17.
  */
@@ -8,5 +10,14 @@ public enum MoveResult {
     SUCCESS,
     BOP,
     HOME,
-    OVERSHOT
+    OVERSHOT,
+    ENTERED;
+
+    public boolean isSuccessfullMove(){
+        if(this == BLOCKED || this == OVERSHOT){
+            return false;
+        }
+        return true;
+    }
+
 }

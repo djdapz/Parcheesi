@@ -1,5 +1,7 @@
 package parcheesi.game;
 
+import com.sun.org.apache.bcel.internal.generic.MONITORENTER;
+
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -17,21 +19,26 @@ public class MoveMain implements Move {
         this.distance=distance;
     }
 
+
+    @Override
+    public int getDistance() {
+        return distance;
+    }
+
     @Override
     public MoveResult run(Board board) {
         int newSpot = start + distance ;
         int remaining = distance;
         int numberToGoDownHomeRow = 0;
 
-        for(int i = remaining; i>=0; i--){
-            if(board.getSpaceAt((i+start)%board.getBoardLength()).isBlockaded()){
-                return MoveResult.BLOCKED;
-            };
+        MoveResult validityTest = this.isValid(board);
 
-            if(board.getSpaceAt((i+start)%board.getBoardLength()).getId() == pawn.getHomeEntrance().getId()){
-                numberToGoDownHomeRow = i;
-                break;
-            };
+        if(validityTest == MoveResult.OVERSHOT || validityTest ==MoveResult.BLOCKED){
+            return validityTest;
+        }
+
+        if(start <= pawn.getHomeEntrance().getId() && newSpot >=pawn.getHomeEntrance().getId()){
+            numberToGoDownHomeRow = start + distance - pawn.getHomeEntrance().getId();
         }
 
         if(numberToGoDownHomeRow > 0){
@@ -52,21 +59,53 @@ public class MoveMain implements Move {
         board.getSpaceAt(start).removeOccupant(pawn);
         MoveResult moveResult = board.getSpaceAt(newSpot).addOccupant(pawn);
 
+        if(moveResult == MoveResult.BLOCKED){
+            //if bop was blocked then replace the occupant
+            board.getSpaceAt(start).addOccupant(pawn);
+        }
+
 
         if(moveResult == MoveResult.BOP){
-            if(board.getSpaceAt(newSpot).isSafeSpace()){
-                board.getSpaceAt(start).addOccupant(pawn);
-                return MoveResult.BLOCKED;
-            }
-            Pawn boppedPawn = board.getSpaceAt(newSpot).getOccupant1();
+            //add bopped pawn to its nest
+            Pawn boppedPawn = board.getSpaceAt(newSpot).getOccupant2();
             HashMap<Color, Nest> nests = board.getNests();
             Nest bopToNest = nests.get(boppedPawn.getColor());
             bopToNest.addPawn(boppedPawn);
+
+
             board.getSpaceAt(newSpot).removeOccupant(boppedPawn);
-            board.getSpaceAt(newSpot).addOccupant(pawn);
             return MoveResult.BOP;
         }else{
             return moveResult;
         }
+    }
+
+    @Override
+    public MoveResult isValid(Board board){
+        int newSpot = (start + distance) % board.getBoardLength() ;
+        int remaining = distance;
+        int numberToGoDownHomeRow = 0;
+        Space thisSpace;
+
+
+        for(int i = start+1; remaining > 0; remaining--){
+            if(board.getSpaceAt(i % board.getBoardLength()).isBlockaded()) {
+                return MoveResult.BLOCKED;
+            }
+
+            if(i == pawn.getHomeEntrance().getId()){
+                numberToGoDownHomeRow = remaining;
+                break;
+            }
+            i++;
+        }
+
+        if(numberToGoDownHomeRow > 0){
+            MoveHome moveHome = new MoveHome(pawn, -1, numberToGoDownHomeRow);
+            return moveHome.isValid(board);
+        }else{
+            return MoveResult.SUCCESS;
+        }
+
     }
 }

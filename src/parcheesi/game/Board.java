@@ -72,8 +72,43 @@ public class Board {
         return null;
     }
 
-    public Space findMostAdvancedPawn(Color color){
-        throw new NotImplementedException();
+    public Space findMostAdvancedPawn(Player player){
+
+        Color pColor = player.getColor();
+        Vector<Space> hr = homeRows.get(player.getColor());
+
+        for(int i = homeRows.size()-1; i >=0; i --){
+            if(hr.get(i).getOccupant2() != null || hr.get(i).getOccupant1() != null){
+                return hr.get(i);
+            }
+        }
+
+        int homeEnterance = player.getPawns()[0].getHomeEntrance().getId();
+        int i;
+        Space space;
+
+        for(int count = 0; count < getBoardLength(); count ++){
+
+
+            i = homeEnterance - count;
+            if(i < 0){
+                i = i + getBoardLength();
+            }
+
+            space = spaces.get(i);
+
+            if(space.getOccupant2() != null  && space.getOccupant2().getColor() == pColor){
+                return space;
+            }
+
+
+
+            if(space.getOccupant1() != null  && space.getOccupant1().getColor() == pColor){
+                return space;
+            }
+        }
+
+        return null;
     }
 
     public int getBoardLength() {

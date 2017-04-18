@@ -11,4 +11,5 @@ public interface PlayerInterface {
     Move doMove(Board brd, List<Integer> dice);
 
     void DoublesPenalty();
+
 }

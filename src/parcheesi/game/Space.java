@@ -62,8 +62,19 @@ public abstract class Space {
                 return MoveResult.SUCCESS;
             }else{
                 //bop the occupant at the turn level
-                //TODO - allow bopping from parcheesi.game.Space level if possible... use reflection?
-                return MoveResult.BOP;
+                if(this.isSafeSpace()){
+                    if(pawn.getExitSpace().getId() == this.getId()){
+                        occupant2 = occupant1;
+                        occupant1 = pawn;
+                        return MoveResult.BOP;
+                    }else{
+                        return MoveResult.BLOCKED;
+                    }
+                }else{
+                    occupant2 = occupant1;
+                    occupant1 = pawn;
+                    return MoveResult.BOP;
+                }
             }
         }
     }

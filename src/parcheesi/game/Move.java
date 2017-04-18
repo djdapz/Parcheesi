@@ -6,4 +6,9 @@ package parcheesi.game;
 public interface Move {
 
     MoveResult run(Board board);
+
+    int getDistance();
+
+    MoveResult isValid(Board board);
+
 }
