@@ -1,7 +1,8 @@
-package parcheesi.game;
+package parcheesi.tests;
 
 import org.junit.Before;
 import org.junit.Test;
+import parcheesi.game.*;
 
 import java.util.*;
 

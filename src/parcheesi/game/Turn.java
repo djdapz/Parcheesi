@@ -16,6 +16,10 @@ public class Turn {
         this.board = board;
     }
 
+//    public TurnResult processSetOfMoves(ArrayList<Integer> moves){
+//
+//    }
+
 
     public TurnResult play(){
         Dice die = new Dice();
@@ -30,6 +34,7 @@ public class Turn {
 
         numberOfDoubles = 0;
         player.resetCheatCount();
+
         do{
             List<Integer> moves = new ArrayList<>();
             die1 = die.rollOne();
@@ -42,12 +47,18 @@ public class Turn {
                 numberOfDoubles++;
             }
 
+            if(numberOfDoubles == 3){
+                break;
+            }
+
             numMoves = moves.size();
             for(int j = 0; j < numMoves && !player.isKickedOut() && player.canMove(moves, board); j++){
 
                 currentMove = player.doMove(board, moves);
                 mr = currentMove.run(board);
 
+                //if bopped a player, force player to move a pawn 20.
+                //assuming that the player MUST do the bop next movement first
                 if(mr == MoveResult.BOP){
                     ArrayList<Integer> bonusMove = new ArrayList<Integer>();
                     bonusMove.add(20);
@@ -78,7 +89,14 @@ public class Turn {
 
             }
 
-        }while(die1 != die2 && numberOfDoubles < 3);
+        }while(die1 != die2);
+
+        if(numberOfDoubles == 3){
+            if(board.enforceDoublesPenalty(player)){
+                return TurnResult.DOUBLESPENALTY;
+            }
+
+        }
 
         return TurnResult.SUCCESS;
     }

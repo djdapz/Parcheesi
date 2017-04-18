@@ -57,6 +57,35 @@ public class EnterPieceTest {
 
     }
 
+    @Test
+    public void cannotEnterOnBlockade() throws Exception {
+        Player p1 = players[0];
+        Player p2 = players[1];
+
+        Pawn p1Pawn = p1.getPawns()[0];
+        Pawn p2Pawn1 = p2.getPawns()[0];
+        Pawn p2Pawn2 = p2.getPawns()[1];
+
+        Space p1ExitSpace = p1Pawn.getExitSpace();
+        Nest p1Nest = board.getNests().get(p1Pawn.getColor());
+
+
+        p1ExitSpace.addOccupant(p2Pawn1);
+        p1ExitSpace.addOccupant(p2Pawn2);
+        EnterPiece enterPiece = new EnterPiece(p1Pawn);
+
+        assertTrue(p1Nest.isAtNest(p1Pawn));
+        assertEquals(p1ExitSpace.getOccupant1(), p2Pawn1);
+        assertEquals(p1ExitSpace.getOccupant2(), p2Pawn2);
+        assertTrue(p1ExitSpace.isBlockaded());
+
+        assertEquals(enterPiece.run(board), MoveResult.BLOCKED);
+        assertEquals(p1ExitSpace.getOccupant1(), p2Pawn1);
+        assertEquals(p1ExitSpace.getOccupant2(), p2Pawn2);
+        assertTrue(p1ExitSpace.isBlockaded());
+
+
+    }
 
 
 }

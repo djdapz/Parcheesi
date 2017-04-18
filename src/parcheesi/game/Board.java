@@ -54,6 +54,19 @@ public class Board {
         }
     }
 
+    public boolean enforceDoublesPenalty(Player player){
+        Space bumpedSpace = this.findMostAdvancedPawn(player);
+
+        if(bumpedSpace != null){
+            Pawn bumpedPawn = bumpedSpace.getOccupant1();
+            bumpedSpace.removeOccupant(bumpedPawn);
+            this.getNests().get(bumpedPawn.getColor()).addPawn(bumpedPawn);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public Space findPawn(Pawn pawn){
         Vector<Space> homeRow = homeRows.get(pawn.getColor());
 
