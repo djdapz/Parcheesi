@@ -9,7 +9,7 @@ public class SpaceHomeRow extends Space {
     }
 
     @Override
-    Boolean isSafeSpace() {
+    public Boolean isSafeSpace() {
         return false;
     }
 }

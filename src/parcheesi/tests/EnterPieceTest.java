@@ -13,7 +13,6 @@ import static org.junit.Assert.assertTrue;
  * Created by devondapuzzo on 4/11/17.
  */
 public class EnterPieceTest {
-
     //TODO - create test for bopping user out of entering player's enterance
     private Board board;
     private Player[] players;
@@ -83,9 +82,18 @@ public class EnterPieceTest {
         assertEquals(p1ExitSpace.getOccupant1(), p2Pawn1);
         assertEquals(p1ExitSpace.getOccupant2(), p2Pawn2);
         assertTrue(p1ExitSpace.isBlockaded());
-
-
     }
+
+    @Test
+    public void getDistance() throws Exception {
+        Player p1 = players[0];
+
+        Pawn p1Pawn = p1.getPawns()[0];
+        EnterPiece enterPiece = new EnterPiece(p1Pawn);
+
+        assertEquals(enterPiece.getDistance(), 0);
+    }
+
 
 
 }

@@ -121,12 +121,15 @@ public class SpaceTest {
     public void isSafeSpace() throws Exception {
         SpaceSafe ss = new SpaceSafe(Color.GREEN, 1);
         SpaceRegular rs = new SpaceRegular(Color.BLUE, 2);
+        SpaceHomeRow hs = new SpaceHomeRow(Color.BLUE, 2);
 
         boolean ssSafe = ss.isSafeSpace();
         boolean rsSafe = rs.isSafeSpace();
+        boolean hsSafe = hs.isSafeSpace();
 
         assertEquals(ssSafe, true);
         assertEquals(rsSafe, false);
+        assertEquals(hsSafe, false);
     }
 
     @Test(expected=IndexOutOfBoundsException.class)

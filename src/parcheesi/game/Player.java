@@ -12,7 +12,7 @@ public class Player implements PlayerInterface {
     private String name;
     private Pawn[] pawns = new Pawn[4];
     private PlayerType playerType = PlayerType.MACHINE;
-    private int cheatCount = 0;
+//    private int cheatCount = 0;
 
 
     @Override
@@ -42,7 +42,6 @@ public class Player implements PlayerInterface {
                 return true;
             };
         }
-
         return false;
     };
 
@@ -57,7 +56,8 @@ public class Player implements PlayerInterface {
     }
 
 
-    public boolean hasWon(Home home){
+    public boolean
+    hasWon(Home home){
         for(int i = 0; i <pawns.length; i++){
             if(!home.isPawnHome(pawns[i])){
                 return false;
@@ -114,22 +114,22 @@ public class Player implements PlayerInterface {
         playerType = PlayerType.HUMAN;
     }
 
-    public int getCheatCount() {
-        return cheatCount;
-    }
-
-    public int increaseCheatCount() {
-        this.cheatCount++;
-        return this.cheatCount;
-    }
-
-    public void resetCheatCount() {
-        this.cheatCount = 0;
-    }
-
-
-    public boolean isKickedOut() {
-       return this.cheatCount >=3;
-    }
+//    public int getCheatCount() {
+//        return cheatCount;
+//    }
+//
+//    public int increaseCheatCount() {
+//        this.cheatCount++;
+//        return this.cheatCount;
+//    }
+//
+//    public void resetCheatCount() {
+//        this.cheatCount = 0;
+//    }
+//
+//
+//    public boolean isKickedOut() {
+//       return this.cheatCount >=3;
+//    }
 
 }
