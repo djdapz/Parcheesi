@@ -36,7 +36,7 @@ public class Player implements PlayerInterface {
     }
 
     private Move askUserForMove(Board brd, List<Integer> dice){
-        
+
         return null;
     }
 
