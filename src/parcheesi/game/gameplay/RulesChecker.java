@@ -2,20 +2,64 @@ package parcheesi.game.gameplay;
 
 import parcheesi.game.board.Board;
 import parcheesi.game.board.Space;
+import parcheesi.game.exception.BlockadeMovesException;
+import parcheesi.game.exception.DuplicatePawnException;
 import parcheesi.game.moves.Move;
 import parcheesi.game.player.Pawn;
+import parcheesi.game.player.Player;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Created by devondapuzzo on 5/8/17.
  */
 public class RulesChecker {
-    public void checkSetOfMoves(Board board, List<Move> moves){
+    public static boolean isSetOfMovesOkay(Board board, List<Move> moves, Player player) throws BlockadeMovesException, DuplicatePawnException {
+        ArrayList<Space> blockades = findBlockades(board, player);
+
+        for(Space space: blockades){
+            if(doesBlockadeMove(moves, space)){
+                throw new BlockadeMovesException();
+            };
+        }
+
+        for(Pawn pawn:player.getPawns()){
+            if(!doesPawnAppearOnlyOnce(board, pawn)){
+                throw new DuplicatePawnException();
+            }
+        }
+
+        return true;
 
     }
 
-    public boolean makeSurePawnIsOnlyInOneSpot(Board board, Pawn pawn){
+    public static boolean doesBlockadeMove(List<Move> moves, Space space) {
+        Pawn pawn1 = space.getOccupant1();
+        Pawn pawn2 = space.getOccupant2();
+
+        int pawn1Distance = 0;
+        int pawn2Distance = 0;
+
+        for(Move move: moves){
+            if(move.getPawn() == pawn1){
+                pawn1Distance += move.getDistance();
+            }
+
+            if(move.getPawn() == pawn2){
+                pawn2Distance += move.getDistance();
+            }
+        }
+
+        if(pawn1Distance > 0 && pawn1Distance == pawn2Distance){
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean doesPawnAppearOnlyOnce(Board board, Pawn pawn){
         boolean found = false;
         Space space = board.findPawn(pawn);
 
@@ -47,4 +91,29 @@ public class RulesChecker {
 
         return true;
     }
+
+    public static ArrayList<Space> findBlockades(Board board, Player player){
+        ArrayList<Space> blockedSpaces = new ArrayList<>();
+
+        blockedSpaces.addAll(searchStripForBlockades(board.getSpaces(), player));
+        blockedSpaces.addAll(searchStripForBlockades(board.getHomeRows().get(player.getColor()), player));
+
+        return blockedSpaces;
+    }
+
+    private static ArrayList<Space> searchStripForBlockades(Vector<Space> spaces, Player player){
+        ArrayList<Space> blockedSpaces = new ArrayList<>();
+
+        for(Space space: spaces){
+            if(space.isBlockaded()){
+                if(space.getOccupant1().getColor() == player.getColor()){
+                    blockedSpaces.add(space);
+                }
+            }
+        }
+
+        return blockedSpaces;
+    }
+
+
 }

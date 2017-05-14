@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by devondapuzzo on 5/4/17.
  */
-public class PlayerHuman extends Player {
+public class PlayerHuman extends PlayerAbstract {
 
     @Override
     public ArrayList<Move> doMove(Board brd, List<Integer> dice) {

@@ -6,7 +6,7 @@ import parcheesi.game.enums.MoveResult;
 import parcheesi.game.enums.TurnResult;
 import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.moves.Move;
-import parcheesi.game.player.PlayerInterface;
+import parcheesi.game.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  * Created by devondapuzzo on 4/18/17.
  */
 public class Turn {
-    private PlayerInterface player;
+    private Player player;
     private Board board;
     private Integer numberOfDoubles;
     private List<Integer> dice;
@@ -26,7 +26,7 @@ public class Turn {
     private MoveResult mr;
     private RulesChecker rulesChecker;
 
-    public Turn(PlayerInterface player, Board board) {
+    public Turn(Player player, Board board) {
         this.player = player;
         this.board = board;
         this.numberOfDoubles = 0;
@@ -66,9 +66,9 @@ public class Turn {
 
             try{
                 moves = player.doMove(board, dice);
-                rulesChecker.checkSetOfMoves(board, moves);
+                rulesChecker.isSetOfMovesOkay(board, moves, player);
                 processSetOfMoves(moves);
-                rulesChecker.checkSetOfMoves(board, moves);
+                rulesChecker.isSetOfMovesOkay(board, moves, player);
                 movesForThisTurn.addAll(moves);
 
             }catch (Exception e){

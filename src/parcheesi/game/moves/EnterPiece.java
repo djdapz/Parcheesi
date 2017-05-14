@@ -5,6 +5,7 @@ import parcheesi.game.board.Nest;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.MoveResult;
+import parcheesi.game.exception.BadMoveException;
 import parcheesi.game.player.Pawn;
 
 import java.util.HashMap;
@@ -12,11 +13,9 @@ import java.util.HashMap;
 /**
  * Created by devondapuzzo on 4/9/17.
  */
-public class EnterPiece implements Move {
-    private Pawn pawn;
-
+public class EnterPiece extends MoveAbstract {
     public EnterPiece(Pawn pawn) {
-        this.pawn = pawn;
+        super(pawn);
     }
 
     @Override
@@ -64,25 +63,27 @@ public class EnterPiece implements Move {
     }
 
     @Override
-    public MoveResult isValid(Board board) {
+    public Space getDestinationSpace(Board board) throws BadMoveException{
         Space entranceSpace = pawn.getExitSpace(board);
         if(entranceSpace.isBlockaded()){
-            return MoveResult.BLOCKED;
+            throw new BadMoveException(MoveResult.BLOCKED);
         }
 
-        if(entranceSpace.getOccupant1() == null){
-            return MoveResult.ENTERED;
-        }
+//        if(entranceSpace.getOccupant1() == null){
+//            return MoveResult.ENTERED;
+//        }
+//
+//        if(entranceSpace.getOccupant1().getColor() == pawn.getColor()){
+//            return MoveResult.ENTERED;
+//        }else{
+//            return MoveResult.BOP;
+//        }
 
-        if(entranceSpace.getOccupant1().getColor() == pawn.getColor()){
-            return MoveResult.ENTERED;
-        }else{
-            return MoveResult.BOP;
-        }
+        return entranceSpace;
     }
 
     @Override
     public String getStringOfMove() {
-        return "PlayerInterface " + pawn.getColor().toString() + ", EnterPiece  ";
+        return "Player " + pawn.getColor().toString() + ", EnterPiece  ";
     }
 }

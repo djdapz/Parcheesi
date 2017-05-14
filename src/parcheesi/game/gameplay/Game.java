@@ -7,7 +7,7 @@ import parcheesi.game.board.Nest;
 import parcheesi.game.enums.Color;
 import parcheesi.game.moves.Move;
 import parcheesi.game.player.Pawn;
-import parcheesi.game.player.PlayerInterface;
+import parcheesi.game.player.Player;
 import parcheesi.game.player.PlayerMachineFirst;
 import parcheesi.game.player.PlayerMachineLast;
 
@@ -19,7 +19,7 @@ import java.util.HashMap;
  */
 public class Game implements GameInterface {
 
-    private ArrayList<PlayerInterface> players;
+    private ArrayList<Player> players;
     private Board board;
     private Turn currentTurn;
     private Color[] colors;
@@ -36,7 +36,7 @@ public class Game implements GameInterface {
     }
 
     @Override
-    public void register(PlayerInterface P) {
+    public void register(Player P) {
         if(players.size() < maxPlayers){
             players.add(P);
         }
@@ -63,7 +63,7 @@ public class Game implements GameInterface {
         int regionLength = board.getBoardLength()/4;
 
         for(int i=0; i < colors.length; i ++){
-            PlayerInterface player = players.get(i);
+            Player player = players.get(i);
             player.setColor(colors[i]);
 
             player.setNestExit(board.getSpaceAt(i*regionLength + exitLocation));
@@ -79,7 +79,7 @@ public class Game implements GameInterface {
         }
     }
 
-    public PlayerInterface play() throws Exception{
+    public Player play() throws Exception{
         int turnCount = 0;
         ArrayList<Move> thisTurnsMoves;
         while(!isWinner()) {
@@ -99,7 +99,7 @@ public class Game implements GameInterface {
         return getWinner();
     }
 
-    private void removeFromGame(PlayerInterface player, Board board) {
+    private void removeFromGame(Player player, Board board) {
         //TODO - IMPLEMENT
         player.kickOut();
         for(Pawn pawn: player.getPawns()){
@@ -116,7 +116,7 @@ public class Game implements GameInterface {
         }
     }
 
-    public PlayerInterface getWinner(){
+    public Player getWinner(){
         Home home = board.getHome();
         for(int i = 0; i < players.size(); i ++){
             if(players.get(i).hasWon(home)){
@@ -126,7 +126,7 @@ public class Game implements GameInterface {
         return null;
     }
 
-    public ArrayList<PlayerInterface> getPlayers() {
+    public ArrayList<Player> getPlayers() {
         return players;
     }
 

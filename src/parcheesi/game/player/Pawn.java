@@ -3,6 +3,8 @@ package parcheesi.game.player;
 import parcheesi.game.board.Board;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
+import parcheesi.game.exception.BadMoveException;
+import parcheesi.game.exception.GoesHomeException;
 import parcheesi.game.moves.Move;
 import parcheesi.game.moves.MoveHome;
 import parcheesi.game.moves.MoveMain;
@@ -106,8 +108,13 @@ public class Pawn {
                 move = new MoveMain(this, spaceIndex, moveNumber);
             }
 
-            if (move.isValid(board).isSuccessfullMove()) {
+            try{
+                move.getDestinationSpace(board);
                 return true;
+            } catch (GoesHomeException e) {
+                return true;
+            } catch (BadMoveException e) {
+                continue;
             }
         }
 

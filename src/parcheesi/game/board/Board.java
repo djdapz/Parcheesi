@@ -1,7 +1,7 @@
 package parcheesi.game.board;
 
 import parcheesi.game.player.Pawn;
-import parcheesi.game.player.PlayerInterface;
+import parcheesi.game.player.Player;
 import parcheesi.game.enums.Color;
 
 import java.util.ArrayList;
@@ -96,7 +96,7 @@ public class Board {
         }
     }
 
-    public boolean enforceDoublesPenalty(PlayerInterface player){
+    public boolean enforceDoublesPenalty(Player player){
         Space bumpedSpace = this.findMostAdvancedPawn(player);
 
         if(bumpedSpace != null){
@@ -131,12 +131,12 @@ public class Board {
         return null;
     }
 
-    public Space findMostAdvancedPawn(PlayerInterface player){
+    public Space findMostAdvancedPawn(Player player){
         return findMostAdvancedPawn(player, new ArrayList<>());
 
     }
 
-    public Space findMostAdvancedPawn(PlayerInterface player, List<Space> exclusionList){
+    public Space findMostAdvancedPawn(Player player, List<Space> exclusionList){
         Color pColor = player.getColor();
         Vector<Space> hr = homeRows.get(player.getColor());
 
@@ -179,11 +179,11 @@ public class Board {
 
     }
 
-    public Space findLeastAdvancedPawn(PlayerInterface player){
+    public Space findLeastAdvancedPawn(Player player){
         return findLeastAdvancedPawn(player, new ArrayList<>());
     }
 
-    public Space findLeastAdvancedPawn(PlayerInterface player, List<Space> exclusionList){
+    public Space findLeastAdvancedPawn(Player player, List<Space> exclusionList){
         //TODO - Consolidate with findMostAdvanced
         Color pColor = player.getColor();
         Vector<Space> hr = homeRows.get(player.getColor());

@@ -5,6 +5,7 @@ import parcheesi.game.board.Nest;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.MoveResult;
+import parcheesi.game.exception.BadMoveException;
 import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.gameplay.RulesChecker;
 import parcheesi.game.moves.EnterPiece;
@@ -19,7 +20,7 @@ import java.util.List;
 /**
  * Created by devondapuzzo on 5/4/17.
  */
-public abstract class PlayerMachine extends Player {
+public abstract class PlayerMachine extends PlayerAbstract {
 
 
     @Override
@@ -44,7 +45,7 @@ public abstract class PlayerMachine extends Player {
                     numTries++;
                 }
                 mr = currentMove.run(brd);
-                if( !rc.makeSurePawnIsOnlyInOneSpot(brd, currentMove.getPawn())){
+                if( !rc.doesPawnAppearOnlyOnce(brd, currentMove.getPawn())){
                     throw new InvalidMoveException();
                 }
                 handleMoveResult(mr, brd, currentMove, dice, moveObjects);
@@ -177,8 +178,11 @@ public abstract class PlayerMachine extends Player {
                 //TODO - include below
                 if(nest.isAtNest(pawn)){
                     EnterPiece move = new EnterPiece(pawn);
-                    if(move.isValid(brd).isSuccessfullMove()){
+                    try{
+                        move.getDestinationSpace(brd);
                         return move;
+                    } catch (BadMoveException e) {
+                        return null;
                     }
                 }
             }
@@ -186,7 +190,6 @@ public abstract class PlayerMachine extends Player {
         }else{
             return null;
         }
-
-    };
+    }
 
 }

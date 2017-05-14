@@ -2,6 +2,8 @@ package parcheesi.game.moves;
 
 import parcheesi.game.board.Board;
 import parcheesi.game.board.Home;
+import parcheesi.game.exception.BadMoveException;
+import parcheesi.game.exception.GoesHomeException;
 import parcheesi.game.player.Pawn;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.MoveResult;
@@ -11,84 +13,70 @@ import java.util.Vector;
 /**
  * Created by devondapuzzo on 4/9/17.
  */
-public class MoveHome implements Move {
-
-    private Pawn pawn;
-    private int start;
-    private int distance;
+public class MoveHome extends MoveAbstract {
 
     public MoveHome(Pawn pawn, int start, int distance) {
-        this.pawn=pawn;
-        this.start=start;
-        this.distance=distance;
-    }
-
-    @Override
-    public int getDistance() {
-        return distance;
-    }
-
-    @Override
-    public int getStart() {
-        return start;
-    }
-
-    @Override
-    public Pawn getPawn() {
-        return pawn;
+        super(pawn, start, distance);
     }
 
     @Override
     public MoveResult run(Board board) {
         Home home = board.getHome();
         Vector<Space> homeRow = board.getHomeRows().get(pawn.getColor());
-        int target = start + distance;
-
-
-        MoveResult valididityCheck = this.isValid(board);
-
-        if(valididityCheck != MoveResult.SUCCESS){
-            return valididityCheck;
-        }
+        Space newSpace;
 
         //so we can move into the home row from outside of the homerow using this function.
         if(start >=0){
             homeRow.get(start).removeOccupant(pawn);
         }
 
-        if(target == homeRow.size()){
+        try {
+            newSpace = this.getDestinationSpace(board);
+        } catch (GoesHomeException e) {
             home.addPawn(pawn);
             return MoveResult.HOME;
-        }else{
-            return homeRow.get(target).addOccupant(pawn);
+        } catch (BadMoveException e) {
+            if(start >=0){
+                //need to put pawn back
+                homeRow.get(start).addOccupant(pawn);
+            }
+            return e.getMoveResult();
         }
+
+
+        return newSpace.addOccupant(pawn);
+
     }
 
 
-
-    public MoveResult isValid(Board board){
+    @Override
+    public Space getDestinationSpace(Board board) throws BadMoveException, GoesHomeException{
         Home home = board.getHome();
         Vector<Space> homeRow = board.getHomeRows().get(pawn.getColor());
 
         int target = start + distance;
-        if(target > homeRow.size()){
-            return MoveResult.OVERSHOT;
-        }
 
-        //TODO -Possible refactor, combine similar code with MoveMain in parent function?
+        if(target > homeRow.size()){
+            throw new BadMoveException(MoveResult.OVERSHOT);
+        }
 
         for(int i = start+1; (target == homeRow.size() && i <target) || (target != homeRow.size() && i <=target); i ++){
             if(homeRow.get(i).isBlockaded()){
-                return MoveResult.BLOCKED;
+                throw new BadMoveException(MoveResult.BLOCKED);
             }
         }
 
-        return MoveResult.SUCCESS;
+        if(target == homeRow.size()){
+            throw new GoesHomeException();
+        }else{
+            return homeRow.get(target);
+        }
+
     }
 
     @Override
     public String getStringOfMove() {
-        return "PlayerInterface " + pawn.getColor().toString() + ", MOVE_HOME  "+
+        return "Player " + pawn.getColor().toString() + ", MOVE_HOME  "+
                 "Distance: " + Integer.toString(distance) + "   " +
                 "Start: " + Integer.toString(start);
     }
