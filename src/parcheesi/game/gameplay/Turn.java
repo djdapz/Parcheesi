@@ -66,15 +66,14 @@ public class Turn {
 
             try{
                 moves = player.doMove(board, dice);
-                rulesChecker.isSetOfMovesOkay(board, moves, player);
+                rulesChecker.doBlockadesMove(board, moves, player);
                 processSetOfMoves(moves);
-                rulesChecker.isSetOfMovesOkay(board, moves, player);
+                rulesChecker.doPawnsBehaveProperly(board, player);
                 movesForThisTurn.addAll(moves);
 
             }catch (Exception e){
                 throw e;
             }
-            //TODO - make sure that blockade is not moved
         }
         while(die1 == die2);
 

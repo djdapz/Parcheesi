@@ -2,60 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da5ab66c-d54f-439e-9bbb-a567b7dc0c73" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parcheesi/game/exception/BadMoveException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parcheesi/game/exception/BlockadeMovesException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parcheesi/game/exception/DuplicatePawnException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parcheesi/game/exception/GoesHomeException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parcheesi/game/exception/PawnNotFoundException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parcheesi/game/exception/UnrecognizedXMLAttributeException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parcheesi/game/moves/MoveAbstract.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parcheesi/game/parser/XMLConstant.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parcheesi/game/parser/XMLConstants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parcheesi/game/parser/XMLDecoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/parcheesi/game/util/TestingUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/parcheesi/game/board/BoardTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/parcheesi/game/gameplay/RulesCheckerTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/parcheesi/game/parser/XMLConstantsTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/parcheesi/game/parser/XMLDecoderTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/parcheesi/parcheesi/game/Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/board/BoardTest.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/parcheesi/game/Evaluator.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/main/Evaluator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/parcheesi/game/Main.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/main/Main.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/parcheesi/game/parser/XMLBuilder.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/parser/XMLEncoder.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/parcheesi/game/player/Player.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerAbstract.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerInterface.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/player/Player.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/EvaluatorTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/main/EvaluatorTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/XMLBuilderTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/parser/XMLEncoderTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/board/DiceTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/board/DiceTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/board/HomeTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/board/HomeTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/board/SpaceTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/board/SpaceTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/gameplay/GameTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/gameplay/GameTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/gameplay/MainTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/gameplay/MainTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/moves/EnterPieceTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/moves/EnterPieceTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/moves/MoveHomeTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/moves/MoveHomeTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/moves/MoveMainTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/moves/MoveMainTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/player/MoveFirstStrategyTests.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineFirstTests.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/player/MoveLastStrategyTests.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineLastTests.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/player/PawnTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/player/PawnTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/player/PlayerInterfaceTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/player/PlayerTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/parcheesi/game/player/PlayerNetworkTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/player/PlayerNetworkTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/parcheesi/game/exception/BadMoveException.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parcheesi.iml" afterPath="$PROJECT_DIR$/parcheesi.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/board/Board.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/board/Board.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/enums/Color.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/enums/Color.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/gameplay/Game.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/gameplay/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/gameplay/GameInterface.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/gameplay/GameInterface.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/board/Space.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/board/Space.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/board/SpaceHomeRow.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/board/SpaceHomeRow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/board/SpaceRegular.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/board/SpaceRegular.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/board/SpaceSafe.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/board/SpaceSafe.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/enums/MoveResult.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/enums/MoveResult.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/exception/InvalidMoveException.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/exception/InvalidMoveException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/exception/NoMoveFoundException.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/exception/NoMoveFoundException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/gameplay/RulesChecker.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/gameplay/RulesChecker.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/gameplay/Turn.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/gameplay/Turn.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/main/Evaluator.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/main/Evaluator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/moves/EnterPiece.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/moves/EnterPiece.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/moves/Move.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/moves/Move.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/moves/MoveAbstract.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/moves/MoveAbstract.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/moves/MoveHome.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/moves/MoveHome.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/moves/MoveMain.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/moves/MoveMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/parser/XMLDecoder.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/parser/XMLDecoder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/player/Pawn.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/player/Pawn.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/player/Player.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/player/Player.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerAbstract.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerAbstract.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerHuman.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerHuman.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachine.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachineFirst.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachineFirst.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachineLast.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachineLast.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerNetwork.java" afterPath="$PROJECT_DIR$/src/parcheesi/game/player/PlayerNetwork.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/parcheesi/game/gameplay/RulesCheckerTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/gameplay/RulesCheckerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/parcheesi/game/main/EvaluatorTest.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/main/EvaluatorTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineFirstTests.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineFirstTests.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineLastTests.java" afterPath="$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineLastTests.java" />
     </list>
     <ignored path="parcheese.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -105,118 +82,254 @@
     <favorites_list name="parcheese" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RulesChecker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/parcheesi/game/gameplay/RulesChecker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlayerAbstract.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerAbstract.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/Board.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2756">
-              <caret line="236" column="5" lean-forward="true" selection-start-line="236" selection-start-column="5" selection-end-line="236" selection-end-column="5" />
-              <folding>
-                <element signature="e#5153#5154#0" expanded="true" />
-                <element signature="e#5224#5225#0" expanded="true" />
-                <element signature="e#6607#6608#0" expanded="true" />
-                <element signature="e#6636#6637#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlayerMachineFirstTests.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineFirstTests.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="257" column="5" lean-forward="true" selection-start-line="230" selection-start-column="3" selection-end-line="257" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlayerMachineLastTests.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineLastTests.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="310" column="44" lean-forward="true" selection-start-line="310" selection-start-column="44" selection-end-line="310" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MoveMain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/parcheesi/game/moves/MoveMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-              <folding>
-                <element signature="method#run#0;class#MoveMain#0" expanded="false" />
-                <element signature="method#getStringOfMove#0;class#MoveMain#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NativeMethodAccessorImpl.class" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/rt.jar!/sun/reflect/NativeMethodAccessorImpl.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="33" column="33" lean-forward="false" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Space.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/Space.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RulesCheckerTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/parcheesi/game/gameplay/RulesCheckerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1605">
-              <caret line="107" column="45" lean-forward="false" selection-start-line="107" selection-start-column="45" selection-end-line="107" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5032595">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="Pawn.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/Pawn.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="188">
+                  <caret line="132" column="0" lean-forward="false" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Move.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/moves/Move.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="285">
+                  <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RulesChecker.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/gameplay/RulesChecker.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="196">
+                  <caret line="105" column="25" lean-forward="true" selection-start-line="105" selection-start-column="25" selection-end-line="105" selection-end-column="25" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="XMLEncoderTest.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/parcheesi/game/parser/XMLEncoderTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="186">
+                  <caret line="162" column="0" lean-forward="false" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/gameplay/Game.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="181">
+                  <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RulesCheckerTest.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/parcheesi/game/gameplay/RulesCheckerTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="831">
+                  <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="EvaluatorTest.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/test/parcheesi/game/main/EvaluatorTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="180">
+                  <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Evaluator.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/main/Evaluator.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="186">
+                  <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SpaceRegular.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/SpaceRegular.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="240">
+                  <caret line="18" column="58" lean-forward="true" selection-start-line="18" selection-start-column="58" selection-end-line="18" selection-end-column="58" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PawnTest.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/parcheesi/game/player/PawnTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="831">
+                  <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="PlayerAbstract.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerAbstract.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="113">
+                  <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+                  <folding>
+                    <element signature="method#DoublesPenalty#0;class#PlayerAbstract#0" expanded="false" />
+                    <element signature="method#hasWon#0;class#PlayerAbstract#0" expanded="false" />
+                    <element signature="method#setColor#0;class#PlayerAbstract#0" expanded="false" />
+                    <element signature="method#setNestExit#0;class#PlayerAbstract#0" expanded="false" />
+                    <element signature="method#setPawnColor#0;class#PlayerAbstract#0" expanded="false" />
+                    <element signature="method#setHomeEntrance#0;class#PlayerAbstract#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Turn.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/gameplay/Turn.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="181">
+                  <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PlayerMachine.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachine.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="276">
+                  <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="method#editDice#0;class#PlayerMachine#0" expanded="false" />
+                    <element signature="method#createMove#0;class#PlayerMachine#0" expanded="false" />
+                    <element signature="method#enterPiece#0;class#PlayerMachine#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Space.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/Space.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="126">
+                  <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#470#471#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="EnterPiece.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/moves/EnterPiece.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="423">
+                  <caret line="78" column="13" lean-forward="true" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#603#604#0" expanded="true" />
+                    <element signature="e#630#631#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SpaceHomeRow.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/SpaceHomeRow.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="255">
+                  <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SpaceSafe.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/SpaceSafe.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="420">
+                  <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/Board.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="118">
+                  <caret line="52" column="9" lean-forward="true" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
+                  <folding>
+                    <element signature="e#2813#2814#0" expanded="true" />
+                    <element signature="e#2856#2857#0" expanded="true" />
+                    <element signature="e#4693#4694#0" expanded="true" />
+                    <element signature="e#4764#4765#0" expanded="true" />
+                    <element signature="e#6534#6535#0" expanded="true" />
+                    <element signature="e#6579#6580#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PlayerMachineLast.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachineLast.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="303">
+                  <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#677#678#0" expanded="true" />
+                    <element signature="e#733#734#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PlayerMachineLastTests.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineLastTests.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="603">
+                  <caret line="599" column="46" lean-forward="false" selection-start-line="599" selection-start-column="46" selection-end-line="599" selection-end-column="46" />
+                  <folding>
+                    <element signature="method#blockadeMovingTogether__REGRESSION_TEST#0;class#PlayerMachineLastTests#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -230,36 +343,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>miniMOve</find>
-      <find>isV</find>
-      <find>test</find>
-      <find>return MoveResult.ENTERED;</find>
-      <find>is</find>
-      <find>isValid</find>
-      <find>player</find>
-      <find>game</find>
-      <find>private</find>
-      <find>unrec</find>
-      <find>loc</find>
-      <find>getPaw</find>
-      <find>encodeHOmeRow</find>
-      <find>homeRo</find>
-      <find>constants.</find>
-      <find>XML decod</find>
-      <find>insert</find>
-      <find>C</find>
-      <find>con</find>
-      <find>cons</find>
-      <find>constants</find>
-      <find>public final</find>
-      <find>c.</find>
-      <find>XMLEnc</find>
-      <find>XML</find>
-      <find>exc</find>
-      <find>exclusion</find>
-      <find>exclusionLI</find>
-      <find>exclusionLIst</find>
-      <find>players.ge</find>
+      <find>BADMOVEEXE</find>
+      <find>BADMOVEEXEP</find>
+      <find>BADMOVEEXEC</find>
+      <find>BADMOVEEXECE</find>
+      <find>BADMOVEEXECET</find>
+      <find>B</find>
+      <find>BADMOV</find>
+      <find>BADMOVE</find>
+      <find>BADMOVEE</find>
+      <find>BADMOVEEX</find>
+      <find>BADMOVEEXC</find>
+      <find>BADMOVEEXCE</find>
+      <find>BADMOVEEXCEP</find>
+      <find>BADMOVEEXCEPTION</find>
+      <find>bad</find>
+      <find>dominimove</find>
+      <find>doMini</find>
+      <find>minimiove</find>
+      <find>miniMove</find>
+      <find>move</find>
+      <find>findBestSpace</find>
+      <find>canMove</find>
+      <find>badMov</find>
+      <find>S</find>
+      <find>Space</find>
+      <find>SpaceHome</find>
+      <find>SpaceHomeR</find>
+      <find>SpaceHomeRow</find>
+      <find>can</find>
+      <find>findBest</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -281,23 +394,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tests/parcheesi/game/XMLBuilderTest.java" />
-        <option value="$PROJECT_DIR$/tests/parcheesi/game/moves/EnterPieceTest.java" />
-        <option value="$PROJECT_DIR$/test/parcheesi/game/MainTest.java" />
-        <option value="$PROJECT_DIR$/test/parcheesi/game/board/BoardTestTest.java" />
-        <option value="$PROJECT_DIR$/tests/parcheesi/game/board/BoardTest.java" />
-        <option value="$PROJECT_DIR$/test/parcheesi/game/board/BoardTest.java" />
-        <option value="$PROJECT_DIR$/tests/parcheesi/game/moves/MoveMainTest.java" />
-        <option value="$PROJECT_DIR$/test/parcheesi/game/gameplay/GameTest.java" />
-        <option value="$PROJECT_DIR$/test/parcheesi/game/moves/EnterPieceTest.java" />
-        <option value="$PROJECT_DIR$/test/parcheesi/game/parser/XMLBuilderTest.java" />
         <option value="$PROJECT_DIR$/test/EvaluatorTest.java" />
         <option value="$PROJECT_DIR$/src/parcheesi/game/exception/BadMoveException.java" />
         <option value="$PROJECT_DIR$/src/parcheesi/game/exception/GoesHomeException.java" />
         <option value="$PROJECT_DIR$/src/parcheesi/game/main/Main.java" />
-        <option value="$PROJECT_DIR$/test/parcheesi/game/main/EvaluatorTest.java" />
         <option value="$PROJECT_DIR$/test/parcheesi/game/moves/MoveMainTest.java" />
-        <option value="$PROJECT_DIR$/src/parcheesi/game/player/Pawn.java" />
         <option value="$PROJECT_DIR$/test/parcheesi/game/player/PawnTest.java" />
         <option value="$PROJECT_DIR$/src/parcheesi/game/enums/Color.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -307,31 +408,43 @@
         <option value="$PROJECT_DIR$/src/parcheesi/game/parser/XMLBuilder.java" />
         <option value="$PROJECT_DIR$/test/parcheesi/game/parser/XMLEncoderTest.java" />
         <option value="$PROJECT_DIR$/test/parcheesi/game/parser/XMLConstantsTest.java" />
-        <option value="$PROJECT_DIR$/src/parcheesi/game/main/Evaluator.java" />
-        <option value="$PROJECT_DIR$/src/parcheesi/game/parser/XMLDecoder.java" />
         <option value="$PROJECT_DIR$/src/parcheesi/game/parser/XMLConstants.java" />
         <option value="$PROJECT_DIR$/src/parcheesi/game/parser/XMLEncoder.java" />
         <option value="$PROJECT_DIR$/test/parcheesi/game/parser/XMLDecoderTest.java" />
-        <option value="$PROJECT_DIR$/src/parcheesi/game/gameplay/Turn.java" />
         <option value="$PROJECT_DIR$/src/parcheesi/game/exception/BlockadeMovesException.java" />
         <option value="$PROJECT_DIR$/src/parcheesi/game/exception/DuplicatePawnException.java" />
         <option value="$PROJECT_DIR$/src/parcheesi/game/util/TestingUtil.java" />
-        <option value="$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachineFirst.java" />
-        <option value="$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachine.java" />
-        <option value="$PROJECT_DIR$/src/parcheesi/game/moves/Move.java" />
-        <option value="$PROJECT_DIR$/src/parcheesi/game/moves/MoveMain.java" />
-        <option value="$PROJECT_DIR$/src/parcheesi/game/moves/MoveHome.java" />
         <option value="$PROJECT_DIR$/src/parcheesi/game/moves/MoveWithDistance.java" />
         <option value="$PROJECT_DIR$/src/parcheesi/game/moves/MoveAbstraxt.java" />
-        <option value="$PROJECT_DIR$/src/parcheesi/game/moves/MoveAbstract.java" />
-        <option value="$PROJECT_DIR$/src/parcheesi/game/moves/EnterPiece.java" />
-        <option value="$PROJECT_DIR$/src/parcheesi/game/gameplay/RulesChecker.java" />
-        <option value="$PROJECT_DIR$/test/parcheesi/game/gameplay/RulesCheckerTest.java" />
-        <option value="$PROJECT_DIR$/src/parcheesi/game/player/PlayerAbstract.java" />
         <option value="$PROJECT_DIR$/src/parcheesi/game/player/PlayerInterface.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/moves/MoveAbstract.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/exception/InvalidMoveException.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/parser/XMLDecoder.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/exception/NoMoveFoundException.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/player/PlayerHuman.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/player/PlayerNetwork.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/moves/Move.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/moves/EnterPiece.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/moves/MoveHome.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/player/PlayerAbstract.java" />
         <option value="$PROJECT_DIR$/src/parcheesi/game/player/Player.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/gameplay/Turn.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/moves/MoveMain.java" />
+        <option value="$PROJECT_DIR$/test/parcheesi/game/gameplay/RulesCheckerTest.java" />
         <option value="$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineFirstTests.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachineFirst.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachineLast.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/main/Evaluator.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/gameplay/RulesChecker.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/board/SpaceRegular.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/board/Board.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/board/Space.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/board/SpaceHomeRow.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/board/SpaceSafe.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/player/Pawn.java" />
+        <option value="$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachine.java" />
         <option value="$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineLastTests.java" />
+        <option value="$PROJECT_DIR$/test/parcheesi/game/main/EvaluatorTest.java" />
       </list>
     </option>
   </component>
@@ -432,6 +545,152 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="player" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="player" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moves" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="exception" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parcheesi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="board" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
@@ -495,20 +754,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.parcheesi.game.moves in parcheesi">
-    <configuration default="false" name="RulesCheckerTest.checkBlockadesInHomeRow" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.Test All">
+    <configuration default="false" name="EvaluatorTest.runTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="parcheesi.game.gameplay.*" />
+          <option name="PATTERN" value="parcheesi.game.main.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <module name="parcheesi" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="parcheesi.game.gameplay" />
-      <option name="MAIN_CLASS_NAME" value="parcheesi.game.gameplay.RulesCheckerTest" />
-      <option name="METHOD_NAME" value="checkBlockadesInHomeRow" />
+      <option name="PACKAGE_NAME" value="parcheesi.game.main" />
+      <option name="MAIN_CLASS_NAME" value="parcheesi.game.main.EvaluatorTest" />
+      <option name="METHOD_NAME" value="runTests" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -522,59 +781,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="PlayerMachineFirstTests.doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="parcheesi.game.player.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="parcheesi" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="parcheesi.game.player" />
-      <option name="MAIN_CLASS_NAME" value="parcheesi.game.player.PlayerMachineFirstTests" />
-      <option name="METHOD_NAME" value="doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="RulesCheckerTest.catchesMovementOfBlockades" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="parcheesi.game.gameplay.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="parcheesi" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="parcheesi.game.gameplay" />
-      <option name="MAIN_CLASS_NAME" value="parcheesi.game.gameplay.RulesCheckerTest" />
-      <option name="METHOD_NAME" value="catchesMovementOfBlockades" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="PlayerMachineLastTests.doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="PlayerMachineLastTests.wontChooseToMoveBlockadeWhenDoublesAllowBlockadeToEnterHomeRow__REGRESSION_TEST" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="parcheesi.game.player.*" />
@@ -586,7 +793,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="parcheesi.game.player" />
       <option name="MAIN_CLASS_NAME" value="parcheesi.game.player.PlayerMachineLastTests" />
-      <option name="METHOD_NAME" value="doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" />
+      <option name="METHOD_NAME" value="wontChooseToMoveBlockadeWhenDoublesAllowBlockadeToEnterHomeRow__REGRESSION_TEST" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -600,20 +807,72 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="parcheesi.game.moves in parcheesi" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="PlayerMachineLastTests.dontMoveBlockadeWhenThereAreTwoBlockades__REGRESSION_TEST" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="parcheesi.game.moves.*" />
+          <option name="PATTERN" value="parcheesi.game.player.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <module name="parcheesi" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="parcheesi.game.moves" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="parcheesi.game.player" />
+      <option name="MAIN_CLASS_NAME" value="parcheesi.game.player.PlayerMachineLastTests" />
+      <option name="METHOD_NAME" value="dontMoveBlockadeWhenThereAreTwoBlockades__REGRESSION_TEST" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="PlayerMachineLastTests.dontMoveBlockadeWhenThereAreTwoBlockadesAndBackBlockadeIsBockaded__REGRESSION_TEST" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="parcheesi.game.player.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="parcheesi" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="parcheesi.game.player" />
+      <option name="MAIN_CLASS_NAME" value="parcheesi.game.player.PlayerMachineLastTests" />
+      <option name="METHOD_NAME" value="dontMoveBlockadeWhenThereAreTwoBlockadesAndBackBlockadeIsBockaded__REGRESSION_TEST" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="PlayerMachineLastTests.dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="parcheesi.game.player.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="parcheesi" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="parcheesi.game.player" />
+      <option name="MAIN_CLASS_NAME" value="parcheesi.game.player.PlayerMachineLastTests" />
+      <option name="METHOD_NAME" value="dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -1046,19 +1305,19 @@
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
       <item index="1" class="java.lang.String" itemvalue="Application.Evaluate" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.Test All" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.RulesCheckerTest.checkBlockadesInHomeRow" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.PlayerMachineFirstTests.doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.RulesCheckerTest.catchesMovementOfBlockades" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.PlayerMachineLastTests.doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.parcheesi.game.moves in parcheesi" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.EvaluatorTest.runTests" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.PlayerMachineLastTests.wontChooseToMoveBlockadeWhenDoublesAllowBlockadeToEnterHomeRow__REGRESSION_TEST" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.PlayerMachineLastTests.dontMoveBlockadeWhenThereAreTwoBlockades__REGRESSION_TEST" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.PlayerMachineLastTests.dontMoveBlockadeWhenThereAreTwoBlockadesAndBackBlockadeIsBockaded__REGRESSION_TEST" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.PlayerMachineLastTests.dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.parcheesi.game.moves in parcheesi" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.PlayerMachineLastTests.doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.PlayerMachineFirstTests.doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.RulesCheckerTest.catchesMovementOfBlockades" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.RulesCheckerTest.checkBlockadesInHomeRow" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.PlayerMachineLastTests.dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.EvaluatorTest.runTests" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.PlayerMachineLastTests.dontMoveBlockadeWhenThereAreTwoBlockadesAndBackBlockadeIsBockaded__REGRESSION_TEST" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.PlayerMachineLastTests.dontMoveBlockadeWhenThereAreTwoBlockades__REGRESSION_TEST" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.PlayerMachineLastTests.wontChooseToMoveBlockadeWhenDoublesAllowBlockadeToEnterHomeRow__REGRESSION_TEST" />
       </list>
     </recent_temporary>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1118,44 +1377,44 @@
       <workItem from="1494609965095" duration="3551000" />
       <workItem from="1494617322083" duration="1297000" />
       <workItem from="1494619060605" duration="14333000" />
-      <workItem from="1494640985026" duration="10139000" />
+      <workItem from="1494640985026" duration="33641000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PlayerMachineFirstTests_doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced - 2017.05.14 at 18h 34m 44s.xml">
-      <configuration name="PlayerMachineFirstTests.doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" configurationId="JUnit" />
+    <history-entry file="PlayerMachineLastTests_dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST - 2017.05.15 at 02h 27m 26s.xml">
+      <configuration name="PlayerMachineLastTests.dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PlayerMachineFirstTests_doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced - 2017.05.14 at 18h 35m 30s.xml">
-      <configuration name="PlayerMachineFirstTests.doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" configurationId="JUnit" />
+    <history-entry file="PlayerMachineLastTests_dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST - 2017.05.15 at 02h 28m 18s.xml">
+      <configuration name="PlayerMachineLastTests.dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PlayerMachineFirstTests_doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced - 2017.05.14 at 18h 36m 04s.xml">
-      <configuration name="PlayerMachineFirstTests.doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" configurationId="JUnit" />
+    <history-entry file="PlayerMachineLastTests_dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST - 2017.05.15 at 02h 29m 13s.xml">
+      <configuration name="PlayerMachineLastTests.dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PlayerMachineFirstTests_doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced - 2017.05.14 at 18h 36m 49s.xml">
-      <configuration name="PlayerMachineFirstTests.doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" configurationId="JUnit" />
+    <history-entry file="PlayerMachineLastTests_dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST - 2017.05.15 at 02h 29m 51s.xml">
+      <configuration name="PlayerMachineLastTests.dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PlayerMachineFirstTests_doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced - 2017.05.14 at 18h 37m 40s.xml">
-      <configuration name="PlayerMachineFirstTests.doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" configurationId="JUnit" />
+    <history-entry file="PlayerMachineLastTests_dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST - 2017.05.15 at 02h 32m 09s.xml">
+      <configuration name="PlayerMachineLastTests.dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PlayerMachineFirstTests_doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced - 2017.05.14 at 18h 38m 01s.xml">
-      <configuration name="PlayerMachineFirstTests.doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" configurationId="JUnit" />
+    <history-entry file="PlayerMachineLastTests_dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST - 2017.05.15 at 02h 32m 18s.xml">
+      <configuration name="PlayerMachineLastTests.dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PlayerMachineLastTests_doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced - 2017.05.14 at 18h 42m 11s.xml">
-      <configuration name="PlayerMachineLastTests.doesNotMoveBlockadeToetherOnDoublesRollWhenBlockadeIsMostAdvanced" configurationId="JUnit" />
+    <history-entry file="PlayerMachineLastTests_dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST - 2017.05.15 at 02h 35m 39s.xml">
+      <configuration name="PlayerMachineLastTests.dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RulesCheckerTest_catchesMovementOfBlockades - 2017.05.14 at 18h 06m 45s.xml">
-      <configuration name="RulesCheckerTest.catchesMovementOfBlockades" configurationId="JUnit" />
+    <history-entry file="PlayerMachineLastTests_dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST - 2017.05.15 at 02h 35m 58s.xml">
+      <configuration name="PlayerMachineLastTests.dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_All - 2017.05.14 at 18h 42m 28s.xml">
+    <history-entry file="Test_All - 2017.05.15 at 02h 36m 04s.xml">
       <configuration name="Test All" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="parcheesi_game_moves_in_parcheesi - 2017.05.14 at 18h 42m 37s.xml">
-      <configuration name="parcheesi.game.moves in parcheesi" configurationId="JUnit" />
+    <history-entry file="Test_All - 2017.05.15 at 02h 36m 19s.xml">
+      <configuration name="Test All" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182359000" />
+    <option name="totallyTimeSpent" value="205861000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1167,7 +1426,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32820514" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1176,22 +1436,22 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32574257" sideWeight="0.52342916" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31848985" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32574257" sideWeight="0.4765708" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24479167" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20553781" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890856" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21490803" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29525653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39496613" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4089109" sideWeight="0.7055378" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1200,38 +1460,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06723891" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890856" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41463414" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32820514" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24378109" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31910568" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06723891" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39010417" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21510884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -1257,12 +1485,6 @@
           <option name="timeStamp" value="196" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineFirstTests.java</url>
-          <line>72</line>
-          <properties />
-          <option name="timeStamp" value="203" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tests/parcheesi/game/board/BoardTest.java</url>
           <line>1</line>
           <properties />
@@ -1270,21 +1492,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachine.java</url>
-          <line>119</line>
+          <line>131</line>
           <properties />
           <option name="timeStamp" value="214" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachine.java</url>
-          <line>113</line>
+          <line>125</line>
           <properties />
           <option name="timeStamp" value="221" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachine.java</url>
-          <line>48</line>
-          <properties />
-          <option name="timeStamp" value="242" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/parcheesi/game/parser/XMLEncoderTest.java</url>
@@ -1303,18 +1519,6 @@
           <line>96</line>
           <properties />
           <option name="timeStamp" value="277" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/parcheesi/game/parser/XMLEncoderTest.java</url>
-          <line>125</line>
-          <properties />
-          <option name="timeStamp" value="281" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/parcheesi/game/parser/XMLEncoderTest.java</url>
-          <line>130</line>
-          <properties />
-          <option name="timeStamp" value="283" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/parcheesi/game/main/Main.java</url>
@@ -1341,126 +1545,87 @@
           <option name="timeStamp" value="331" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/parcheesi/game/parser/XMLConstantsTest.java</url>
-          <line>24</line>
+          <url>file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineFirstTests.java</url>
+          <line>257</line>
           <properties />
-          <option name="timeStamp" value="339" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/parcheesi/game/moves/MoveMain.java</url>
-          <line>77</line>
-          <properties />
-          <option name="timeStamp" value="342" />
+          <option name="timeStamp" value="357" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineFirstTests.java</url>
-          <line>255</line>
+          <line>299</line>
           <properties />
-          <option name="timeStamp" value="347" />
+          <option name="timeStamp" value="382" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineFirstTests.java</url>
-          <line>245</line>
+          <line>300</line>
           <properties />
-          <option name="timeStamp" value="348" />
+          <option name="timeStamp" value="383" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineFirstTests.java</url>
-          <line>242</line>
+          <url>file://$PROJECT_DIR$/src/parcheesi/game/gameplay/RulesChecker.java</url>
+          <line>34</line>
           <properties />
-          <option name="timeStamp" value="349" />
+          <option name="timeStamp" value="384" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineLastTests.java</url>
+          <line>395</line>
+          <properties />
+          <option name="timeStamp" value="385" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineLastTests.java</url>
+          <line>433</line>
+          <properties />
+          <option name="timeStamp" value="388" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineLastTests.java</url>
+          <line>432</line>
+          <properties />
+          <option name="timeStamp" value="389" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineLastTests.java</url>
+          <line>470</line>
+          <properties />
+          <option name="timeStamp" value="393" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineLastTests.java</url>
+          <line>504</line>
+          <properties />
+          <option name="timeStamp" value="394" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineLastTests.java</url>
+          <line>559</line>
+          <properties />
+          <option name="timeStamp" value="398" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachine.java</url>
+          <line>51</line>
+          <properties />
+          <option name="timeStamp" value="412" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="352" />
+      <option name="time" value="413" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="brd.findPawn(this)" language="JAVA" />
+        <watch expression="canMove(dice, brd)" language="JAVA" />
+        <watch expression="board.findPawn(pawn, space)" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/junit-4.12.jar!/org/junit/Assert.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/rt.jar!/sun/reflect/DelegatingMethodAccessorImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/gameplay/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/enums/Color.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/Home.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="110" column="19" lean-forward="false" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/exception/PawnNotFoundException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="52" lean-forward="false" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/exception/UnrecognizedXMLAttributeException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="18" column="1" lean-forward="false" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/beans/XMLEncoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="206" column="13" lean-forward="false" selection-start-line="206" selection-start-column="13" selection-end-line="206" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/javax/xml/parsers/DocumentBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1475,22 +1640,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/Pawn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="e#763#764#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/Nest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
-            <element signature="e#717#718#0" expanded="true" />
+            <element signature="e#717#718#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1499,30 +1654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="48" column="12" lean-forward="false" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/parcheesi/game/parser/XMLEncoderTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="183" column="132" lean-forward="false" selection-start-line="183" selection-start-column="132" selection-end-line="183" selection-end-column="132" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/parcheesi/game/parser/XMLConstantsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/main/Evaluator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="33" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1552,28 +1683,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/parcheesi/game/player/PawnTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/parcheesi/game/parser/XMLConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/parser/XMLDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="88" column="57" lean-forward="false" selection-start-line="88" selection-start-column="57" selection-end-line="88" selection-end-column="57" />
           <folding />
         </state>
       </provider>
@@ -1594,52 +1707,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/gameplay/Turn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="68" column="43" lean-forward="false" selection-start-line="68" selection-start-column="43" selection-end-line="68" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/parcheesi/game/exception/DuplicatePawnException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/parcheesi/game/main/EvaluatorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="205" column="19" lean-forward="false" selection-start-line="205" selection-start-column="19" selection-end-line="205" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/moves/Move.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="22" column="16" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1652,126 +1723,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachineFirst.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/parcheesi/game/util/TestingUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="36" column="15" lean-forward="true" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/moves/MoveHome.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding>
-            <element signature="method#run#0;class#MoveHome#0" expanded="false" />
-            <element signature="method#getStringOfMove#0;class#MoveHome#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/moves/MoveAbstract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#643#644#0" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/moves/EnterPiece.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="31" column="51" lean-forward="true" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
-          <folding>
-            <element signature="e#449#450#0" expanded="true" />
-            <element signature="e#476#477#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="165" column="14" lean-forward="true" selection-start-line="165" selection-start-column="14" selection-end-line="165" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/exception/BlockadeMovesException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="53" lean-forward="false" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/gameplay/RulesChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerAbstract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/parcheesi/game/gameplay/RulesCheckerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1605">
-          <caret line="107" column="45" lean-forward="false" selection-start-line="107" selection-start-column="45" selection-end-line="107" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2756">
-          <caret line="236" column="5" lean-forward="true" selection-start-line="236" selection-start-column="5" selection-end-line="236" selection-end-column="5" />
-          <folding>
-            <element signature="e#5153#5154#0" expanded="true" />
-            <element signature="e#5224#5225#0" expanded="true" />
-            <element signature="e#6607#6608#0" expanded="true" />
-            <element signature="e#6636#6637#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/Space.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1783,29 +1741,360 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/exception/BadMoveException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="17" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/exception/InvalidMoveException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#426#427#0" expanded="true" />
+            <element signature="e#462#463#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/parser/XMLDecoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="107" column="43" lean-forward="false" selection-start-line="107" selection-start-column="43" selection-end-line="107" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/exception/BlockadeMovesException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/exception/NoMoveFoundException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="51" lean-forward="false" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerHuman.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerNetwork.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/parcheesi/game/parser/XMLConstantsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/moves/MoveAbstract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="42" column="13" lean-forward="true" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#864#865#0" expanded="true" />
+            <element signature="e#895#896#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/junit-4.12.jar!/org/junit/runners/BlockJUnit4ClassRunner.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="174" column="0" lean-forward="false" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+          <folding>
+            <element signature="e#2137#2138#0" expanded="true" />
+            <element signature="e#2181#2182#0" expanded="true" />
+            <element signature="e#6495#6659#0" expanded="true" />
+            <element signature="e#6658#6659#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/parcheesi/game/moves/MoveMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+        <state relative-caret-position="156">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
-            <element signature="method#run#0;class#MoveMain#0" expanded="false" />
             <element signature="method#getStringOfMove#0;class#MoveMain#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/moves/MoveHome.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="57" column="17" lean-forward="false" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
+          <folding>
+            <element signature="e#490#491#0" expanded="true" />
+            <element signature="e#534#535#0" expanded="true" />
+            <element signature="e#590#591#0" expanded="true" />
+            <element signature="e#664#665#0" expanded="true" />
+            <element signature="method#getStringOfMove#0;class#MoveHome#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/parcheesi/game/parser/XMLEncoderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="162" column="0" lean-forward="false" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/parcheesi/game/player/PawnTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="831">
+          <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineFirstTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="257" column="5" lean-forward="true" selection-start-line="230" selection-start-column="3" selection-end-line="257" selection-end-column="5" />
+        <state relative-caret-position="156">
+          <caret line="255" column="20" lean-forward="false" selection-start-line="255" selection-start-column="20" selection-end-line="255" selection-end-column="20" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/parcheesi/game/gameplay/RulesCheckerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="831">
+          <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/main/Evaluator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachineFirst.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="43" column="48" lean-forward="false" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+          <folding>
+            <element signature="method#findOptimalSpace#1;class#PlayerMachineFirst#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/moves/EnterPiece.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="78" column="13" lean-forward="true" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#603#604#0" expanded="true" />
+            <element signature="e#630#631#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="52" column="9" lean-forward="true" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
+          <folding>
+            <element signature="e#2813#2814#0" expanded="true" />
+            <element signature="e#2856#2857#0" expanded="true" />
+            <element signature="e#4693#4694#0" expanded="true" />
+            <element signature="e#4764#4765#0" expanded="true" />
+            <element signature="e#6534#6535#0" expanded="true" />
+            <element signature="e#6579#6580#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/SpaceRegular.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="58" lean-forward="true" selection-start-line="18" selection-start-column="58" selection-end-line="18" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/SpaceSafe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachineLast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding>
+            <element signature="e#677#678#0" expanded="true" />
+            <element signature="e#733#734#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/gameplay/Turn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/SpaceHomeRow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/gameplay/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/moves/Move.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/board/Space.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#470#471#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/Pawn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="132" column="0" lean-forward="false" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerMachine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#editDice#0;class#PlayerMachine#0" expanded="false" />
+            <element signature="method#createMove#0;class#PlayerMachine#0" expanded="false" />
+            <element signature="method#enterPiece#0;class#PlayerMachine#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/player/PlayerAbstract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <folding>
+            <element signature="method#DoublesPenalty#0;class#PlayerAbstract#0" expanded="false" />
+            <element signature="method#hasWon#0;class#PlayerAbstract#0" expanded="false" />
+            <element signature="method#setColor#0;class#PlayerAbstract#0" expanded="false" />
+            <element signature="method#setNestExit#0;class#PlayerAbstract#0" expanded="false" />
+            <element signature="method#setPawnColor#0;class#PlayerAbstract#0" expanded="false" />
+            <element signature="method#setHomeEntrance#0;class#PlayerAbstract#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/parcheesi/game/player/PlayerMachineLastTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="310" column="44" lean-forward="true" selection-start-line="310" selection-start-column="44" selection-end-line="310" selection-end-column="44" />
+        <state relative-caret-position="603">
+          <caret line="599" column="46" lean-forward="false" selection-start-line="599" selection-start-column="46" selection-end-line="599" selection-end-column="46" />
+          <folding>
+            <element signature="method#blockadeMovingTogether__REGRESSION_TEST#0;class#PlayerMachineLastTests#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parcheesi/game/gameplay/RulesChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="105" column="25" lean-forward="true" selection-start-line="105" selection-start-column="25" selection-end-line="105" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/parcheesi/game/main/EvaluatorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
           <folding />
         </state>
       </provider>

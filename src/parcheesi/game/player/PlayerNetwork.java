@@ -2,11 +2,11 @@ package parcheesi.game.player;
 
 import parcheesi.game.board.Board;
 import parcheesi.game.enums.Strategy;
-import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.moves.Move;
 import parcheesi.game.parser.XMLEncoder;
 
-import java.io.*;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +38,6 @@ public class PlayerNetwork extends PlayerAbstract {
         return null;
     }
 
-    @Override
-    public Move doMiniMove(Board brd, List<Integer> dice) throws InvalidMoveException {
-        return null;
-    }
 
     @Override
     public Strategy getStrategy() {

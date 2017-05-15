@@ -3,8 +3,8 @@ package parcheesi.game.moves;
 import parcheesi.game.board.Board;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.MoveResult;
-import parcheesi.game.exception.BadMoveException;
 import parcheesi.game.exception.GoesHomeException;
+import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.player.Pawn;
 
 /**
@@ -46,7 +46,7 @@ public abstract class MoveAbstract implements Move {
 
 
     @Override
-    public abstract Space getDestinationSpace(Board board) throws GoesHomeException, BadMoveException;
+    public abstract Space getDestinationSpace(Board board) throws GoesHomeException, InvalidMoveException;
 
     @Override
     public abstract String getStringOfMove() ;

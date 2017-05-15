@@ -7,7 +7,7 @@ import parcheesi.game.board.Board;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.MoveResult;
-import parcheesi.game.exception.BadMoveException;
+import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.exception.PawnNotFoundException;
 import parcheesi.game.player.Pawn;
 import parcheesi.game.player.Player;
@@ -86,7 +86,7 @@ public class XMLDecoder {
     }
 
 
-    private void placePawnUsingPieceLocElement(Element element, Board board, ArrayList<Player> players, XMLConstant region) throws PawnNotFoundException, BadMoveException {
+    private void placePawnUsingPieceLocElement(Element element, Board board, ArrayList<Player> players, XMLConstant region) throws PawnNotFoundException, InvalidMoveException {
         Element pawnElement = (Element) element.getElementsByTagName(XMLConstants.PAWN.s()).item(0);
         Element spaceElement = (Element) element.getElementsByTagName(XMLConstants.LOC.s()).item(0);
         Pawn pawn = findPawnFromElement(pawnElement, players);
@@ -105,7 +105,7 @@ public class XMLDecoder {
         MoveResult mr = space.addOccupant(pawn);
 
         if(mr != MoveResult.SUCCESS){
-            throw new BadMoveException(mr);
+            throw new InvalidMoveException(mr);
         };
     }
 

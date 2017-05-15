@@ -8,6 +8,7 @@ import parcheesi.game.board.Nest;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.MoveResult;
+import parcheesi.game.exception.NoMoveFoundException;
 import parcheesi.game.gameplay.Game;
 import parcheesi.game.gameplay.RulesChecker;
 import parcheesi.game.moves.EnterPiece;
@@ -20,7 +21,6 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -36,8 +36,8 @@ public class PlayerMachineLastTests {
     private HashMap<Color, Nest> nests;
     private Nest nest;
     private Vector<Space> homeRow;
-    private Player mainPlayer;
-    private Player playerBlocking;
+    private PlayerMachine mainPlayer;
+    private PlayerMachine playerBlocking;
 
     @Before
     public void setUp() throws Exception {
@@ -60,7 +60,6 @@ public class PlayerMachineLastTests {
         ArrayList<Integer> scenario1dl = new ArrayList<>();
         ArrayList<Integer> scenario2dl = new ArrayList<>();
         ArrayList<Integer> scenario3dl = new ArrayList<>();
-        ArrayList<Integer> scenario4dl = new ArrayList<>();
 
         scenario1dl.add(5);
         scenario1dl.add(2);
@@ -71,19 +70,23 @@ public class PlayerMachineLastTests {
         scenario3dl.add(2);
         scenario3dl.add(3);
 
-        scenario4dl.add(6);
-        scenario4dl.add(2);
-
         Move move1 = mainPlayer.doMiniMove(board, scenario1dl);
         Move move2 = mainPlayer.doMiniMove(board, scenario2dl);
         Move move3 = mainPlayer.doMiniMove(board, scenario3dl);
-        Move move4 = mainPlayer.doMiniMove(board, scenario4dl);
-
 
         assertEquals(move1.getClass(), EnterPiece.class);
         assertEquals(move2.getClass(), EnterPiece.class);
         assertEquals(move3.getClass(), EnterPiece.class);
-        assertNull(move4);
+    }
+
+    @Test(expected= NoMoveFoundException.class)
+    public void MovesPawnOutWhenAllAtHomeButDiceDontAllowEntry() throws Exception{
+        ArrayList<Integer> scenariodl = new ArrayList<>();
+
+        scenariodl.add(6);
+        scenariodl.add(2);
+
+        Move move1 = mainPlayer.doMiniMove(board, scenariodl);
     }
 
 
@@ -185,7 +188,6 @@ public class PlayerMachineLastTests {
     @Test
     public void MovesLeastAdvancedPawnWhenInHomeRow() throws Exception {
         Space space0 = homeRow.get(0);
-        Space space1 = homeRow.get(4);
 
         Pawn pawn0 = mainPlayer.getPawns()[0];
         Pawn pawn1 = mainPlayer.getPawns()[1];
@@ -212,18 +214,34 @@ public class PlayerMachineLastTests {
         assertEquals(move.getDistance(), 3);
         assertEquals(move.getStart(), 0);
         assertEquals(move.getPawn(), pawn3);
+    }
 
+    @Test(expected = NoMoveFoundException.class)
+    public void DoesMovesLeastAdvancedPawnWhenInHomeRowIfCanOnlyOvershoot() throws Exception {
+        Space space0 = homeRow.get(0);
 
-        //scenario 2:
-        dice.clear();
+        Pawn pawn0 = mainPlayer.getPawns()[0];
+        Pawn pawn1 = mainPlayer.getPawns()[1];
+        Pawn pawn2 = mainPlayer.getPawns()[2];
+        Pawn pawn3 = mainPlayer.getPawns()[3];
+
+        nest.removePawn(pawn0);
+        nest.removePawn(pawn1);
+        nest.removePawn(pawn2);
+        nest.removePawn(pawn3);
+
+        home.addPawn(pawn0);
+        home.addPawn(pawn1);
+        home.addPawn(pawn2);
+        space0.addOccupant(pawn3);
+
+        ArrayList<Integer> dice = new ArrayList<>();
         dice.add(4);
         dice.add(5);
 
         space0.removeOccupant(pawn3);
-        space1.addOccupant(pawn3);
 
-        move = mainPlayer.doMiniMove(board, dice);
-        assertNull(move);
+        Move move = mainPlayer.doMiniMove(board, dice);
     }
 
     @Test
@@ -338,6 +356,258 @@ public class PlayerMachineLastTests {
         ArrayList<Integer> dice = new ArrayList<>();
         dice.add(5);
         dice.add(5);
+
+        ArrayList<Move> moves = mainPlayer.doMove(board, dice);
+        assertTrue(RulesChecker.isSetOfMovesOkay(board, moves, mainPlayer));
+
+    }
+
+    @Test
+    public void blockadeMovingTogether__REGRESSION_TEST() throws Exception {
+        for(Player player: players){
+            if(player.getColor() == Color.YELLOW){
+                mainPlayer = (PlayerMachine) player;
+                break;
+            }
+        }
+
+        Pawn pawn0 = mainPlayer.getPawns()[0];
+        Pawn pawn1 = mainPlayer.getPawns()[1];
+        Pawn pawn2 = mainPlayer.getPawns()[2];
+        Pawn pawn3 = mainPlayer.getPawns()[3];
+
+
+        board.getNests().get(Color.YELLOW).removePawn(pawn0);
+        board.getNests().get(Color.YELLOW).removePawn(pawn1);
+        board.getNests().get(Color.YELLOW).removePawn(pawn2);
+        board.getNests().get(Color.YELLOW).removePawn(pawn3);
+
+        board.getSpaceAt(41).addOccupant(pawn0);
+        board.getSpaceAt(41).addOccupant(pawn1);
+        board.getSpaceAt(42).addOccupant(pawn2);
+        board.getHomeRows().get(Color.YELLOW).get(1).addOccupant(pawn3);
+
+        ArrayList<Integer> dice = new ArrayList<>();
+        dice.add(4);
+        dice.add(4);
+        dice.add(1);
+        dice.add(1);
+
+        ArrayList<Move> moves = mainPlayer.doMove(board, dice);
+        assertTrue(RulesChecker.isSetOfMovesOkay(board, moves, mainPlayer));
+
+    }
+
+
+    @Test
+    public void blockadeMovingTogetherWhenStaggered__REGRESSION_TEST() throws Exception {
+        for(Player player: players){
+            if(player.getColor() == Color.RED){
+                mainPlayer = (PlayerMachine) player;
+                break;
+            }
+        }
+
+        Pawn pawn0 = mainPlayer.getPawns()[0];
+        Pawn pawn1 = mainPlayer.getPawns()[1];
+        Pawn pawn2 = mainPlayer.getPawns()[2];
+        Pawn pawn3 = mainPlayer.getPawns()[3];
+
+
+        board.getNests().get(Color.RED).removePawn(pawn0);
+        board.getNests().get(Color.RED).removePawn(pawn1);
+        board.getNests().get(Color.RED).removePawn(pawn2);
+        board.getNests().get(Color.RED).removePawn(pawn3);
+
+        board.getSpaceAt(3).addOccupant(pawn2);
+        board.getSpaceAt(4).addOccupant(pawn1);
+        board.getSpaceAt(4).addOccupant(pawn0);
+        board.getSpaceAt(5).addOccupant(pawn3);
+
+        ArrayList<Integer> dice = new ArrayList<>();
+        dice.add(5);
+        dice.add(5);
+        dice.add(2);
+        dice.add(2);
+
+        ArrayList<Move> moves = mainPlayer.doMove(board, dice);
+        assertTrue(RulesChecker.isSetOfMovesOkay(board, moves, mainPlayer));
+
+    }
+
+    @Test
+    public void enterAndMoveIncorrectlyThrowingError__REGRESSION_TEST() throws Exception {
+        Color color = Color.RED;
+
+        for(Player player: players){
+            if(player.getColor() == color){
+                mainPlayer = (PlayerMachine) player;
+                break;
+            }
+        }
+
+        Pawn pawn0 = mainPlayer.getPawns()[0];
+        Pawn pawn1 = mainPlayer.getPawns()[1];
+        Pawn pawn2 = mainPlayer.getPawns()[2];
+        Pawn pawn3 = mainPlayer.getPawns()[3];
+
+
+        board.getNests().get(color).removePawn(pawn0);
+        board.getNests().get(color).removePawn(pawn1);
+        board.getNests().get(color).removePawn(pawn2);
+        board.getNests().get(color).removePawn(pawn3);
+
+        board.getSpaceAt(3).addOccupant(pawn2);
+        board.getSpaceAt(4).addOccupant(pawn1);
+        board.getSpaceAt(4).addOccupant(pawn0);
+        board.getSpaceAt(5).addOccupant(pawn3);
+
+        ArrayList<Integer> dice = new ArrayList<>();
+        dice.add(5);
+        dice.add(5);
+        dice.add(2);
+        dice.add(2);
+
+        ArrayList<Move> moves = mainPlayer.doMove(board, dice);
+        assertTrue(RulesChecker.isSetOfMovesOkay(board, moves, mainPlayer));
+
+    }
+
+    @Test
+    public void wontChooseToMoveBlockadeWhenDoublesAllowBlockadeToEnterHomeRow__REGRESSION_TEST() throws Exception {
+        Color color = Color.RED;
+
+        for(Player player: players){
+            if(player.getColor() == color){
+                mainPlayer = (PlayerMachine) player;
+                break;
+            }
+        }
+
+        Pawn pawn0 = mainPlayer.getPawns()[0];
+        Pawn pawn1 = mainPlayer.getPawns()[1];
+        Pawn pawn2 = mainPlayer.getPawns()[2];
+        Pawn pawn3 = mainPlayer.getPawns()[3];
+
+
+        board.getNests().get(color).removePawn(pawn0);
+        board.getNests().get(color).removePawn(pawn1);
+
+        board.getSpaceAt(6).addOccupant(pawn1);
+        board.getSpaceAt(6).addOccupant(pawn0);
+
+        ArrayList<Integer> dice = new ArrayList<>();
+        dice.add(6);
+        dice.add(6);
+        dice.add(1);
+        dice.add(1);
+
+        ArrayList<Move> moves = mainPlayer.doMove(board, dice);
+        assertTrue(RulesChecker.isSetOfMovesOkay(board, moves, mainPlayer));
+
+    }
+
+    @Test
+    public void dontMoveBlockadeWhenThereAreTwoBlockadesAndBackBlockadeIsBockaded__REGRESSION_TEST() throws Exception {
+        Color color = Color.RED;
+        Color color2 = Color.YELLOW;
+
+        for(Player player: players){
+            if(player.getColor() == color){
+                mainPlayer = (PlayerMachine) player;
+                break;
+            }
+        }
+
+        for(Player player: players){
+            if(player.getColor() == color2){
+                playerBlocking = (PlayerMachine) player;
+                break;
+            }
+        }
+
+        Pawn pawn0 = mainPlayer.getPawns()[0];
+        Pawn pawn1 = mainPlayer.getPawns()[1];
+        Pawn pawn2 = mainPlayer.getPawns()[2];
+        Pawn pawn3 = mainPlayer.getPawns()[3];
+
+
+        Pawn bpawn0 = playerBlocking.getPawns()[0];
+        Pawn bpawn1 = playerBlocking.getPawns()[1];
+
+
+        board.getNests().get(color).removePawn(pawn0);
+        board.getNests().get(color).removePawn(pawn1);
+
+        board.getNests().get(color).removePawn(pawn2);
+        board.getNests().get(color).removePawn(pawn3);
+        board.getNests().get(color).removePawn(bpawn0);
+        board.getNests().get(color).removePawn(bpawn1);
+
+        board.getSpaceAt(19).addOccupant(pawn0);
+        board.getSpaceAt(19).addOccupant(pawn1);
+        board.getSpaceAt(20).addOccupant(bpawn0);
+        board.getSpaceAt(20).addOccupant(bpawn1);
+        board.getHomeRows().get(color).get(2).addOccupant(pawn2);
+        board.getHomeRows().get(color).get(2).addOccupant(pawn3);
+
+        ArrayList<Integer> dice = new ArrayList<>();
+        dice.add(5);
+        dice.add(5);
+        dice.add(2);
+        dice.add(2);
+
+        ArrayList<Move> moves = mainPlayer.doMove(board, dice);
+        assertTrue(RulesChecker.isSetOfMovesOkay(board, moves, mainPlayer));
+
+    }
+
+    @Test
+    public void dontLetBlockadeMoveOnMultipleBops__REGRESSION_TEST() throws Exception {
+        Color color = Color.RED;
+        Color color2 = Color.YELLOW;
+
+        for(Player player: players){
+            if(player.getColor() == color){
+                mainPlayer = (PlayerMachine) player;
+                break;
+            }
+        }
+
+        for(Player player: players){
+            if(player.getColor() == color2){
+                playerBlocking = (PlayerMachine) player;
+                break;
+            }
+        }
+
+        Pawn pawn0 = mainPlayer.getPawns()[0];
+        Pawn pawn1 = mainPlayer.getPawns()[1];
+        Pawn pawn2 = mainPlayer.getPawns()[2];
+        Pawn pawn3 = mainPlayer.getPawns()[3];
+
+        Pawn bPawn0 = playerBlocking.getPawns()[0];
+        Pawn bPawn1 = playerBlocking.getPawns()[1];
+
+        board.getNests().get(color).removePawn(pawn0);
+        board.getNests().get(color).removePawn(pawn1);
+        board.getNests().get(color).removePawn(pawn2);
+        board.getNests().get(color).removePawn(pawn3);
+
+        board.getSpaceAt(31).addOccupant(pawn0);
+        board.getSpaceAt(31).addOccupant(pawn1);
+        board.getSpaceAt(21).addOccupant(pawn2);
+        board.getSpaceAt(22).addOccupant(pawn3);
+
+
+        board.getSpaceAt(29).addOccupant(bPawn0);
+        board.getSpaceAt(51).addOccupant(bPawn1);
+
+        ArrayList<Integer> dice = new ArrayList<>();
+        dice.add(4);
+        dice.add(4);
+        dice.add(3);
+        dice.add(3);
 
         ArrayList<Move> moves = mainPlayer.doMove(board, dice);
         assertTrue(RulesChecker.isSetOfMovesOkay(board, moves, mainPlayer));

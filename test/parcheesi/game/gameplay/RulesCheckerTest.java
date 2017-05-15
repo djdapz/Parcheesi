@@ -124,7 +124,7 @@ public class RulesCheckerTest {
         moves.add(new MoveMain(pawn0, pawn0.getExitSpaceId(), 5));
         moves.add(new MoveMain(pawn1, pawn1.getExitSpaceId(), 5));
 
-        assertTrue(RulesChecker.doesBlockadeMove(moves, pawn0.getExitSpace(board)));
+        assertTrue(RulesChecker.doesBlockadeMove(moves, pawn0.getExitSpace(board), board));
 
         RulesChecker.isSetOfMovesOkay(board, moves, mainPlayer);
 

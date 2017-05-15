@@ -5,7 +5,7 @@ import parcheesi.game.board.Nest;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.MoveResult;
-import parcheesi.game.exception.BadMoveException;
+import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.player.Pawn;
 
 import java.util.HashMap;
@@ -21,6 +21,11 @@ public class EnterPiece extends MoveAbstract {
     @Override
     public int getStart() {
         return 0;
+    }
+
+    @Override
+    public Space getStart(Board board) {
+        return null;
     }
 
     @Override
@@ -63,22 +68,11 @@ public class EnterPiece extends MoveAbstract {
     }
 
     @Override
-    public Space getDestinationSpace(Board board) throws BadMoveException{
+    public Space getDestinationSpace(Board board) throws InvalidMoveException{
         Space entranceSpace = pawn.getExitSpace(board);
-        if(entranceSpace.isBlockaded()){
-            throw new BadMoveException(MoveResult.BLOCKED);
+        if(entranceSpace.isBlockaded()) {
+            throw new InvalidMoveException();
         }
-
-//        if(entranceSpace.getOccupant1() == null){
-//            return MoveResult.ENTERED;
-//        }
-//
-//        if(entranceSpace.getOccupant1().getColor() == pawn.getColor()){
-//            return MoveResult.ENTERED;
-//        }else{
-//            return MoveResult.BOP;
-//        }
-
         return entranceSpace;
     }
 

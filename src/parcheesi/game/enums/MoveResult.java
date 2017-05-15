@@ -10,7 +10,7 @@ public enum MoveResult {
     HOME,
     OVERSHOT,
     ENTERED,
-    ALREADYHERE;
+    ALREADYHERE, UNKNOWN;
 
     public boolean isSuccessfullMove(){
         if(this == BLOCKED || this == OVERSHOT){

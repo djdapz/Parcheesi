@@ -3,12 +3,13 @@ package parcheesi.game.player;
 import parcheesi.game.board.Board;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
-import parcheesi.game.exception.BadMoveException;
 import parcheesi.game.exception.GoesHomeException;
+import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.moves.Move;
 import parcheesi.game.moves.MoveHome;
 import parcheesi.game.moves.MoveMain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -113,7 +114,7 @@ public class Pawn {
                 return true;
             } catch (GoesHomeException e) {
                 return true;
-            } catch (BadMoveException e) {
+            } catch (InvalidMoveException e) {
                 continue;
             }
         }
@@ -123,4 +124,54 @@ public class Pawn {
         return false;
     }
 
+    public boolean canMoveWithoutMovingBlockades(List<Integer> dice, Board brd, ArrayList<Space> originalBlockadeList) {
+        Space blockedSpace = null ;
+        Pawn otherOccupant = null;
+
+
+        if(!this.canMove(dice, brd)){
+            return false;
+        }
+
+        //search to see if it's in a blockade
+        for(Space space: originalBlockadeList){
+            if(space.getOccupant1() == this){
+                otherOccupant = space.getOccupant2();
+                break;
+            }else if(space.getOccupant2() == this){
+                otherOccupant = space.getOccupant1();
+                break;
+            }
+        }
+
+        if(otherOccupant == null) {
+            return true;
+        }
+
+
+        for(int die: dice){
+            Space currentSpot = brd.findPawn(this);
+            if(currentSpot == null){
+                return false;
+            }
+            Move move = currentSpot.createMoveFromHere(die, this);
+            Space destination;
+
+            try{
+                destination= move.getDestinationSpace(brd);
+            } catch (InvalidMoveException e) {
+                continue;
+            } catch (GoesHomeException e) {
+                return true;
+            }
+
+            if(destination.getOccupant1() == otherOccupant || destination.getOccupant2() == otherOccupant){
+                continue;
+            }else{
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

@@ -5,8 +5,7 @@ import parcheesi.game.board.Nest;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.MoveResult;
-import parcheesi.game.exception.BadMoveException;
-import parcheesi.game.exception.InvalidMoveException;
+import parcheesi.game.exception.*;
 import parcheesi.game.gameplay.RulesChecker;
 import parcheesi.game.moves.EnterPiece;
 import parcheesi.game.moves.Move;
@@ -22,49 +21,64 @@ import java.util.List;
  */
 public abstract class PlayerMachine extends PlayerAbstract {
 
+    protected abstract Space findOptimalSpace(Board board);
+
+    protected abstract Space findOptimalSpace(Board board, ArrayList<Space> exclusionList);
+
+    public Move doMiniMove(Board brd, List<Integer> dice) throws InvalidMoveException, DuplicatePawnException, NoMoveFoundException {
+        ArrayList<Space> el = new ArrayList<>();
+        return doMiniMove(brd, dice, el);
+    }
+
+    public abstract Move doMiniMove(Board brd, List<Integer> dice, ArrayList<Space> originalBlockadeList) throws NoMoveFoundException, InvalidMoveException, DuplicatePawnException;
 
     @Override
-    public ArrayList<Move> doMove(Board originalBoard, List<Integer> dice) throws Exception {
-        int numMoves = dice.size();
-        int numTries = 0;
-        RulesChecker rc = new RulesChecker();
+    public ArrayList<Move> doMove(Board originalBoard, List<Integer> dice) throws InvalidMoveException, DuplicatePawnException, NoMoveFoundException, BlockadeMovesException {
+
+        final ArrayList<Space> originalBlockadeList = RulesChecker.findBlockades(originalBoard, this);
+        return doMove(originalBoard, dice, originalBlockadeList);
+    }
+
+    public ArrayList<Move> doMove(Board originalBoard, List<Integer> dice, ArrayList<Space> originalBlockadeList) throws NoMoveFoundException, InvalidMoveException, DuplicatePawnException, BlockadeMovesException {
+
         Move currentMove;
         ArrayList<Move> moveObjects = new ArrayList<>();
         Board brd = new Board(originalBoard);
         MoveResult mr;
 
-        while(dice.size() != 0 && canMove(dice, brd)){
-            numTries++;
-            if(numTries > 100){
-                throw new InvalidMoveException();
-            }
-
+        while(dice.size() != 0 && canMove(dice, brd, originalBlockadeList)){
             try{
-                currentMove =  this.doMiniMove(brd, dice);
-                if(currentMove == null){
-                    numTries++;
-                }
+                currentMove =  this.doMiniMove(brd, dice, originalBlockadeList);
                 mr = currentMove.run(brd);
-                if( !rc.doesPawnAppearOnlyOnce(brd, currentMove.getPawn())){
-                    throw new InvalidMoveException();
-                }
-                handleMoveResult(mr, brd, currentMove, dice, moveObjects);
-            }catch (Exception e){
+                handleMoveResult(mr, brd, currentMove, dice, moveObjects, originalBlockadeList);
+            } catch (NoMoveFoundException e) {
+                return moveObjects;
+            } catch (InvalidMoveException e){
                 throw e;
             }
+        }
+
+        try{
+            RulesChecker.isSetOfMovesOkay(originalBoard, moveObjects, this);
+        } catch (DuplicatePawnException e) {
+            throw e;
+        } catch (BlockadeMovesException e) {
+//
+            throw e;
         }
 
         return moveObjects;
     }
 
-    private void handleMoveResult(MoveResult mr, Board brd, Move currentMove, List<Integer> dice, ArrayList<Move> moveObjects) throws Exception {
+
+    private void handleMoveResult(MoveResult mr, Board brd, Move currentMove, List<Integer> dice, ArrayList<Move> moveObjects, ArrayList<Space> originalBlockadeList) throws InvalidMoveException, NoMoveFoundException, DuplicatePawnException, BlockadeMovesException {
         //if bopped a parcheesi.game.player, force parcheesi.game.player to move a pawn 20.
         //assuming that the parcheesi.game.player MxUST do the bop next movement first
         if (mr == MoveResult.BOP) {
             ArrayList<Integer> bonusMoveDice = new ArrayList<>();
             bonusMoveDice.add(20);
 
-            ArrayList<Move> bonusMoveItems = this.doMove(brd, bonusMoveDice);
+            ArrayList<Move> bonusMoveItems = this.doMove(brd, bonusMoveDice, originalBlockadeList);
 
             for(Move move: bonusMoveItems){
                 move.run(brd);
@@ -100,9 +114,7 @@ public abstract class PlayerMachine extends PlayerAbstract {
 
 
     }
-    protected abstract Space findOptimalSpace(Board board);
 
-    protected abstract Space findOptimalSpace(Board board, ArrayList<Space> exclusionList);
 
     private void editDice(Move currentMove, List<Integer> moves) throws InvalidMoveException{
         if (currentMove.getClass() == EnterPiece.class){
@@ -123,15 +135,16 @@ public abstract class PlayerMachine extends PlayerAbstract {
         }
     }
 
-    protected Space findBestSpace(Board brd, List<Integer> dice){
+    protected Space findBestSpace(Board brd, List<Integer> dice, ArrayList<Space> originalBlockadeList){
         Space bestSpace = findOptimalSpace(brd);
-
+        Pawn otherPawn = null;
         ArrayList<Space> exclusionList = new ArrayList<>();
+
 
         //all the parcheesi.game.player can do is move the pawn out
         while(bestSpace != null //if null; we've gotten to nest and players must be there
                 && bestSpace.getOccupant1()!= null
-                && !bestSpace.getOccupant1().canMove(dice,brd)){ // if this condition is true, we can move and we move on
+                && !bestSpace.getOccupant1().canMoveWithoutMovingBlockades(dice, brd, originalBlockadeList)){ // if this condition is true, we can move and we move on
             exclusionList.add(bestSpace);
 
 
@@ -141,7 +154,7 @@ public abstract class PlayerMachine extends PlayerAbstract {
         return bestSpace;
     }
 
-    protected Move chooseBestMoveGivenSpaceAndDice(List<Integer> dice, Space space, Board brd) throws InvalidMoveException{
+    protected Move chooseBestMoveGivenSpaceAndDice(List<Integer> dice, Space space, Board brd, ArrayList<Space> originalBlockadeList) throws InvalidMoveException{
         Collections.sort(dice);
         Collections.reverse(dice);
 
@@ -150,7 +163,7 @@ public abstract class PlayerMachine extends PlayerAbstract {
             List<Integer> singleDie = new ArrayList<>();
             singleDie.add(die);
 
-            if(space.getOccupant1().canMove(singleDie,brd)){
+            if(space.getOccupant1().canMoveWithoutMovingBlockades(singleDie,brd, originalBlockadeList)){
                 return createMove(space, die, space.getOccupant1());
             }
         }
@@ -168,7 +181,7 @@ public abstract class PlayerMachine extends PlayerAbstract {
         }
     }
 
-    EnterPiece enterPiece(Board brd, List<Integer> dice, Nest nest){
+    protected EnterPiece enterPiece(Board brd, List<Integer> dice, Nest nest) throws InvalidMoveException {
 
         if(dice.contains(5) ||
                 (dice.contains(4) && dice.contains(1)) ||
@@ -178,18 +191,13 @@ public abstract class PlayerMachine extends PlayerAbstract {
                 //TODO - include below
                 if(nest.isAtNest(pawn)){
                     EnterPiece move = new EnterPiece(pawn);
-                    try{
-                        move.getDestinationSpace(brd);
-                        return move;
-                    } catch (BadMoveException e) {
-                        return null;
-                    }
+                    move.getDestinationSpace(brd);
+                    return move;
                 }
             }
-            return null;
-        }else{
-            return null;
         }
+
+        throw new InvalidMoveException();
     }
 
 }

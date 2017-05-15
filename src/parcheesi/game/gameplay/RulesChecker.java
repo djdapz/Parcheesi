@@ -4,6 +4,8 @@ import parcheesi.game.board.Board;
 import parcheesi.game.board.Space;
 import parcheesi.game.exception.BlockadeMovesException;
 import parcheesi.game.exception.DuplicatePawnException;
+import parcheesi.game.exception.GoesHomeException;
+import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.moves.Move;
 import parcheesi.game.player.Pawn;
 import parcheesi.game.player.Player;
@@ -17,25 +19,33 @@ import java.util.Vector;
  */
 public class RulesChecker {
     public static boolean isSetOfMovesOkay(Board board, List<Move> moves, Player player) throws BlockadeMovesException, DuplicatePawnException {
-        ArrayList<Space> blockades = findBlockades(board, player);
 
-        for(Space space: blockades){
-            if(doesBlockadeMove(moves, space)){
-                throw new BlockadeMovesException();
-            };
-        }
 
-        for(Pawn pawn:player.getPawns()){
-            if(!doesPawnAppearOnlyOnce(board, pawn)){
-                throw new DuplicatePawnException();
-            }
-        }
+        doBlockadesMove(board, moves, player);
+        doPawnsBehaveProperly(board, player);
 
         return true;
 
     }
 
-    public static boolean doesBlockadeMove(List<Move> moves, Space space) {
+    public static void doBlockadesMove(Board board, List<Move> moves, Player player) throws BlockadeMovesException{
+        ArrayList<Space> blockades = findBlockades(board, player);
+        for(Space space: blockades){
+            if(doesBlockadeMove(moves, space, board)){
+                throw new BlockadeMovesException();
+            };
+        }
+    }
+
+    public static void doPawnsBehaveProperly(Board board, Player player) throws DuplicatePawnException {
+        for(Pawn pawn:player.getPawns()){
+            if(!doesPawnAppearOnlyOnce(board, pawn)){
+                throw new DuplicatePawnException();
+            }
+        }
+    }
+
+    public static boolean doesBlockadeMove(List<Move> moves, Space space, Board board) {
         Pawn pawn1 = space.getOccupant1();
         Pawn pawn2 = space.getOccupant2();
 
@@ -53,6 +63,13 @@ public class RulesChecker {
         }
 
         if(pawn1Distance > 0 && pawn1Distance == pawn2Distance){
+            try{
+                space.createMoveFromHere( pawn1Distance, pawn1).getDestinationSpace(board);
+            } catch (InvalidMoveException e) {
+                return true;
+            } catch (GoesHomeException e) {
+                return false;
+            }
             return true;
         }
 

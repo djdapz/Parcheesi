@@ -8,6 +8,7 @@ import parcheesi.game.board.Nest;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.MoveResult;
+import parcheesi.game.exception.NoMoveFoundException;
 import parcheesi.game.gameplay.Game;
 import parcheesi.game.gameplay.RulesChecker;
 import parcheesi.game.moves.EnterPiece;
@@ -31,8 +32,8 @@ public class PlayerMachineFirstTests {
     private Game game;
     private Home home;
     private HashMap<Color, Nest> nests;
-    private Player mainPlayer;
-    private Player playerBlocking;
+    private PlayerMachine mainPlayer;
+    private PlayerMachine playerBlocking;
 
     @Before
     public void setUp() throws Exception {
@@ -49,11 +50,10 @@ public class PlayerMachineFirstTests {
     }
 
     @Test
-    public void MovesPawnOutWhenAllAtHome() throws Exception {
+    public void MovesPawnOutWhenAllAtHome() throws Exception{
         ArrayList<Integer> scenario1dl = new ArrayList<>();
         ArrayList<Integer> scenario2dl = new ArrayList<>();
         ArrayList<Integer> scenario3dl = new ArrayList<>();
-        ArrayList<Integer> scenario4dl = new ArrayList<>();
 
         scenario1dl.add(5);
         scenario1dl.add(2);
@@ -64,20 +64,23 @@ public class PlayerMachineFirstTests {
         scenario3dl.add(2);
         scenario3dl.add(3);
 
-        scenario4dl.add(6);
-        scenario4dl.add(2);
-
         Move move1 = mainPlayer.doMiniMove(board, scenario1dl);
         Move move2 = mainPlayer.doMiniMove(board, scenario2dl);
         Move move3 = mainPlayer.doMiniMove(board, scenario3dl);
-        Move move4 = mainPlayer.doMiniMove(board, scenario4dl);
-
 
         assertEquals(move1.getClass(), EnterPiece.class);
         assertEquals(move2.getClass(), EnterPiece.class);
         assertEquals(move3.getClass(), EnterPiece.class);
-        assertNull(move4);
+    }
 
+    @Test(expected= NoMoveFoundException.class)
+    public void MovesPawnOutWhenAllAtHomeButDiceDontAllowEntry() throws Exception{
+        ArrayList<Integer> scenariodl = new ArrayList<>();
+
+        scenariodl.add(6);
+        scenariodl.add(2);
+
+        Move move1 = mainPlayer.doMiniMove(board, scenariodl);
     }
 
     @Test
@@ -254,7 +257,48 @@ public class PlayerMachineFirstTests {
 
         ArrayList<Move> moves = mainPlayer.doMove(board, dice);
         assertTrue(RulesChecker.isSetOfMovesOkay(board, moves, mainPlayer));
+    }
 
+    @Test
+    public void movesBlockadeOnDoubles6AND1WhenOvershootOccursOnLargerDouble__REGRESSION_TEST() throws Exception {
+        Pawn pawn0 = mainPlayer.getPawns()[0];
+        Pawn pawn1 = mainPlayer.getPawns()[1];
+        Pawn pawn2 = mainPlayer.getPawns()[2];
+        Pawn pawn3 = mainPlayer.getPawns()[3];
+
+
+        Move enter0 = new EnterPiece(pawn0);
+        Move enter1 = new EnterPiece(pawn1);
+        Move enter2 = new EnterPiece(pawn2);
+        Move enter3 = new EnterPiece(pawn3);
+
+
+        Move moveToHome0 = new MoveMain(pawn0, pawn0.getExitSpaceId(), 17*4+1);
+        Move moveToHome1 = new MoveMain(pawn1, pawn1.getExitSpaceId(), 17*4+1);
+        Move moveToHome2 = new MoveMain(pawn2, pawn2.getExitSpaceId(), 17*4+2);
+        Move moveToHome3 = new MoveMain(pawn3, pawn3.getExitSpaceId(), 17*4+2);
+
+        assertEquals(MoveResult.ENTERED, enter2.run(board));
+        assertEquals(MoveResult.ENTERED, enter3.run(board));
+        assertEquals(MoveResult.HOME, moveToHome2.run(board));
+        assertEquals(MoveResult.HOME, moveToHome3.run(board));
+
+        assertEquals(MoveResult.ENTERED, enter0.run(board));
+        assertEquals(MoveResult.ENTERED, enter1.run(board));
+        assertEquals(MoveResult.SUCCESS, moveToHome0.run(board));
+        assertEquals(MoveResult.SUCCESS, moveToHome1.run(board));
+
+        assertEquals(board.findPawn(pawn0), board.getHomeRows().get(pawn0.getColor()).get(5));
+        assertEquals(RulesChecker.findBlockades(board, mainPlayer).get(0), board.getHomeRows().get(pawn0.getColor()).get(5));
+
+        ArrayList<Integer> dice = new ArrayList<>();
+        dice.add(6);
+        dice.add(6);
+        dice.add(1);
+        dice.add(1);
+
+        ArrayList<Move> moves = mainPlayer.doMove(board, dice);
+        assertTrue(RulesChecker.isSetOfMovesOkay(board, moves, mainPlayer));
     }
 
 

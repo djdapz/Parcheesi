@@ -1,8 +1,9 @@
 package parcheesi.game.board;
 
-import parcheesi.game.player.Pawn;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.MoveResult;
+import parcheesi.game.moves.Move;
+import parcheesi.game.player.Pawn;
 
 /**
  * Created by devondapuzzo on 4/10/17.
@@ -12,7 +13,7 @@ public abstract class Space {
 
     private boolean safeSpace;
     private Color region;
-    private int id;
+    protected int id;
 
 
     private Pawn occupant1 = null;
@@ -44,6 +45,7 @@ public abstract class Space {
         this.id = id;
     }
 
+    public abstract Space  copy() throws IndexOutOfBoundsException;
 
     public boolean isBlockaded(){
 
@@ -110,5 +112,10 @@ public abstract class Space {
     public Boolean isSafeSpace(){
         return safeSpace;
     };
+
+    public abstract Move createMoveFromHere(int distance, Pawn pawn);
+
+
+
 
 }

@@ -1,6 +1,10 @@
 package parcheesi.game.board;
 
 import parcheesi.game.enums.Color;
+import parcheesi.game.moves.Move;
+import parcheesi.game.moves.MoveHome;
+import parcheesi.game.moves.MoveMain;
+import parcheesi.game.player.Pawn;
 
 /**
  * Created by devondapuzzo on 4/10/17.
@@ -12,7 +16,29 @@ public class SpaceRegular extends Space {
     }
 
     @Override
+    public Space copy() throws IndexOutOfBoundsException {
+        SpaceRegular newSpace = new SpaceRegular(this.getRegion(), this.getId());
+        if(this.getOccupant1() != null){
+            newSpace.addOccupant(this.getOccupant1());
+        }
+        if(this.getOccupant2() != null){
+            newSpace.addOccupant(this.getOccupant2());
+        }
+        return newSpace;
+    }
+
+    @Override
     public Boolean isSafeSpace() {
         return false;
+    }
+
+    @Override
+    public Move createMoveFromHere(int distance, Pawn pawn) {
+        if(this.getRegion() == Color.HOME){
+            return new MoveHome(pawn, this.id, distance);
+        }else{
+            return new MoveMain(pawn, this.id, distance);
+        }
+
     }
 }

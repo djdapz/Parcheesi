@@ -49,21 +49,7 @@ public class Board {
         Vector<Space> newSpaces = new Vector<>();
 
         for(Space space: oldSpaces){
-            if(space.isSafeSpace()){
-                newSpace = new SpaceSafe(space.getRegion(), space.getId());
-            }else{
-                newSpace = new SpaceRegular(space.getRegion(), space.getId());
-            }
-
-            if(space.getOccupant1()!=null){
-                newSpace.addOccupant(space.getOccupant1());
-            }
-
-            if(space.getOccupant2()!=null){
-                newSpace.addOccupant(space.getOccupant2());
-            }
-
-            newSpaces.add(newSpace);
+            newSpaces.add(space.copy());
         }
 
         return newSpaces;

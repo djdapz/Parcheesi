@@ -30,8 +30,8 @@ public class Evaluator {
             }else{
                 numLastWins++;
             }
-//            System.out.println("Trial: " + Integer.toString(i)
-//                    + "   winner:  " + result);
+            System.out.println("Trial: " + Integer.toString(i)
+                    + "   winner:  " + result);
         }
 
         return("First won " + Integer.toString(numFirstWins) + ".  Last won " + Integer.toString(numLastWins));

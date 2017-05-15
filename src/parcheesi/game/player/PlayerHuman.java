@@ -2,7 +2,6 @@ package parcheesi.game.player;
 
 import parcheesi.game.board.Board;
 import parcheesi.game.enums.Strategy;
-import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.moves.Move;
 
 import java.util.ArrayList;
@@ -15,11 +14,6 @@ public class PlayerHuman extends PlayerAbstract {
 
     @Override
     public ArrayList<Move> doMove(Board brd, List<Integer> dice) {
-        return null;
-    }
-
-    @Override
-    public Move doMiniMove(Board brd, List<Integer> dice) throws InvalidMoveException {
         return null;
     }
 

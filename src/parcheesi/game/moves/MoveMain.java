@@ -5,11 +5,13 @@ import parcheesi.game.board.Nest;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.MoveResult;
-import parcheesi.game.exception.BadMoveException;
 import parcheesi.game.exception.GoesHomeException;
+import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.player.Pawn;
 
 import java.util.HashMap;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by devondapuzzo on 4/9/17.
@@ -21,8 +23,14 @@ public class MoveMain extends MoveAbstract {
     }
 
     @Override
+    public Space getStart(Board board) {
+        return board.getSpaceAt(start);
+    }
+
+    @Override
     public MoveResult run(Board board) {
         Space newSpace;
+        assertTrue(board.getSpaceAt(this.start).hasOccupant(pawn));
 
         try {
             newSpace =  this.getDestinationSpace(board);
@@ -30,7 +38,7 @@ public class MoveMain extends MoveAbstract {
             board.getSpaceAt(start).removeOccupant(pawn);
             board.getHome().addPawn(pawn);
             return MoveResult.HOME;
-        } catch (BadMoveException e) {
+        } catch (InvalidMoveException e) {
             return e.getMoveResult();
         }
 
@@ -59,7 +67,7 @@ public class MoveMain extends MoveAbstract {
     }
 
     @Override
-    public Space getDestinationSpace(Board board) throws GoesHomeException, BadMoveException {
+    public Space getDestinationSpace(Board board) throws GoesHomeException, InvalidMoveException {
         assert(distance < board.getBoardLength());
 
         int newSpot = (start + distance) % board.getBoardLength() ;
@@ -75,7 +83,7 @@ public class MoveMain extends MoveAbstract {
                 int spaceIndex = i % board.getBoardLength();
 
                 if(board.getSpaceAt(spaceIndex).isBlockaded()) {
-                    throw new BadMoveException(MoveResult.BLOCKED);
+                    throw new InvalidMoveException(MoveResult.BLOCKED);
                 }
 
                 if(spaceIndex == pawn.getHomeEntranceId()){
@@ -94,7 +102,7 @@ public class MoveMain extends MoveAbstract {
             if(newSpace.getOccupant1() != null){
                 if(newSpace.getOccupant1().getColor() != pawn.getColor()){
                     if(newSpace.isSafeSpace()){
-                        throw new BadMoveException(MoveResult.BLOCKED);
+                        throw new InvalidMoveException(MoveResult.BLOCKED);
                     };
                 }
             }

@@ -2,11 +2,11 @@ package parcheesi.game.moves;
 
 import parcheesi.game.board.Board;
 import parcheesi.game.board.Home;
-import parcheesi.game.exception.BadMoveException;
-import parcheesi.game.exception.GoesHomeException;
-import parcheesi.game.player.Pawn;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.MoveResult;
+import parcheesi.game.exception.GoesHomeException;
+import parcheesi.game.exception.InvalidMoveException;
+import parcheesi.game.player.Pawn;
 
 import java.util.Vector;
 
@@ -17,6 +17,11 @@ public class MoveHome extends MoveAbstract {
 
     public MoveHome(Pawn pawn, int start, int distance) {
         super(pawn, start, distance);
+    }
+
+    @Override
+    public Space getStart(Board board) {
+        return board.getHomeRows().get(pawn.getColor()).get(start);
     }
 
     @Override
@@ -35,7 +40,7 @@ public class MoveHome extends MoveAbstract {
         } catch (GoesHomeException e) {
             home.addPawn(pawn);
             return MoveResult.HOME;
-        } catch (BadMoveException e) {
+        } catch (InvalidMoveException e) {
             if(start >=0){
                 //need to put pawn back
                 homeRow.get(start).addOccupant(pawn);
@@ -50,19 +55,19 @@ public class MoveHome extends MoveAbstract {
 
 
     @Override
-    public Space getDestinationSpace(Board board) throws BadMoveException, GoesHomeException{
+    public Space getDestinationSpace(Board board) throws InvalidMoveException, GoesHomeException{
         Home home = board.getHome();
         Vector<Space> homeRow = board.getHomeRows().get(pawn.getColor());
 
         int target = start + distance;
 
         if(target > homeRow.size()){
-            throw new BadMoveException(MoveResult.OVERSHOT);
+            throw new InvalidMoveException(MoveResult.OVERSHOT);
         }
 
         for(int i = start+1; (target == homeRow.size() && i <target) || (target != homeRow.size() && i <=target); i ++){
             if(homeRow.get(i).isBlockaded()){
-                throw new BadMoveException(MoveResult.BLOCKED);
+                throw new InvalidMoveException(MoveResult.BLOCKED);
             }
         }
 

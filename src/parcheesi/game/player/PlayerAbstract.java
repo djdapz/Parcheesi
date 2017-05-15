@@ -5,6 +5,9 @@ import parcheesi.game.board.Home;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.Strategy;
+import parcheesi.game.exception.DuplicatePawnException;
+import parcheesi.game.exception.InvalidMoveException;
+import parcheesi.game.exception.NoMoveFoundException;
 import parcheesi.game.moves.Move;
 
 import java.util.ArrayList;
@@ -32,16 +35,17 @@ public abstract class PlayerAbstract implements Player {
 
 
     @Override
-    public boolean canMove(List<Integer> moves, Board board){
+    public boolean canMove(List<Integer> moves, Board board, ArrayList<Space> originalBlockades){
         for(int i =0; i < pawns.length; i ++){
-            if(pawns[i].canMove(moves, board)){
+            if(pawns[i].canMoveWithoutMovingBlockades(moves, board, originalBlockades)){
                 return true;
             };
         }
         return false;
     };
 
-    public abstract ArrayList<Move> doMove(Board brd, List<Integer> dice) throws Exception;
+
+    public abstract ArrayList<Move> doMove(Board brd, List<Integer> dice) throws NoMoveFoundException, InvalidMoveException, DuplicatePawnException, Exception;
 
     public boolean hasWon(Home home){
         for(int i = 0; i <pawns.length; i++){
