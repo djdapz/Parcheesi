@@ -5,11 +5,7 @@ import parcheesi.game.board.Dice;
 import parcheesi.game.board.Home;
 import parcheesi.game.board.Nest;
 import parcheesi.game.enums.Color;
-import parcheesi.game.moves.Move;
-import parcheesi.game.player.Pawn;
-import parcheesi.game.player.Player;
-import parcheesi.game.player.PlayerMachineFirst;
-import parcheesi.game.player.PlayerMachineLast;
+import parcheesi.game.player.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,15 +20,11 @@ public class Game implements GameInterface {
     private Turn currentTurn;
     private Color[] colors;
     private final int maxPlayers = 4;
-    private HashMap<Color, ArrayList<Move>> keepTrackOfMoves = new HashMap();
 
     public Game(){
         board = new Board();
         players = new ArrayList<>();
         colors = board.getColors();
-        for(Color color: colors){
-            keepTrackOfMoves.put(color, new ArrayList<>());
-        }
     }
 
     @Override
@@ -49,6 +41,7 @@ public class Game implements GameInterface {
 
         int playersToAdd = maxPlayers - players.size();
 
+        //random selection from strategies
         for(int i = 0; i < playersToAdd; i ++){
             if(die.rollOne() > 3){
                 this.register(new PlayerMachineFirst());
@@ -64,10 +57,7 @@ public class Game implements GameInterface {
 
         for(int i=0; i < colors.length; i ++){
             Player player = players.get(i);
-            player.setColor(colors[i]);
-
-            player.setNestExit(board.getSpaceAt(i*regionLength + exitLocation));
-            player.setHomeEntrance(board.getSpaceAt(i*regionLength + homeRowEntrance));
+            player.startGame(colors[i]);
 
             //adding pawns to nest for start of parcheesi.parcheesi.game.gameplay
             Nest nest = nests.get(player.getColor());
@@ -75,28 +65,20 @@ public class Game implements GameInterface {
             for(Pawn pawn: player.getPawns()){
                 nest.addPawn(pawn);
             }
-            player.startGame(colors[i]);
+
         }
 
 
     }
 
     public Player play() throws Exception{
-        int turnCount = 0;
-        ArrayList<Move> thisTurnsMoves;
         while(!isWinner()) {
             for(int i = 0; i < players.size() && !isWinner(); i ++){
                 if(!players.get(i).isKickedOut()){
                     currentTurn = new Turn(players.get(i), board);
-                    try{
-                        thisTurnsMoves = currentTurn.play();
-                        keepTrackOfMoves.get(players.get(i).getColor()).addAll(thisTurnsMoves);
-                    } catch (Exception e) {
-                        throw e;
-                    }
+                    currentTurn.play();
                 }
-            };
-            turnCount++;
+            }
         }
         return getWinner();
     }

@@ -5,6 +5,7 @@ import parcheesi.game.board.Space;
 import parcheesi.game.enums.MoveResult;
 import parcheesi.game.exception.GoesHomeException;
 import parcheesi.game.exception.InvalidMoveException;
+import parcheesi.game.parser.XMLConstant;
 import parcheesi.game.player.Pawn;
 
 /**
@@ -25,5 +26,9 @@ public interface Move {
     Space getDestinationSpace(Board board) throws GoesHomeException, InvalidMoveException;
 
     String getStringOfMove();
+
+    XMLConstant getXMLConstant();
+
+    String getXMLString();
 
 }

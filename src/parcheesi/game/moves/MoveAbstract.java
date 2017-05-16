@@ -5,6 +5,7 @@ import parcheesi.game.board.Space;
 import parcheesi.game.enums.MoveResult;
 import parcheesi.game.exception.GoesHomeException;
 import parcheesi.game.exception.InvalidMoveException;
+import parcheesi.game.parser.XMLConstant;
 import parcheesi.game.player.Pawn;
 
 /**
@@ -50,4 +51,10 @@ public abstract class MoveAbstract implements Move {
 
     @Override
     public abstract String getStringOfMove() ;
+
+    @Override
+    public abstract XMLConstant getXMLConstant();
+
+    @Override
+    public abstract String getXMLString();
 }

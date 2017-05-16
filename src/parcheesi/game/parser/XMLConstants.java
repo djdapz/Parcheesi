@@ -7,7 +7,7 @@ import parcheesi.game.board.Board;
  */
 public class
 XMLConstants {
-    public static final XMLConstant TITLE = new XMLConstant("parcheesi.game.board");
+    public static final XMLConstant TITLE = new XMLConstant("board");
     public static final XMLConstant HOME = new XMLConstant("home");
     public static final XMLConstant MAIN = new XMLConstant("main");
     public static final XMLConstant HOME_ROW = new XMLConstant("home-rows");

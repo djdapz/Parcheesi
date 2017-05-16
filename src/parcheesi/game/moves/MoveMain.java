@@ -7,6 +7,9 @@ import parcheesi.game.enums.Color;
 import parcheesi.game.enums.MoveResult;
 import parcheesi.game.exception.GoesHomeException;
 import parcheesi.game.exception.InvalidMoveException;
+import parcheesi.game.parser.XMLConstant;
+import parcheesi.game.parser.XMLConstants;
+import parcheesi.game.parser.XMLEncoder;
 import parcheesi.game.player.Pawn;
 
 import java.util.HashMap;
@@ -116,5 +119,19 @@ public class MoveMain extends MoveAbstract {
         return "Player " + pawn.getColor().toString() + ", MAIN_MOVE  "+
                 "Distance: " + Integer.toString(distance) + "   " +
                 "Start: " + Integer.toString(start);
+    }
+
+    @Override
+    public XMLConstant getXMLConstant() {
+        return XMLConstants.MOVE_MAIN;
+    }
+
+    @Override
+    public String getXMLString() {
+        return getXMLConstant().element(
+                XMLEncoder.encodePawn(pawn)
+                        + XMLConstants.START.element(start)
+                        + XMLConstants.DISTANCE.element(start)
+        );
     }
 }

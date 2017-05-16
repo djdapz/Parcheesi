@@ -6,6 +6,9 @@ import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.MoveResult;
 import parcheesi.game.exception.InvalidMoveException;
+import parcheesi.game.parser.XMLConstant;
+import parcheesi.game.parser.XMLConstants;
+import parcheesi.game.parser.XMLEncoder;
 import parcheesi.game.player.Pawn;
 
 import java.util.HashMap;
@@ -79,5 +82,17 @@ public class EnterPiece extends MoveAbstract {
     @Override
     public String getStringOfMove() {
         return "Player " + pawn.getColor().toString() + ", EnterPiece  ";
+    }
+
+    @Override
+    public XMLConstant getXMLConstant() {
+        return XMLConstants.ENTER_PIECE;
+    }
+
+    @Override
+    public String getXMLString() {
+        return getXMLConstant().element(
+                XMLEncoder.encodePawn(pawn)
+        );
     }
 }

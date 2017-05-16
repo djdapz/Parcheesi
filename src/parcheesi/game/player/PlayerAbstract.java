@@ -25,6 +25,17 @@ public abstract class PlayerAbstract implements Player {
 
     @Override
     public String startGame(Color color) {
+        Board board = new Board();
+
+        int exitLocation = board.getNestExit();
+        int homeRowEntrance = board.getHomeRowEntrance();
+        int regionLength = board.getBoardLength()/4;
+
+        setColor(color);
+
+        setNestExit(board.getSpaceAt(color.getValue()*regionLength + exitLocation));
+        setHomeEntrance(board.getSpaceAt(color.getValue()*regionLength + homeRowEntrance));
+
         return name;
     }
 

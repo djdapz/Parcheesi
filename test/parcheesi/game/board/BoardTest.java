@@ -137,7 +137,7 @@ public class BoardTest {
         space2.addOccupant(testPawn2);
         space3.addOccupant(testPawn3);
 
-        Assert.assertEquals(board.findMostAdvancedPawn(player), space1);
+        Assert.assertEquals(board.findMostAdvancedPawn(player), space3);
     }
 
     @Test
