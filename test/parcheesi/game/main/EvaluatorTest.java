@@ -12,7 +12,7 @@ public class EvaluatorTest {
     public void runTests() throws Exception {
         //every
         Evaluator eval = new Evaluator();
-        assertNotNull(eval.runTests(1000));
+        assertNotNull(eval.runTests(100));
     }
 
 }

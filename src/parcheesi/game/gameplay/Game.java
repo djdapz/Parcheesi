@@ -75,8 +75,10 @@ public class Game implements GameInterface {
             for(Pawn pawn: player.getPawns()){
                 nest.addPawn(pawn);
             }
-
+            player.startGame(colors[i]);
         }
+
+
     }
 
     public Player play() throws Exception{

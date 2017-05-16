@@ -19,12 +19,12 @@ import java.util.List;
 public abstract class PlayerAbstract implements Player {
 
     protected Color color;
-    private String name;
+    protected String name;
     protected final Pawn[] pawns = new Pawn[4];
     protected boolean kickedOut = false;
 
     @Override
-    public String startGame(String color) {
+    public String startGame(Color color) {
         return name;
     }
 

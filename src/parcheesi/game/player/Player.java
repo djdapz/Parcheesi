@@ -14,7 +14,7 @@ import java.util.List;
  * Created by devondapuzzo on 4/9/17.
  */
 public interface Player {
-    String startGame(String color);
+    String startGame(Color color);
 
     ArrayList<Move> doMove(Board brd, List<Integer> dice) throws Exception;
 
