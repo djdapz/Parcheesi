@@ -12,7 +12,6 @@ public class Home {
 
     private Set<Pawn> pawns;
 
-
     public Home() {
         pawns = new HashSet<>();
     }
@@ -31,6 +30,10 @@ public class Home {
 
     public Set<Pawn> getPawns() {
         return pawns;
+    }
+
+    public void removePawn(Pawn pawn){
+        pawns.remove(pawn);
     }
 
 }

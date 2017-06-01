@@ -1,13 +1,13 @@
-package parcheesi.game.player;
+package parcheesi.game.player.machine;
 
 import parcheesi.game.board.Board;
 import parcheesi.game.board.Nest;
 import parcheesi.game.board.Space;
-import parcheesi.game.enums.Strategy;
 import parcheesi.game.exception.DuplicatePawnException;
 import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.exception.NoMoveFoundException;
 import parcheesi.game.moves.Move;
+import parcheesi.game.player.machine.heuristic.Statistics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,11 @@ import java.util.List;
  * Created by devondapuzzo on 5/8/17.
  */
 public class PlayerMachineFirst extends PlayerMachine {
+    public PlayerMachineFirst() {
+        super();
+        this.name = "FIRST";
+    }
+
     @Override
     protected Space findOptimalSpace(Board board) {
         return board.findMostAdvancedPawn(this);
@@ -28,30 +33,37 @@ public class PlayerMachineFirst extends PlayerMachine {
 
     @Override
     public Move doMiniMove(Board brd, List<Integer> dice, ArrayList<Space> originalBlockadeList) throws NoMoveFoundException, InvalidMoveException, DuplicatePawnException {
-
         Space mostAdvancedSpace = findBestSpace(brd, dice, originalBlockadeList);
 
         if(mostAdvancedSpace == null){
             Nest nest = brd.getNests().get(this.color);
             try{
                 return enterPiece(brd, dice, nest);
-            }catch (Exception e){
+            }catch (InvalidMoveException e){
                 throw new NoMoveFoundException();
             }
         }
 
-        try{
-            return super.chooseBestMoveGivenSpaceAndDice(dice, mostAdvancedSpace, brd, originalBlockadeList);
-        } catch (Exception e){
-            throw e;
-        }
-    }
+        return chooseBestMoveGivenSpaceAndDice(dice, mostAdvancedSpace, brd, originalBlockadeList);
 
+    }
+    private static Statistics stats = new Statistics();
 
     @Override
-    public Strategy getStrategy() {
-        return Strategy.FIRST;
+    public void incrementWins() {
+        stats.incrementWins();
     }
 
+    @Override
+    public void incrementKickedOuts() {
+        stats.incrementKickedOuts();
+    }
 
+    public static int getWins() {
+        return stats.getWins();
+    }
+
+    public static int getKickedOuts() {
+        return stats.getKickedOuts();
+    }
 }

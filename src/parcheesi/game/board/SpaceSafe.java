@@ -9,11 +9,7 @@ import parcheesi.game.player.Pawn;
  * Created by devondapuzzo on 4/10/17.
  */
 public class SpaceSafe extends Space {
-    @Override
-    public Boolean isSafeSpace() {
-        return true;
-    }
-
+    
     @Override
     public Move createMoveFromHere(int distance, Pawn pawn) {
         return new MoveMain(pawn, this.id, distance);
@@ -33,5 +29,20 @@ public class SpaceSafe extends Space {
             newSpace.addOccupant(this.getOccupant2());
         }
         return newSpace;
+    }
+
+    @Override
+    public java.awt.Color getSystemColor() {
+        return java.awt.Color.MAGENTA;
+    }
+
+    @Override
+    public String getSerializedRepresentation() {
+        return this.getId() + "_" + "MAIN_RING" + "_" +this.getRegion().toString();
+    }
+
+    @Override
+    public boolean isHomeRow(){
+        return false;
     }
 }

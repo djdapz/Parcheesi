@@ -1,51 +1,39 @@
 package parcheesi.game.main;
 
-import parcheesi.game.enums.Strategy;
 import parcheesi.game.gameplay.Game;
+import parcheesi.game.player.Player;
+import parcheesi.game.player.machine.PlayerMachineCustom;
+import parcheesi.game.player.machine.PlayerMachineFirst;
+import parcheesi.game.player.machine.PlayerMachineLast;
 
 public class Evaluator {
 
     public static void main(String[] args) throws Exception {
+        runTests(10000);
+        System.out.println("First won " + Integer.toString(PlayerMachineFirst.getWins()) +
+                ".  Last won " + Integer.toString(PlayerMachineLast.getWins()) +
+                ".  Custom won: " + Integer.toString(PlayerMachineCustom.getWins()));
 
-        try{
-            System.out.print(runTests(100000));
-        }catch (Exception e){
-            throw e;
-        }
+        System.out.println("First Kicked: " + Integer.toString(PlayerMachineFirst.getKickedOuts()) +
+                ".  Last Kicked " + Integer.toString(PlayerMachineLast.getKickedOuts()) +
+                ".  Custom Kicked: " + Integer.toString(PlayerMachineCustom.getKickedOuts()));
     }
 
-    public static String runTests(int numberOfTests) throws Exception {
-        int numFirstWins = 0;
-        int numLastWins = 0;
-        Strategy result;
-
+    public static void runTests(int numberOfTests) throws Exception {
+        System.out.print('a');
         for(int i = 0; i < numberOfTests; i ++){
-            try{
-                result = runTest();
-            }catch (Exception e){
-                throw e;
-            }
-            if(result == Strategy.FIRST){
-                numFirstWins++;
-            }else{
-                numLastWins++;
-            }
+            Player winner = runTest();
+            winner.incrementWins();
             System.out.println("Trial: " + Integer.toString(i)
-                    + "   winner:  " + result);
+                    + "   winner:  " + winner.getName());
         }
-
-        return("First won " + Integer.toString(numFirstWins) + ".  Last won " + Integer.toString(numLastWins));
     }
 
-    public static Strategy runTest() throws Exception {
+    public static Player runTest() throws Exception {
         Game game = new Game();
+        game.register(new PlayerMachineCustom());
         game.start();
-        try{
-            return game.play().getStrategy();
-        }catch (Exception e){
-            throw e;
-        }
-
+        return game.play();
     }
 
 }

@@ -15,24 +15,8 @@ public abstract class Space {
     private Color region;
     protected int id;
 
-
     private Pawn occupant1 = null;
     private Pawn occupant2 = null;
-
-    public Pawn getOccupant1() {
-        return occupant1;
-    }
-    public Pawn getOccupant2() {
-        return occupant2;
-    }
-    public Color getRegion() {
-        return region;
-    }
-    public int getId() {
-        return id;
-    }
-    public boolean hasOccupant(Pawn pawn){return occupant1==pawn || occupant2 == pawn;}
-
 
     public Space(Color region, int id, boolean safeSpace) throws IndexOutOfBoundsException {
         this.region = region;
@@ -45,15 +29,10 @@ public abstract class Space {
         this.id = id;
     }
 
-    public abstract Space  copy() throws IndexOutOfBoundsException;
+    public abstract Space copy() throws IndexOutOfBoundsException;
 
     public boolean isBlockaded(){
-
-        if(occupant2 != null){
-            return true;
-        }
-
-        return false;
+        return occupant2 != null;
     }
 
     public MoveResult addOccupant(Pawn pawn){
@@ -64,31 +43,21 @@ public abstract class Space {
         if(occupant1 == null){
             occupant1 = pawn;
             return MoveResult.SUCCESS;
-        }else{
-            if(occupant1.getColor() == pawn.getColor()){
-                if(occupant1 == pawn){
-                    return MoveResult.ALREADYHERE;
-                }
-                //if the other occupant is the same color as the new one
-                occupant2 = pawn;
-                return MoveResult.SUCCESS;
-            }else{
-                //bop the occupant at the turn level
-                if(this.isSafeSpace()){
-                    if(pawn.getExitSpaceId() == this.getId()){
-                        occupant2 = occupant1;
-                        occupant1 = pawn;
-                        return MoveResult.BOP;
-                    }else{
-                        return MoveResult.BLOCKED;
-                    }
-                }else{
-                    occupant2 = occupant1;
-                    occupant1 = pawn;
-                    return MoveResult.BOP;
-                }
-            }
         }
+
+        if(occupant1.getColor() == pawn.getColor()) {
+            occupant2 = pawn;
+            return MoveResult.SUCCESS;
+        }
+
+        if(this.isSafeSpace() && !(pawn.getExitSpaceId() == this.getId())){
+            return MoveResult.BLOCKED;
+        }else{
+            occupant2 = occupant1;
+            occupant1 = pawn;
+            return MoveResult.BOP;
+        }
+
     }
 
     public boolean removeOccupant(Pawn pawn){
@@ -101,21 +70,44 @@ public abstract class Space {
             occupant1 = null;
             occupant1 = occupant2;
             occupant2 = null;
-
             return true;
         }
 
         return false;
     }
 
+
+
     //Methods unique to each space
+    public abstract Move createMoveFromHere(int distance, Pawn pawn);
+
+    public abstract java.awt.Color getSystemColor();
+
+    public abstract String getSerializedRepresentation();
+
+    public abstract boolean isHomeRow();
+
+    //basic getters
+    public Pawn getOccupant1() {
+        return occupant1;
+    }
+
+    public Pawn getOccupant2() {
+        return occupant2;
+    }
+
+    public Color getRegion() {
+        return region;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public boolean hasOccupant(Pawn pawn){return occupant1==pawn || occupant2 == pawn;}
+
     public Boolean isSafeSpace(){
         return safeSpace;
     };
-
-    public abstract Move createMoveFromHere(int distance, Pawn pawn);
-
-
-
 
 }

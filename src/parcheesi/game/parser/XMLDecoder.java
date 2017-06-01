@@ -6,7 +6,6 @@ import org.w3c.dom.Element;
 import parcheesi.game.board.Board;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
-import parcheesi.game.enums.MoveResult;
 import parcheesi.game.enums.PlayerAction;
 import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.exception.NoMoveFoundException;
@@ -51,16 +50,13 @@ public class XMLDecoder {
 
     public static Color decodeStartGame(String XML) throws Exception{
         Element root = loadXMLFromString(XML);
-
-        String colorText =root.getFirstChild().getFirstChild().getTextContent().toUpperCase();
+        String colorText =root.getFirstChild().getTextContent().toUpperCase();
         return Color.valueOf(colorText);
     }
 
-    public static ArrayList<Integer> getDiceFromDoMove(String XML)  throws Exception{
+    public static ArrayList<Integer> decodeDiceFromDoMove(String XML)  throws Exception{
         Element root = loadXMLFromString(XML);
-
-        Element diceNode = (Element) root.getElementsByTagName("dice").item(0);
-
+        Element diceNode = (Element) root.getElementsByTagName(XMLConstants.DICE.s()).item(0);
         return decodeDiceFromNode(diceNode);
     }
 
@@ -70,16 +66,11 @@ public class XMLDecoder {
         return dice;
     }
 
-
-    public static Board getBoardFromDoMove(String XML, ArrayList<Player> players) throws  Exception{
+    public static Board decodeBoardFromDoMove(String XML, ArrayList<Player> players) throws  Exception{
         Element root = loadXMLFromString(XML);
-
-        Element boardNode = (Element) root.getElementsByTagName("board").item(0);
-
+        Element boardNode = (Element) root.getElementsByTagName(XMLConstants.BOARD.s()).item(0);
         return decodeBoardFromNode(boardNode, players);
     }
-
-
 
 
     public static Board decodeBoardFromString(String XML, ArrayList<Player> players) throws Exception {
@@ -129,8 +120,6 @@ public class XMLDecoder {
         return true;
     }
 
-
-
     private static void setup(Element root, XMLConstant target, Predicate<Element> callback) throws PawnNotFoundException {
         String elementId = target.s();
         Element pawnElement = (Element) root.getElementsByTagName(elementId).item(0).getFirstChild();
@@ -167,15 +156,10 @@ public class XMLDecoder {
         if(region.s().equals(XMLConstants.HOME_ROW.s())){
             space = board.getHomeRows().get(pawn.getColor()).get(spaceId);
         }else{
-            spaceId = XMLConstants.convertIdFromXML(spaceId, board);
+            spaceId = XMLConstants.convertIdFromXML(spaceId);
             space = board.getSpaceAt(spaceId);
         }
-
-        MoveResult mr = space.addOccupant(pawn);
-
-        if(mr != MoveResult.SUCCESS){
-            throw new InvalidMoveException(mr);
-        };
+        space.addOccupant(pawn);
     }
 
 
@@ -259,17 +243,17 @@ public class XMLDecoder {
 
     private static Move moveElementToMove(Element moveElement, Player player) throws PawnNotFoundException, NoMoveFoundException {
         String tagName = moveElement.getTagName();
-
-
         Pawn pawn = findPawnFromElement((Element) moveElement.getElementsByTagName(XMLConstants.PAWN.s()).item(0), player);
-
 
         if (tagName.equals(XMLConstants.ENTER_PIECE.s())) {
             return new EnterPiece(pawn);
         }
 
-        Integer distance = Integer.parseInt(moveElement.getElementsByTagName(XMLConstants.START.s()).item(0).getTextContent());
-        Integer start = Integer.parseInt(moveElement.getElementsByTagName(XMLConstants.DISTANCE.s()).item(0).getTextContent());
+        Integer distance = Integer.parseInt(moveElement.getElementsByTagName(XMLConstants.DISTANCE.s()).item(0).getTextContent());
+        Integer start = Integer.parseInt(moveElement.getElementsByTagName(XMLConstants.START.s()).item(0).getTextContent());
+        if(tagName.equals(XMLConstants.MOVE_MAIN.s())){
+            start = XMLConstants.convertIdFromXML(start);
+        }
 
         if (tagName.equals(XMLConstants.MOVE_HOME.s())) {
             return new MoveHome(pawn, start, distance);
@@ -279,4 +263,10 @@ public class XMLDecoder {
 
         throw new NoMoveFoundException();
     }
+
+    public static boolean ensureDoublesPenaltyIsVoid(String clientResponse) throws Exception {
+        Element root = loadXMLFromString(clientResponse);
+        return root.getChildNodes().getLength() == 0 && root.getTagName().equals(XMLConstants.VOID.s());
+    }
+
 }

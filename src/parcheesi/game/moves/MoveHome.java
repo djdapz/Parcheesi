@@ -98,8 +98,8 @@ public class MoveHome extends MoveAbstract {
     public String getXMLString() {
         return getXMLConstant().element(
                 XMLEncoder.encodePawn(pawn)
-                + XMLConstants.START.element(start)
-                + XMLConstants.DISTANCE.element(start)
+                +    XMLConstants.START.element(start)
+                + XMLConstants.DISTANCE.element(distance)
         );
     }
 

@@ -1,8 +1,10 @@
 package parcheesi.game.board;
 
+import parcheesi.game.enums.Color;
+import parcheesi.game.exception.PawnNotFoundException;
 import parcheesi.game.player.Pawn;
 import parcheesi.game.player.Player;
-import parcheesi.game.enums.Color;
+import parcheesi.game.player.machine.PlayerMachineFirst;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,43 +23,19 @@ public class Board {
     private final HashMap<Color, Vector<Space>> homeRows = new HashMap<Color, Vector<Space>>();
     private final HashMap<Color, Nest> nests = new HashMap<Color, Nest>();
 
-    private Color colors[] = {Color.RED, Color.BLUE, Color.YELLOW, Color.GREEN};
 
+    //Board Configuration
+    private Color colors[] = {Color.RED, Color.BLUE, Color.YELLOW, Color.GREEN};
     private int regionLength = 17;
-    private int homeRowLength = 6;
+    private int homeRowLength = 7;
     private int boardLength;
     private int safeSpace = 3;
     private int homeRowEntrance = 8;
     private int nestExit = 13;
 
-
-    public Board(Board oldBoard){
-
-        spaces = copyVector(oldBoard.getSpaces());
-        home = new Home(oldBoard.getHome());
-
-        for(Color color: colors){
-            homeRows.put(color, copyVector(oldBoard.getHomeRows().get(color)));
-            nests.put(color, new Nest(oldBoard.getNests().get(color)));
-        }
-
-        boardLength = oldBoard.getBoardLength();
-    }
-
-    private Vector<Space> copyVector(Vector<Space> oldSpaces){
-        Space newSpace;
-        Vector<Space> newSpaces = new Vector<>();
-
-        for(Space space: oldSpaces){
-            newSpaces.add(space.copy());
-        }
-
-        return newSpaces;
-    }
-
     public Board(){
         //
-        spaces = new Vector<Space>();
+        spaces = new Vector<>();
         home = new Home();
         for(int i = 0; i < colors.length; i ++){
             for(int j = 0; j < regionLength; j++){
@@ -77,11 +55,35 @@ public class Board {
             homeRows.put(colors[i], new Vector<Space>());
 
             for(int j = 0; j < homeRowLength; j ++){
-                homeRows.get(colors[i]).add(new SpaceHomeRow(Color.HOME, j));
+                homeRows.get(colors[i]).add(new SpaceHomeRow(colors[i], j));
             }
         }
     }
 
+    //Copy Constructor
+    public Board(Board oldBoard){
+        spaces = copyVector(oldBoard.getSpaces());
+        home = new Home(oldBoard.getHome());
+
+        for(Color color: colors){
+            homeRows.put(color, copyVector(oldBoard.getHomeRows().get(color)));
+            nests.put(color, new Nest(oldBoard.getNests().get(color)));
+        }
+
+        boardLength = oldBoard.getBoardLength();
+    }
+
+    private Vector<Space> copyVector(Vector<Space> oldSpaces){
+        Vector<Space> newSpaces = new Vector<>();
+
+        for(Space space: oldSpaces){
+            newSpaces.add(space.copy());
+        }
+
+        return newSpaces;
+    }
+
+    //Player Management
     public boolean enforceDoublesPenalty(Player player){
         Space bumpedSpace = this.findMostAdvancedPawn(player);
 
@@ -93,6 +95,49 @@ public class Board {
         }else{
             return false;
         }
+    }
+
+    public void kickOut(Player player) throws PawnNotFoundException {
+        for(Pawn pawn: player.getPawns()){
+            if(findPawn(pawn) != null){
+                findPawn(pawn).removeOccupant(pawn);
+            }else if(this.isAtNest(pawn)){
+                nests.get(player.getColor()).removePawn(pawn);
+            }else if(home.isPawnHome(pawn)){
+                home.removePawn(pawn);
+            }else{
+                throw new PawnNotFoundException();
+            }
+        }
+    }
+
+    public List<Player> createRepresentationOfOtherPlayers(Player myPlayer){
+        List<Player> playersArrayList = new ArrayList<>();
+        Player tempPlayer;
+
+        for(Color color1: this.getColors()){
+            if(color1 == myPlayer.getColor()){
+                tempPlayer = myPlayer;
+            } else{
+                tempPlayer = new PlayerMachineFirst();
+                tempPlayer.setColor(color1);
+            }
+
+            playersArrayList.add(tempPlayer);
+        }
+        return playersArrayList;
+    }
+
+
+    //Pawn Information Methods
+    public boolean allPawnsInPlay(Pawn[] pawns) {
+        for(Pawn pawn: pawns){
+            if(this.isAtNest(pawn)){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public Space findPawn(Pawn pawn){
@@ -214,35 +259,73 @@ public class Board {
 
     }
 
+    public Integer distanceFromHome(Pawn pawn) {
+        if(isHome(pawn)){
+            return 0;
+        }
 
+        if(isAtNest(pawn)){
+            return homeRowLength + boardLength - (nestExit - homeRowEntrance);
+        }
+
+        Space space = findPawn(pawn);
+
+        if(space.isHomeRow()){
+            return homeRowLength - space.getId();
+        }
+
+        int distanceToHomeRowEnterance = homeRowEntrance;
+
+        if(homeRowEntrance < space.getId()){
+            distanceToHomeRowEnterance += boardLength;
+        }
+
+        return distanceToHomeRowEnterance - space.getId() + homeRowLength;
+    }
+
+
+    //General Getters
     public int getBoardLength() {
         return boardLength;
     }
+
     public Vector<Space> getSpaces() {
         return spaces;
     }
+
     public int getHomeRowEntrance() {
         return homeRowEntrance;
     }
+
     public int getNestExit() {
         return nestExit;
     }
+
     public Color[] getColors() {
         return colors;
     }
+
     public Home getHome(){return home;}
+
     public HashMap<Color, Nest> getNests() {
         return nests;
     }
+
     public Space getSpaceAt(int spaceIndex){
         return spaces.get(spaceIndex);
     }
+
     public HashMap<Color, Vector<Space>> getHomeRows() {
         return homeRows;
     }
 
+    public boolean isAtNest(Pawn pawn){
+        return this.nests.get(pawn.getColor()).isAtNest(pawn);
+    }
 
-
+    public boolean isHome(Pawn pawn){
+        return this.home.isPawnHome(pawn);
+    }
 
 
 }

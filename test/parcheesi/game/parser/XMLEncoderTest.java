@@ -178,8 +178,8 @@ public class XMLEncoderTest {
     public void spaceToXML() throws Exception {
         board.getSpaceAt(0).addOccupant(players.get(0).getPawns()[0]);
 
-        assertEquals(xmlEncoder.encodeSpace(board.getSpaceAt(0), board), "<piece-loc><pawn><color>red</color><id>0</id></pawn><loc>9</loc></piece-loc>");
-        assertEquals(xmlEncoder.encodeSpace(board.getSpaceAt(1), board), "");
+        assertEquals(xmlEncoder.encodeSpace(board.getSpaceAt(0)), "<piece-loc><pawn><color>red</color><id>0</id></pawn><loc>9</loc></piece-loc>");
+        assertEquals(xmlEncoder.encodeSpace(board.getSpaceAt(1)), "");
     }
 
 

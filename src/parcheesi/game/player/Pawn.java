@@ -34,6 +34,10 @@ public class Pawn {
         return id;
     }
 
+    public boolean equals(Pawn pawn) {
+        return pawn != null && pawn.color == this.color && pawn.id == this.id;
+    }
+
     public Color getColor() {
         return color;
     }

@@ -4,11 +4,12 @@ import parcheesi.game.board.Board;
 import parcheesi.game.board.Home;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
-import parcheesi.game.enums.Strategy;
-import parcheesi.game.exception.DuplicatePawnException;
-import parcheesi.game.exception.InvalidMoveException;
-import parcheesi.game.exception.NoMoveFoundException;
+import parcheesi.game.enums.MoveResult;
+import parcheesi.game.exception.*;
+import parcheesi.game.gameplay.RulesChecker;
+import parcheesi.game.gui.Messages;
 import parcheesi.game.moves.Move;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,13 +41,12 @@ public abstract class PlayerAbstract implements Player {
     }
 
     @Override
-    public void DoublesPenalty() {
+    public void doublesPenalty() {
 
     }
 
-
     @Override
-    public boolean canMove(List<Integer> moves, Board board, ArrayList<Space> originalBlockades){
+    public boolean canMove(ArrayList<Integer> moves, Board board, ArrayList<Space> originalBlockades){
         for(int i =0; i < pawns.length; i ++){
             if(pawns[i].canMoveWithoutMovingBlockades(moves, board, originalBlockades)){
                 return true;
@@ -55,8 +55,41 @@ public abstract class PlayerAbstract implements Player {
         return false;
     };
 
+    @Override
+    public ArrayList<Move> doMove(Board originalBoard, ArrayList<Integer> dice) throws InvalidMoveException, DuplicatePawnException, NoMoveFoundException, BlockadeMovesException, Exception {
+        final ArrayList<Space> originalBlockadeList = RulesChecker.findBlockades(originalBoard, this);
+        return doMove(originalBoard, dice, originalBlockadeList);
+    }
 
-    public abstract ArrayList<Move> doMove(Board brd, List<Integer> dice) throws NoMoveFoundException, InvalidMoveException, DuplicatePawnException, Exception;
+    @Override
+    public void messagePlayer(String string){
+        return;
+    }
+
+    public ArrayList<Move> doMove(Board originalBoard, ArrayList<Integer> dice, ArrayList<Space> originalBlockadeList) throws NoMoveFoundException, InvalidMoveException, DuplicatePawnException, BlockadeMovesException, SpaceNotFoundException {
+        ArrayList<Move> moveObjects = new ArrayList<>();
+        Board brd = new Board(originalBoard);
+        RulesChecker.checkForDoubles(dice, pawns, brd);
+
+        while(dice.size() != 0 && canMove(dice, brd, originalBlockadeList)){
+            try{
+                Move currentMove =  this.doMiniMove(brd, dice, originalBlockadeList);
+                MoveResult mr = currentMove.run(brd);
+                handleMoveResult(mr, brd, currentMove, dice, moveObjects, originalBlockadeList);
+            } catch (NoMoveFoundException e) {
+                return moveObjects;
+            }
+        }
+
+
+        try{
+            RulesChecker.isSetOfMovesOkay(originalBoard, moveObjects, this);
+        }catch( BlockadeMovesException e) {
+            RulesChecker.resolveBlockadeMoved(moveObjects, originalBlockadeList, brd, this);
+        }
+
+        return moveObjects;
+    }
 
     public boolean hasWon(Home home){
         for(int i = 0; i <pawns.length; i++){
@@ -77,6 +110,9 @@ public abstract class PlayerAbstract implements Player {
     }
 
     public String getName() {
+        if(name == null){
+            return color.toString();
+        }
         return name;
     }
 
@@ -106,9 +142,87 @@ public abstract class PlayerAbstract implements Player {
         }
     }
 
-    public abstract Strategy getStrategy();
-
-    public void kickOut(){this.kickedOut = true;}
+    public void kickOut(){
+        this.incrementKickedOuts();
+        this.kickedOut = true;
+    }
 
     public boolean isKickedOut(){return  kickedOut;}
+
+    public abstract Move doMiniMove(Board brd, List<Integer> dice, ArrayList<Space> originalBlockadeList) throws NoMoveFoundException, InvalidMoveException, DuplicatePawnException;
+
+    protected void handleMoveResult(MoveResult mr, Board brd, Move currentMove, ArrayList<Integer> dice, ArrayList<Move> moveObjects, ArrayList<Space> originalBlockadeList) throws InvalidMoveException, NoMoveFoundException, DuplicatePawnException, BlockadeMovesException, SpaceNotFoundException {
+        if (mr == MoveResult.BOP) {
+           handleBop(brd, originalBlockadeList, currentMove, moveObjects, dice);
+        } else if(mr == MoveResult.ENTERED){
+           handleEnter(moveObjects, currentMove, dice);
+        }
+        else if (mr == MoveResult.BLOCKED || mr == MoveResult.OVERSHOT) {
+            moveObjects.remove(currentMove);
+            messagePlayer(Messages.failedMove(mr));
+        } else{
+            if(mr == MoveResult.HOME){
+                handleMoveHome(dice);
+
+            }
+            currentMove.editDice(dice);
+            moveObjects.add(currentMove);
+            messagePlayer(Messages.successfulMove(currentMove));
+        }
+    }
+
+    private void handleMoveHome(ArrayList<Integer> dice) {
+        dice.add(10);
+    }
+
+    public void handleBop(Board brd, ArrayList<Space> originalBlockadeList, Move currentMove, ArrayList<Move> moveObjects, ArrayList<Integer> dice ) throws InvalidMoveException, DuplicatePawnException, BlockadeMovesException, NoMoveFoundException, SpaceNotFoundException {
+        ArrayList<Integer> bonusMoveDice = new ArrayList<>();
+        bonusMoveDice.add(20);
+        messagePlayer(Messages.bop);
+
+        ArrayList<Move> bonusMoveItems = this.doMove(brd, bonusMoveDice, originalBlockadeList);
+
+        for(Move move: bonusMoveItems){
+            move.run(brd);
+        }
+
+        moveObjects.add(currentMove);
+        moveObjects.addAll(bonusMoveItems);
+
+        currentMove.editDice(dice);
+        return;
+    }
+
+
+    protected void handleEnter(ArrayList<Move> moveObjects,  Move currentMove, List<Integer> dice) {
+        moveObjects.add(currentMove);
+        assert(
+                (dice.contains(3) && dice.contains(2))
+                    ||
+                (dice.contains(3) && dice.contains(2))
+                    ||
+                (dice.contains(5))
+            );
+
+        if(dice.contains(3) && dice.contains(2)){
+            dice.remove(dice.indexOf(2));
+            dice.remove(dice.indexOf(3));
+        }else if(dice.contains(4) && dice.contains(1)){
+            dice.remove(dice.indexOf(4));
+            dice.remove(dice.indexOf(1));
+        }else if(dice.contains(5)){
+            dice.remove(dice.indexOf(5));
+        }
+        messagePlayer(Messages.enter(currentMove));
+    }
+
+
+
+    @Override
+    public void incrementWins(){
+        throw new NotImplementedException();
+    };
+
+    @Override
+    public void incrementKickedOuts(){throw new NotImplementedException();}
 }

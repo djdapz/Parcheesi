@@ -11,6 +11,7 @@ import parcheesi.game.parser.XMLConstants;
 import parcheesi.game.parser.XMLEncoder;
 import parcheesi.game.player.Pawn;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -55,10 +56,6 @@ public class EnterPiece extends MoveAbstract {
 
                 exitSpace.removeOccupant(boppedPawn);
                 return MoveResult.BOP;
-            }
-            else if(mr == MoveResult.ALREADYHERE) {
-                exitSpace.removeOccupant(pawn);
-                return mr;
             }else{
                 return mr;
             }
@@ -94,5 +91,16 @@ public class EnterPiece extends MoveAbstract {
         return getXMLConstant().element(
                 XMLEncoder.encodePawn(pawn)
         );
+    }
+
+    @Override
+    public void editDice(ArrayList<Integer> moves) throws InvalidMoveException {
+        if((moves.contains(4) && moves.contains(1)) || (moves.contains(3) && moves.contains(2))){
+            moves.clear();
+        }else if(moves.contains(5)){
+            moves.remove((moves.indexOf(5)));
+        }else{
+            throw new InvalidMoveException();
+        }
     }
 }

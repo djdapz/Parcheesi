@@ -4,9 +4,10 @@ import parcheesi.game.board.Board;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.PlayerAction;
 import parcheesi.game.moves.Move;
+import parcheesi.game.parser.XMLConstants;
 import parcheesi.game.parser.XMLDecoder;
 import parcheesi.game.parser.XMLEncoder;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import parcheesi.game.player.machine.PlayerMachineFirst;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by devondapuzzo on 5/15/17.
  */
-public class PlayerClient implements Runnable{
+public class ClientPlayer implements Runnable{
 
     private final Integer portNumber;
     private Socket client;
@@ -28,7 +29,8 @@ public class PlayerClient implements Runnable{
     private ArrayList<Player> playersArrayList = new ArrayList<>();
     private String hostName = "localhost";
 
-    PlayerClient(Integer port, Player player) {
+
+    public ClientPlayer(Integer port, Player player) {
         this.portNumber = port;
         this.player = player;
         try {
@@ -57,15 +59,17 @@ public class PlayerClient implements Runnable{
             try{
                 line = in.readLine();//Send data back to client
                 PlayerAction pa = XMLDecoder.getAction(line);
-
+                System.out.println("Server: " + line);
                 if(pa == PlayerAction.START_GAME){
                     line = startGame(line);
                 }else if(pa == PlayerAction.DO_MOVE){
                     line = doMove(line);
                 }else if(pa == PlayerAction.DOUBLES_PENALTY){
-                    throw new NotImplementedException();
+                    line = doublesPenalty();
                 }
 
+
+                System.out.println("Myresponse: " + line);
                 out.println(line); //Append data to text area
             }catch (IOException e) {
                 System.out.println("Read failed");
@@ -78,7 +82,7 @@ public class PlayerClient implements Runnable{
 
     }
 
-    String startGame(String XML) throws Exception{
+    public String startGame(String XML) throws Exception{
         Color color= XMLDecoder.decodeStartGame(XML);
         String name = player.startGame(color);
         //TODO Create representation of playersArrayList
@@ -102,11 +106,18 @@ public class PlayerClient implements Runnable{
         return "<name>" + name + "</name>";
     }
 
-    String doMove(String XML) throws Exception{
+    public String doMove(String XML) throws Exception{
         assert(playersArrayList != null);
-        Board board = XMLDecoder.getBoardFromDoMove(XML, playersArrayList);
-        ArrayList<Integer> dice = XMLDecoder.getDiceFromDoMove(XML);
+        Board board = XMLDecoder.decodeBoardFromDoMove(XML, playersArrayList);
+        ArrayList<Integer> dice = XMLDecoder.decodeDiceFromDoMove(XML);
         ArrayList<Move> moves = player.doMove(board, dice);
         return XMLEncoder.encodeMoves(moves);
     }
+
+    public String doublesPenalty() throws Exception{
+        player.doublesPenalty();
+        return XMLConstants.VOID.element("");
+    }
+
+
 }

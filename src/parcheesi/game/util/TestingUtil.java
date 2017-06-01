@@ -1,9 +1,11 @@
 package parcheesi.game.util;
 
+import org.junit.Assert;
 import parcheesi.game.board.Board;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.MoveResult;
 import parcheesi.game.moves.EnterPiece;
+import parcheesi.game.moves.Move;
 import parcheesi.game.moves.MoveMain;
 import parcheesi.game.player.Pawn;
 import parcheesi.game.player.Player;
@@ -59,5 +61,10 @@ public class TestingUtil {
                 assertNull(v2Space.getOccupant1());
             }
         }
+    }
+
+    public static void enterPieceAndEnsureSuccess(Board board, Pawn pawn){
+        Move move = new EnterPiece(pawn);
+        Assert.assertEquals(move.run(board), MoveResult.ENTERED);
     }
 }

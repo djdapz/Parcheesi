@@ -33,7 +33,7 @@ public class MoveMain extends MoveAbstract {
     @Override
     public MoveResult run(Board board) {
         Space newSpace;
-        assertTrue(board.getSpaceAt(this.start).hasOccupant(pawn));
+         assertTrue(board.getSpaceAt(this.start).hasOccupant(pawn));
 
         try {
             newSpace =  this.getDestinationSpace(board);
@@ -130,8 +130,9 @@ public class MoveMain extends MoveAbstract {
     public String getXMLString() {
         return getXMLConstant().element(
                 XMLEncoder.encodePawn(pawn)
-                        + XMLConstants.START.element(start)
-                        + XMLConstants.DISTANCE.element(start)
+                        + XMLConstants.START.element(XMLConstants.convertIdToXML(start))
+                        + XMLConstants.DISTANCE.element(distance)
         );
     }
+
 }

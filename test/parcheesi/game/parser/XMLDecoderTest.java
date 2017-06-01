@@ -43,6 +43,12 @@ public class XMLDecoderTest {
 
 
     @Test
+    public void ensureDoublesPenaltyIsVoid() throws Exception{
+        assertTrue(XMLDecoder.ensureDoublesPenaltyIsVoid("<void></void>"));
+        assertTrue(!XMLDecoder.ensureDoublesPenaltyIsVoid("<void>blah</void>"));
+    }
+
+    @Test
     public void getActionWorks() throws Exception {
         String xml="<do-move> <board> <start> <pawn> <color> yellow </color> <id> 3 </id> </pawn> <pawn> <color> yellow </color> <id> 2 </id> </pawn> <pawn> <color> yellow </color> <id> 1 </id> </pawn> <pawn> <color> yellow </color> <id> 0 </id> </pawn> <pawn> <color> red </color> <id> 3 </id> </pawn> <pawn> <color> red </color> <id> 2 </id> </pawn> <pawn> <color> red </color> <id> 1 </id> </pawn> <pawn> <color> red </color> <id> 0 </id> </pawn> <pawn> <color> green </color> <id> 3 </id> </pawn> <pawn> <color> green </color> <id> 2 </id> </pawn> <pawn> <color> green </color> <id> 1 </id> </pawn> <pawn> <color> green </color> <id> 0 </id> </pawn> <pawn> <color> blue </color> <id> 3 </id> </pawn> <pawn> <color> blue </color> <id> 2 </id> </pawn> <pawn> <color> blue </color> <id> 1 </id> </pawn> <pawn> <color> blue </color> <id> 0 </id> </pawn> </start> <main> </main> <home-rows> </home-rows> <home> </home> </board> <dice> <die> 5 </die> <die> 3 </die> </dice> </do-move>";
         PlayerAction pa = XMLDecoder.getAction(xml);
@@ -76,7 +82,7 @@ public class XMLDecoderTest {
         PlayerAction pa = XMLDecoder.getAction(xml);
         assertEquals(pa, PlayerAction.DO_MOVE);
 
-        ArrayList<Integer> dice = XMLDecoder.getDiceFromDoMove(xml);
+        ArrayList<Integer> dice = XMLDecoder.decodeDiceFromDoMove(xml);
         assertEquals(dice.size(), 2);
         assertTrue(dice.contains(1));
         assertTrue(dice.contains(2));
@@ -90,7 +96,7 @@ public class XMLDecoderTest {
 
         for(Player player: players){
             for(Pawn pawn: player.getPawns()){
-                assertTrue(board.getNests().get(player.getColor()).isAtNest(pawn));
+                assertTrue(board.isAtNest(pawn));
             }
         }
     }
@@ -107,13 +113,13 @@ public class XMLDecoderTest {
 
         for(Nest nest: firstNest.values()){
             for(Pawn pawn: nest.getPawns()){
-                assertTrue(roundTripNests.get(pawn.getColor()).isAtNest(pawn));
+                assertTrue(roundTripBoard.isAtNest(pawn));
             }
         }
 
         for(Nest nest: roundTripNests.values()){
             for(Pawn pawn: nest.getPawns()){
-                assertTrue(firstNest.get(pawn.getColor()).isAtNest(pawn));
+                assertTrue(board.isAtNest(pawn));
             }
         }
     }

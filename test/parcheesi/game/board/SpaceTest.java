@@ -1,16 +1,13 @@
 package parcheesi.game.board;
 
 import org.junit.Test;
-import parcheesi.game.board.Space;
-import parcheesi.game.board.SpaceHomeRow;
-import parcheesi.game.board.SpaceRegular;
-import parcheesi.game.board.SpaceSafe;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.MoveResult;
 import parcheesi.game.player.Pawn;
 
 import static junit.framework.Assert.assertEquals;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by devondapuzzo on 4/10/17.
@@ -127,7 +124,7 @@ public class SpaceTest {
     public void isSafeSpace() throws Exception {
         SpaceSafe ss = new SpaceSafe(Color.GREEN, 1);
         SpaceRegular rs = new SpaceRegular(Color.BLUE, 2);
-        SpaceHomeRow hs = new SpaceHomeRow(Color.BLUE, 2);
+        SpaceHomeRow hs = new SpaceHomeRow(Color.BLUE, 2, Color.BLUE);
 
         boolean ssSafe = ss.isSafeSpace();
         boolean rsSafe = rs.isSafeSpace();
@@ -153,16 +150,4 @@ public class SpaceTest {
         assertTrue(ss.hasOccupant(pawn1));
         assertTrue(!ss.hasOccupant(pawn2));
     }
-
-    @Test
-    public void addOccupantToSpaceTheyAreAlreadyAt() throws Exception{
-        Space space = new SpaceRegular(Color.BLUE, 1);
-        Pawn pawn1 = new Pawn(1, Color.RED);
-
-        assertEquals(space.addOccupant(pawn1), MoveResult.SUCCESS);
-        assertEquals(space.addOccupant(pawn1), MoveResult.ALREADYHERE);
-    }
-
-
-
 }

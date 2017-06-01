@@ -198,7 +198,7 @@ public class MoveMainTest {
         assertEquals(startSpace.getOccupant1(), null);
         assertEquals(endSpace.getOccupant2(), null);
         assertEquals(endSpace.getOccupant1(), bopperPawn);
-        assertTrue(boppedNest.isAtNest(boppedPawn));
+        assertTrue(board.isAtNest(boppedPawn));
         assertTrue(rc.doesPawnAppearOnlyOnce(board, boppedPawn));
         assertTrue(rc.doesPawnAppearOnlyOnce(board, bopperPawn));
     }

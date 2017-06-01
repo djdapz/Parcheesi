@@ -1,12 +1,16 @@
 package parcheesi.game.player;
 
 import parcheesi.game.board.Board;
+import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
-import parcheesi.game.enums.Strategy;
+import parcheesi.game.exception.DuplicatePawnException;
+import parcheesi.game.exception.InvalidMoveException;
+import parcheesi.game.exception.NoMoveFoundException;
 import parcheesi.game.moves.Move;
 import parcheesi.game.parser.XMLDecoder;
 import parcheesi.game.parser.XMLEncoder;
 import parcheesi.game.util.PortNumberGenerator;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -21,59 +25,51 @@ public class PlayerNetwork extends PlayerAbstract {
 
     private ServerSocket socket;
     private Socket clientSocket;
-    private final Integer portNumber = PortNumberGenerator.getPortNumber();
+    private Integer portNumber = PortNumberGenerator.getPortNumber();
 
-    private PlayerServer playerServer;
+    private ServerPlayer serverPlayer;
 
     public PlayerNetwork() {
-        playerServer = new PlayerServer(portNumber);
-        new Thread(playerServer).start();
+        serverPlayer = new ServerPlayer(portNumber);
+        new Thread(serverPlayer).start();
     }
 
+    public PlayerNetwork(int portNumber) {
+        serverPlayer = new ServerPlayer(portNumber);
+        this.portNumber = portNumber;
+        new Thread(serverPlayer).start();
+    }
 
 
     @Override
     public String startGame(Color color) {
 
         String outputLine = XMLEncoder.encodeStartGame(color);
-        String totalInput = "";
-        String inputLine;
         super.startGame(color);
 
-
-        playerServer.getOut().println(outputLine);
+        serverPlayer.getOut().println(outputLine);
 
         try {
-            String clientResponse = playerServer.getIn().readLine();
-
-            try {
-                return XMLDecoder.decodeStartGameResponse(clientResponse);
-            }catch (Exception e){
-                e.printStackTrace();
-                System.exit(-1);
-            }
-
-
-        } catch (IOException e) {
+            String clientResponse = serverPlayer.getIn().readLine();
+            return XMLDecoder.decodeStartGameResponse(clientResponse);
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(-1);
         }
-
 
         return null;
     }
 
     @Override
-    public ArrayList<Move> doMove(Board brd, List<Integer> dice) throws Exception {
+    public ArrayList<Move> doMove(Board brd, ArrayList<Integer> dice) throws Exception {
 
         String totalInput = "";
-        String inputLine;
-        String outputLine = XMLEncoder.encodeDoMove(brd, dice);
+        String encodedDoMove = XMLEncoder.encodeDoMove(brd, dice);
 
-        playerServer.getOut().println(outputLine);
+        serverPlayer.getOut().println(encodedDoMove);
 
         try {
-            String clientResponse = playerServer.getIn().readLine();
+            String clientResponse = serverPlayer.getIn().readLine();
             ArrayList<Move> moves = XMLDecoder.decodeDoMoveResponse(clientResponse, this);
             return moves;
         } catch (IOException e) {
@@ -81,21 +77,13 @@ public class PlayerNetwork extends PlayerAbstract {
             System.exit(-1);
         }
 
-
-        try {
-            return XMLDecoder.decodeDoMoveResponse(totalInput, this);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-
         return null;
 
     }
 
     @Override
-    public Strategy getStrategy() {
-        return null;
+    public Move doMiniMove(Board brd, List<Integer> dice, ArrayList<Space> originalBlockadeList) throws NoMoveFoundException, InvalidMoveException, DuplicatePawnException {
+        throw new NotImplementedException();
     }
 
     public Integer getPortNumber() {
@@ -103,8 +91,21 @@ public class PlayerNetwork extends PlayerAbstract {
     }
 
     @Override
-    public void DoublesPenalty() {
+    public void doublesPenalty() {
+        String encodedDoublesPenalty = XMLEncoder.encodeDoublesPenalty();
 
+        serverPlayer.getOut().println(encodedDoublesPenalty);
+        try {
+            String clientResponse = serverPlayer.getIn().readLine();
+            assert(XMLDecoder.ensureDoublesPenaltyIsVoid(clientResponse));
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
     }
 
+    @Override
+    public void incrementKickedOuts() {
+
+    }
 }

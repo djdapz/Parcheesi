@@ -6,6 +6,8 @@ import parcheesi.game.board.Home;
 import parcheesi.game.board.Nest;
 import parcheesi.game.enums.Color;
 import parcheesi.game.player.*;
+import parcheesi.game.player.machine.PlayerMachineFirst;
+import parcheesi.game.player.machine.PlayerMachineLast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +22,7 @@ public class Game implements GameInterface {
     private Turn currentTurn;
     private Color[] colors;
     private final int maxPlayers = 4;
+    private int round =0;
 
     public Game(){
         board = new Board();
@@ -51,10 +54,6 @@ public class Game implements GameInterface {
             this.register(new PlayerMachineFirst());
         }
 
-        int exitLocation = board.getNestExit();
-        int homeRowEntrance = board.getHomeRowEntrance();
-        int regionLength = board.getBoardLength()/4;
-
         for(int i=0; i < colors.length; i ++){
             Player player = players.get(i);
             player.startGame(colors[i]);
@@ -73,6 +72,7 @@ public class Game implements GameInterface {
 
     public Player play() throws Exception{
         while(!isWinner()) {
+            round ++;
             for(int i = 0; i < players.size() && !isWinner(); i ++){
                 if(!players.get(i).isKickedOut()){
                     currentTurn = new Turn(players.get(i), board);
@@ -83,21 +83,9 @@ public class Game implements GameInterface {
         return getWinner();
     }
 
-    private void removeFromGame(Player player, Board board) {
-        //TODO - IMPLEMENT
-        player.kickOut();
-        for(Pawn pawn: player.getPawns()){
-            this.board.findPawn(pawn).removeOccupant(pawn);
-        }
-    }
 
     public boolean isWinner(){
-
-        if(this.getWinner() != null){
-            return true;
-        }else{
-            return false;
-        }
+        return !(this.getWinner() == null);
     }
 
     public Player getWinner(){

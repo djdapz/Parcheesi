@@ -28,17 +28,27 @@ public class SpaceRegular extends Space {
     }
 
     @Override
-    public Boolean isSafeSpace() {
-        return false;
-    }
-
-    @Override
     public Move createMoveFromHere(int distance, Pawn pawn) {
         if(this.getRegion() == Color.HOME){
             return new MoveHome(pawn, this.id, distance);
         }else{
             return new MoveMain(pawn, this.id, distance);
         }
-
     }
+
+    @Override
+    public java.awt.Color getSystemColor() {
+        return java.awt.Color.lightGray;
+    }
+
+    @Override
+    public String getSerializedRepresentation() {
+        return this.getId() + "_" + "MAIN_RING" + "_" +this.getRegion().toString();
+    }
+
+    @Override
+    public boolean isHomeRow() {
+        return false;
+    }
+
 }

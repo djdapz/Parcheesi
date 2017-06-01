@@ -15,6 +15,8 @@ import parcheesi.game.moves.EnterPiece;
 import parcheesi.game.moves.Move;
 import parcheesi.game.moves.MoveHome;
 import parcheesi.game.moves.MoveMain;
+import parcheesi.game.player.machine.PlayerMachine;
+import parcheesi.game.player.machine.PlayerMachineFirst;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -266,7 +268,6 @@ public class PlayerMachineFirstTests {
         Pawn pawn2 = mainPlayer.getPawns()[2];
         Pawn pawn3 = mainPlayer.getPawns()[3];
 
-
         Move enter0 = new EnterPiece(pawn0);
         Move enter1 = new EnterPiece(pawn1);
         Move enter2 = new EnterPiece(pawn2);
@@ -275,8 +276,8 @@ public class PlayerMachineFirstTests {
 
         Move moveToHome0 = new MoveMain(pawn0, pawn0.getExitSpaceId(), 17*4+1);
         Move moveToHome1 = new MoveMain(pawn1, pawn1.getExitSpaceId(), 17*4+1);
-        Move moveToHome2 = new MoveMain(pawn2, pawn2.getExitSpaceId(), 17*4+2);
-        Move moveToHome3 = new MoveMain(pawn3, pawn3.getExitSpaceId(), 17*4+2);
+        Move moveToHome2 = new MoveMain(pawn2, pawn2.getExitSpaceId(), 17*4+3);
+        Move moveToHome3 = new MoveMain(pawn3, pawn3.getExitSpaceId(), 17*4+3);
 
         assertEquals(MoveResult.ENTERED, enter2.run(board));
         assertEquals(MoveResult.ENTERED, enter3.run(board));

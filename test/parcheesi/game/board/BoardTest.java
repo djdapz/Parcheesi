@@ -85,19 +85,19 @@ public class BoardTest {
         //make sure original parcheesi.game.board is as expected
         assertEquals(board.findPawn(pawnMainRing), board.getSpaceAt(0));
         assertEquals(board.findPawn(pawnHomeRow), board.getHomeRows().get(pawnHomeRow.getColor()).get(0));
-        assertTrue(board.getNests().get(pawnNest.getColor()).isAtNest(pawnNest));
+        assertTrue(board.isAtNest(pawnNest));
         assertTrue(!board.getHome().isPawnHome(pawnNest));
 
         //make sure new parcheesi.game.board is unchanged
         assertEquals(boardCopy.findPawn(pawnMainRing), boardCopy.getSpaceAt(1));
         assertEquals(boardCopy.findPawn(pawnHomeRow), boardCopy.getHomeRows().get(pawnHomeRow.getColor()).get(1));
-        assertTrue(!boardCopy.getNests().get(pawnNest.getColor()).isAtNest(pawnNest));
+        assertTrue(!boardCopy.isAtNest(pawnNest));
         assertTrue(boardCopy.getHome().isPawnHome(pawnNest));
 
         //make sure original parcheesi.game.board is unchanged
         assertEquals(board.findPawn(pawnMainRing), board.getSpaceAt(0));
         assertEquals(board.findPawn(pawnHomeRow), board.getHomeRows().get(pawnHomeRow.getColor()).get(0));
-        assertTrue(board.getNests().get(pawnNest.getColor()).isAtNest(pawnNest));
+        assertTrue(board.isAtNest(pawnNest));
         assertTrue(!board.getHome().isPawnHome(pawnNest));
     }
 
@@ -137,7 +137,7 @@ public class BoardTest {
         space2.addOccupant(testPawn2);
         space3.addOccupant(testPawn3);
 
-        Assert.assertEquals(board.findMostAdvancedPawn(player), space3);
+        Assert.assertEquals(board.findMostAdvancedPawn(player), space1);
     }
 
     @Test

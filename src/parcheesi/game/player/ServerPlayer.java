@@ -10,7 +10,7 @@ import java.net.Socket;
 /**
  * Created by devondapuzzo on 5/16/17.
  */
-public class PlayerServer implements Runnable {
+public class ServerPlayer implements Runnable {
 
 
     private  ServerSocket socket;
@@ -19,7 +19,7 @@ public class PlayerServer implements Runnable {
     private  BufferedReader in = null;
     private final int port;
 
-    public PlayerServer(int port){
+    public ServerPlayer(int port){
        this.port = port;
     }
 

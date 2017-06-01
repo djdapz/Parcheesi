@@ -51,17 +51,15 @@ public class EnterPieceTest {
         Pawn p2Pawn = p2.getPawns()[0];
 
         Space p1ExitSpace = p1Pawn.getExitSpace(board);
-        Nest p1Nest = board.getNests().get(p1Pawn.getColor());
-
 
         p1ExitSpace.addOccupant(p2Pawn);
         EnterPiece enterPiece = new EnterPiece(p1Pawn);
 
-        assertTrue(p1Nest.isAtNest(p1Pawn));
+        assertTrue(board.isAtNest(p1Pawn));
         assertEquals(p1ExitSpace.getOccupant1(), p2Pawn);
 
         enterPiece.run(board);
-        assertTrue(!p1Nest.isAtNest(p1Pawn));
+        assertTrue(!board.isAtNest(p1Pawn));
         assertEquals(p1ExitSpace.getOccupant1(), p1Pawn);
 
         assertTrue(rc.doesPawnAppearOnlyOnce(board, p1Pawn));
@@ -89,7 +87,7 @@ public class EnterPieceTest {
         p2Nest.removePawn(p2Pawn2);
         EnterPiece enterPiece = new EnterPiece(p1Pawn);
 
-        assertTrue(p1Nest.isAtNest(p1Pawn));
+        assertTrue(board.isAtNest(p1Pawn));
         assertEquals(p1ExitSpace.getOccupant1(), p2Pawn1);
         assertEquals(p1ExitSpace.getOccupant2(), p2Pawn2);
         assertTrue(p1ExitSpace.isBlockaded());

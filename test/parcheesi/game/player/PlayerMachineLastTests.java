@@ -15,6 +15,9 @@ import parcheesi.game.moves.EnterPiece;
 import parcheesi.game.moves.Move;
 import parcheesi.game.moves.MoveHome;
 import parcheesi.game.moves.MoveMain;
+import parcheesi.game.player.machine.PlayerMachine;
+import parcheesi.game.player.machine.PlayerMachineFirst;
+import parcheesi.game.player.machine.PlayerMachineLast;
 
 import java.util.ArrayList;
 import java.util.HashMap;

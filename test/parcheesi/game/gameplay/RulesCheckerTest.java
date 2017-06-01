@@ -13,7 +13,7 @@ import parcheesi.game.moves.Move;
 import parcheesi.game.moves.MoveMain;
 import parcheesi.game.player.Pawn;
 import parcheesi.game.player.Player;
-import parcheesi.game.player.PlayerMachineFirst;
+import parcheesi.game.player.machine.PlayerMachineFirst;
 import parcheesi.game.util.TestingUtil;
 
 import java.util.ArrayList;
@@ -127,7 +127,8 @@ public class RulesCheckerTest {
         assertTrue(RulesChecker.doesBlockadeMove(moves, pawn0.getExitSpace(board), board));
 
         RulesChecker.isSetOfMovesOkay(board, moves, mainPlayer);
-
     }
+
+
 
 }

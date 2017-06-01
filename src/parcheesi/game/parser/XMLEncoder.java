@@ -45,7 +45,8 @@ public class XMLEncoder {
         Vector<Space> spaces = board.getSpaces();
 
         for(Space space: spaces){
-            XML.append(encodeSpace(space, board));
+            String newSpace = (encodeSpace(space));
+            XML.append(newSpace);
         }
 
         XML.append(XMLConstants.MAIN.end());
@@ -61,7 +62,8 @@ public class XMLEncoder {
             Vector<Space> thisHomeRow = homeRows.get(color);
 
             for(Space space: thisHomeRow){
-                XML.append(encodeSpace(space, board));
+                String newSpace = (encodeSpace(space));
+                XML.append(newSpace);
             }
         }
 
@@ -90,7 +92,7 @@ public class XMLEncoder {
     }
 
     public static String encodeSpace
-            (Space space, Board board){
+            (Space space){
         String XML = "";
 
         int SpaceId;
@@ -98,7 +100,7 @@ public class XMLEncoder {
         if(space.getRegion() == Color.HOME){
             SpaceId = space.getId();
         }else{
-            SpaceId = XMLConstants.convertIdToXML(space.getId(), board);
+            SpaceId = XMLConstants.convertIdToXML(space.getId());
         }
 
 
@@ -110,7 +112,7 @@ public class XMLEncoder {
 
         if(space.getOccupant2()!=null){
             XML +=  XMLConstants.PIECE_LOC.element(
-                    encodePawn(space.getOccupant1())+
+                    encodePawn(space.getOccupant2())+
                             XMLConstants.LOC.element(SpaceId));
         }
 
@@ -130,9 +132,7 @@ public class XMLEncoder {
 
     public static String encodeStartGame(Color color) {
         return XMLConstants.START_GAME.element(
-                XMLConstants.COLOR.element(
                         color.toString()
-                )
         );
     }
 
@@ -150,5 +150,9 @@ public class XMLEncoder {
         }
 
         return XMLConstants.DICE.element(diceString);
+    }
+
+    public static String encodeDoublesPenalty() {
+        return XMLConstants.DOUBLES_PENALTY.element("");
     }
 }

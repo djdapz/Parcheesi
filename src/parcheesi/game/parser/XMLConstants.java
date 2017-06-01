@@ -1,7 +1,5 @@
 package parcheesi.game.parser;
 
-import parcheesi.game.board.Board;
-
 /**
  * Created by devondapuzzo on 5/12/17.
  */
@@ -32,13 +30,15 @@ XMLConstants {
     public static final XMLConstant DOUBLES_PENALTY = new XMLConstant("doubles-penalty");
     public static final XMLConstant VOID = new XMLConstant("void");
 
+    public static final Integer BOARD_LENGTH = 17*4;
+
     public static final Integer ID_OFFSET = 9;
 
-    public static int convertIdToXML(int id, Board board){
-        return (id + ID_OFFSET) % board.getBoardLength();
+    public static int convertIdToXML(int id){
+        return (id + ID_OFFSET) % BOARD_LENGTH;
     }
 
-    public static int convertIdFromXML(int id, Board board){
-        return (id - ID_OFFSET + board.getBoardLength()) % board.getBoardLength();
+    public static int convertIdFromXML(int id){
+        return (id - ID_OFFSET + BOARD_LENGTH) % BOARD_LENGTH;
     }
 }
