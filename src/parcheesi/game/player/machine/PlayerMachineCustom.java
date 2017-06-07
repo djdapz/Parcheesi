@@ -20,6 +20,22 @@ import java.util.List;
  */
 public class PlayerMachineCustom extends PlayerMachine {
 
+    public PlayerMachineCustom(boolean b) {
+        super();
+        moveEvaluator = new MoveEvaluator(true);
+    }
+
+    public PlayerMachineCustom() {
+        super();
+        moveEvaluator = new MoveEvaluator();
+
+    }
+
+    public PlayerMachineCustom(MoveEvaluator me) {
+        super();
+        moveEvaluator = me;
+    }
+
     private class EvaluationObject{
         private Move move;
         private Board board;
@@ -54,7 +70,15 @@ public class PlayerMachineCustom extends PlayerMachine {
         }
     }
 
-    private MoveEvaluator moveEvaluator = new MoveEvaluator();
+    private MoveEvaluator moveEvaluator;
+
+    public MoveEvaluator getMoveEvaluator() {
+        return moveEvaluator;
+    }
+
+    public void setMoveEvaluator(MoveEvaluator moveEvaluator) {
+        this.moveEvaluator = moveEvaluator;
+    }
 
     @Override
     protected Space findOptimalSpace(Board board) {

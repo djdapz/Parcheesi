@@ -95,8 +95,12 @@ public class EnterPiece extends MoveAbstract {
 
     @Override
     public void editDice(ArrayList<Integer> moves) throws InvalidMoveException {
-        if((moves.contains(4) && moves.contains(1)) || (moves.contains(3) && moves.contains(2))){
-            moves.clear();
+        if(moves.contains(4) && moves.contains(1)){
+            moves.remove(moves.indexOf(4));
+            moves.remove(moves.indexOf(1));
+        }else if(moves.contains(3) && moves.contains(2)){
+            moves.remove(moves.indexOf(3));
+            moves.remove(moves.indexOf(2));
         }else if(moves.contains(5)){
             moves.remove((moves.indexOf(5)));
         }else{

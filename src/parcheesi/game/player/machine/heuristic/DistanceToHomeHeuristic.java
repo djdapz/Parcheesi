@@ -8,20 +8,22 @@ import parcheesi.game.player.Player;
  * Created by devondapuzzo on 5/30/17.
  */
 public class DistanceToHomeHeuristic extends AbststractHeuristic {
-    private double exponent;
+    private float exponent;
 
-    public DistanceToHomeHeuristic(int weight, double exponent) {
+    public DistanceToHomeHeuristic(int weight, float exponent) {
         super(weight);
         this.exponent=exponent;
     }
 
     @Override
     public Integer evaluate(Board board, Player player) {
-        double value = 0;
+        Integer value = 0;
+
         for(Pawn pawn: player.getPawns()){
-            value += Math.pow(board.distanceFromHome(pawn),exponent);
+            value += board.distanceFromHome(pawn);
 
         }
-        return (int) value;
+
+        return value;
     }
 }

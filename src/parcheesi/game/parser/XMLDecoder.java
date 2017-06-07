@@ -54,7 +54,7 @@ public class XMLDecoder {
         return Color.valueOf(colorText);
     }
 
-    public static ArrayList<Integer> decodeDiceFromDoMove(String XML)  throws Exception{
+    public static ArrayList<Integer> getDiceFromDoMove(String XML)  throws Exception{
         Element root = loadXMLFromString(XML);
         Element diceNode = (Element) root.getElementsByTagName(XMLConstants.DICE.s()).item(0);
         return decodeDiceFromNode(diceNode);
@@ -66,7 +66,7 @@ public class XMLDecoder {
         return dice;
     }
 
-    public static Board decodeBoardFromDoMove(String XML, ArrayList<Player> players) throws  Exception{
+    public static Board getBoardFromDoMove(String XML, ArrayList<Player> players) throws  Exception{
         Element root = loadXMLFromString(XML);
         Element boardNode = (Element) root.getElementsByTagName(XMLConstants.BOARD.s()).item(0);
         return decodeBoardFromNode(boardNode, players);
@@ -137,8 +137,8 @@ public class XMLDecoder {
         Element dieElement =  (Element) root.getFirstChild();
 
         while (dieElement != null) {
-
-            dice.add(Integer.parseInt(dieElement.getFirstChild().getTextContent()));
+            Integer newDice = Integer.parseInt(dieElement.getFirstChild().getTextContent());
+            dice.add(newDice);
             dieElement = (Element) dieElement.getNextSibling();
         }
     }

@@ -82,7 +82,7 @@ public class XMLDecoderTest {
         PlayerAction pa = XMLDecoder.getAction(xml);
         assertEquals(pa, PlayerAction.DO_MOVE);
 
-        ArrayList<Integer> dice = XMLDecoder.decodeDiceFromDoMove(xml);
+        ArrayList<Integer> dice = XMLDecoder.getDiceFromDoMove(xml);
         assertEquals(dice.size(), 2);
         assertTrue(dice.contains(1));
         assertTrue(dice.contains(2));

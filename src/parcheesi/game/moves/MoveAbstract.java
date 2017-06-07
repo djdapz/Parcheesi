@@ -63,15 +63,7 @@ public abstract class MoveAbstract implements Move {
     @Override
     public void editDice(ArrayList<Integer> moves) throws InvalidMoveException {
         try{
-            if(getDistance() == 5 &&
-                    ((moves.contains(4) && moves.contains(1))
-                            ||(moves.contains(3) && moves.contains(2))
-                    )){
-                moves.clear();
-            }else{
-                moves.remove(moves.indexOf(getDistance()));
-
-            }
+            moves.remove(moves.indexOf(getDistance()));
         }catch (Exception e){
             throw e;
         }

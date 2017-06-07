@@ -39,6 +39,7 @@ public class PlayerHuman extends PlayerAbstract {
     @Override
     public void doublesPenalty() {
         view.msgDisplay(Messages.doublesPenalty);
+
     }
 
     @Override

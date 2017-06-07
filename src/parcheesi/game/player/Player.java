@@ -47,4 +47,8 @@ public interface Player {
 
     void incrementKickedOuts();
 
+    void incrementIndividualWins();
+
+    int getIndividualWins();
+
 }

@@ -33,22 +33,25 @@ public class PlayerMachineFirst extends PlayerMachine {
 
     @Override
     public Move doMiniMove(Board brd, List<Integer> dice, ArrayList<Space> originalBlockadeList) throws NoMoveFoundException, InvalidMoveException, DuplicatePawnException {
+
         Space mostAdvancedSpace = findBestSpace(brd, dice, originalBlockadeList);
 
         if(mostAdvancedSpace == null){
             Nest nest = brd.getNests().get(this.color);
             try{
                 return enterPiece(brd, dice, nest);
-            }catch (InvalidMoveException e){
+            }catch (Exception e){
                 throw new NoMoveFoundException();
             }
         }
 
-        return chooseBestMoveGivenSpaceAndDice(dice, mostAdvancedSpace, brd, originalBlockadeList);
-
+        try{
+            return super.chooseBestMoveGivenSpaceAndDice(dice, mostAdvancedSpace, brd, originalBlockadeList);
+        } catch (Exception e){
+            throw e;
+        }
     }
     private static Statistics stats = new Statistics();
-
     @Override
     public void incrementWins() {
         stats.incrementWins();
@@ -58,6 +61,7 @@ public class PlayerMachineFirst extends PlayerMachine {
     public void incrementKickedOuts() {
         stats.incrementKickedOuts();
     }
+
 
     public static int getWins() {
         return stats.getWins();

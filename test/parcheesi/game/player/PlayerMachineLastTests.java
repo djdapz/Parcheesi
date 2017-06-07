@@ -15,6 +15,7 @@ import parcheesi.game.moves.EnterPiece;
 import parcheesi.game.moves.Move;
 import parcheesi.game.moves.MoveHome;
 import parcheesi.game.moves.MoveMain;
+import parcheesi.game.parser.XMLDecoder;
 import parcheesi.game.player.machine.PlayerMachine;
 import parcheesi.game.player.machine.PlayerMachineFirst;
 import parcheesi.game.player.machine.PlayerMachineLast;
@@ -616,4 +617,16 @@ public class PlayerMachineLastTests {
         assertTrue(RulesChecker.isSetOfMovesOkay(board, moves, mainPlayer));
 
     }
+
+    @Test
+    public void kickedOutOfTourney() throws Exception {
+        String server = "<do-move><board><start><pawn><color>red</color><id>3</id></pawn><pawn><color>green</color><id>3</id></pawn><pawn><color>green</color><id>2</id></pawn><pawn><color>green</color><id>1</id></pawn><pawn><color>blue</color><id>0</id></pawn></start><main><piece-loc><pawn><color>yellow</color><id>0</id></pawn><loc>56</loc></piece-loc><piece-loc><pawn><color>red</color><id>2</id></pawn><loc>55</loc></piece-loc><piece-loc><pawn><color>red</color><id>0</id></pawn><loc>55</loc></piece-loc><piece-loc><pawn><color>blue</color><id>3</id></pawn><loc>54</loc></piece-loc><piece-loc><pawn><color>blue</color><id>2</id></pawn><loc>54</loc></piece-loc><piece-loc><pawn><color>blue</color><id>1</id></pawn><loc>53</loc></piece-loc><piece-loc><pawn><color>red</color><id>1</id></pawn><loc>52</loc></piece-loc><piece-loc><pawn><color>green</color><id>0</id></pawn><loc>47</loc></piece-loc><piece-loc><pawn><color>yellow</color><id>2</id></pawn><loc>4</loc></piece-loc></main><home-rows></home-rows><home><pawn><color>yellow</color><id>3</id></pawn><pawn><color>yellow</color><id>1</id></pawn></home></board><dice><die>5</die><die>6</die></dice></do-move>";
+
+        Board board = XMLDecoder.getBoardFromDoMove(server,  game.getPlayers());
+        ArrayList<Integer> dice = XMLDecoder.getDiceFromDoMove(server);
+
+        game.getPlayers().get(3).doMove(board, dice);
+
+    }
+
 }

@@ -40,6 +40,16 @@ public class ClientPlayer implements Runnable{
         }
     }
 
+    public ClientPlayer(Integer port, Player player, String IP) {
+        this.portNumber = port;
+        this.player = player;
+        try {
+            this.client = new Socket(IP, port);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void run() {
@@ -108,8 +118,8 @@ public class ClientPlayer implements Runnable{
 
     public String doMove(String XML) throws Exception{
         assert(playersArrayList != null);
-        Board board = XMLDecoder.decodeBoardFromDoMove(XML, playersArrayList);
-        ArrayList<Integer> dice = XMLDecoder.decodeDiceFromDoMove(XML);
+        Board board = XMLDecoder.getBoardFromDoMove(XML, playersArrayList);
+        ArrayList<Integer> dice = XMLDecoder.getDiceFromDoMove(XML);
         ArrayList<Move> moves = player.doMove(board, dice);
         return XMLEncoder.encodeMoves(moves);
     }

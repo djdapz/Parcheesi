@@ -2,7 +2,6 @@ package parcheesi.game.gameplay;
 
 import parcheesi.game.board.Board;
 import parcheesi.game.board.Dice;
-import parcheesi.game.enums.TurnResult;
 import parcheesi.game.exception.BlockadeMovesException;
 import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.exception.PawnNotFoundException;
@@ -28,12 +27,10 @@ public class Turn {
     }
 
 
-    public TurnResult processSetOfMoves(ArrayList<Move> moves) throws InvalidMoveException {
+    public void processSetOfMoves(ArrayList<Move> moves) throws InvalidMoveException {
         for(Move move: moves){
-
             move.run(board);
         }
-        return TurnResult.SUCCESS;
     }
 
 
@@ -45,14 +42,11 @@ public class Turn {
 
 
         do{
-            //TODO- IMPORTANT!!!! Only get tops and bottoms if ALL pawns have already entered
             ArrayList<Integer> dice = new ArrayList<>();
             die1 = die.rollOne();
             die2 = die.rollOne();
             dice.add(die1);
             dice.add(die2);
-
-
 
             if(die1==die2){
                 numberOfDoubles++;

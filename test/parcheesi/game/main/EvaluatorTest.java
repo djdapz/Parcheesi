@@ -10,7 +10,7 @@ public class EvaluatorTest {
     public void runTests() throws Exception {
         //every
         Evaluator eval = new Evaluator();
-//        eval.runTests(100);
+        eval.runTests(100);
     }
 
 }

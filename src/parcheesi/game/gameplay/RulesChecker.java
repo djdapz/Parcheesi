@@ -2,7 +2,10 @@ package parcheesi.game.gameplay;
 
 import parcheesi.game.board.Board;
 import parcheesi.game.board.Space;
-import parcheesi.game.exception.*;
+import parcheesi.game.exception.BlockadeMovesException;
+import parcheesi.game.exception.DuplicatePawnException;
+import parcheesi.game.exception.GoesHomeException;
+import parcheesi.game.exception.InvalidMoveException;
 import parcheesi.game.moves.Move;
 import parcheesi.game.player.Pawn;
 import parcheesi.game.player.Player;
@@ -26,7 +29,7 @@ public class RulesChecker {
         for(Space space: blockades){
             if(doesBlockadeMove(moves, space, board)){
                 throw new BlockadeMovesException();
-            }
+            };
         }
     }
 
@@ -38,31 +41,20 @@ public class RulesChecker {
         }
     }
 
-
-
     public static boolean doesBlockadeMove(List<Move> moves, Space space, Board board) {
-        return findIdOfMoveThatMakesBlockadeMove(moves, space, board) > 0;
-    }
-
-    public static int findIdOfMoveThatMakesBlockadeMove(List<Move> moves, Space space, Board board) {
         Pawn pawn1 = space.getOccupant1();
         Pawn pawn2 = space.getOccupant2();
 
         int pawn1Distance = 0;
         int pawn2Distance = 0;
 
-        int mostRecent = -1;
-
-        for(int i = 0; i < moves.size(); i ++){
-            Move move = moves.get(i);
+        for(Move move: moves){
             if(move.getPawn() == pawn1){
                 pawn1Distance += move.getDistance();
-                mostRecent = i;
             }
 
             if(move.getPawn() == pawn2){
                 pawn2Distance += move.getDistance();
-                mostRecent = i;
             }
         }
 
@@ -70,14 +62,14 @@ public class RulesChecker {
             try{
                 space.createMoveFromHere( pawn1Distance, pawn1).getDestinationSpace(board);
             } catch (InvalidMoveException e) {
-                return mostRecent;
+                return true;
             } catch (GoesHomeException e) {
-                return -1;
+                return false;
             }
-            return mostRecent;
+            return true;
         }
 
-        return -1;
+        return false;
     }
 
     public static boolean doBlockadesMove(List<Space> originalBlockadeList, Board board, Player player) {
@@ -158,58 +150,5 @@ public class RulesChecker {
                 dice.add(7-dice.get(0));
             }
         }
-    }
-
-    public static Space getSpaceThatBlockadeMovedTo(ArrayList<Move> moveObjects, ArrayList<Space> originalBlockadeList, Board newBoard, Player player) throws SpaceNotFoundException{
-        ArrayList<Space> blocks = findBlockades(newBoard, player);
-
-        for(Space space: blocks){
-            for(Space space2: originalBlockadeList){
-                if(space.getOccupant1() == space2.getOccupant1() && space.getOccupant2()==space2.getOccupant2()){
-                    return space2;
-                }
-
-                if(space.getOccupant2() == space2.getOccupant1() && space.getOccupant1()==space2.getOccupant2()){
-                    return space2;
-                }
-            }
-        }
-
-       throw new SpaceNotFoundException();
-    }
-
-
-    public static void resolveBlockadeMoved(ArrayList<Move> moveObjects, ArrayList<Space> originalBlockadeList, Board brd, Player player){
-        if(originalBlockadeList.size() == 0){
-            //was called from local movement of blockades and it's okay
-            return;
-        }
-//
-//        int index = -1;
-//        for (Space anOriginalBlockadeList : originalBlockadeList) {
-//            index = findIdOfMoveThatMakesBlockadeMove(moveObjects, anOriginalBlockadeList, brd);
-//            if (index > 0) {
-//                break;
-//            }
-//        }
-
-        Space space = null;
-        try {
-            space = getSpaceThatBlockadeMovedTo( moveObjects,  originalBlockadeList, brd, player);
-        } catch (SpaceNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        for(Move move: moveObjects){
-            if(move.getPawn().getId() == space.getOccupant2().getId() ||move.getPawn().getId() == space.getOccupant1().getId()){
-                moveObjects.remove(move);
-            }
-        }
-//
-//        if(index > 0){
-//            moveObjects.remove(index);
-//        }else{
-//            throw new SpaceNotFoundException();
-//        }
     }
 }

@@ -127,8 +127,7 @@ public class RulesCheckerTest {
         assertTrue(RulesChecker.doesBlockadeMove(moves, pawn0.getExitSpace(board), board));
 
         RulesChecker.isSetOfMovesOkay(board, moves, mainPlayer);
+
     }
-
-
 
 }

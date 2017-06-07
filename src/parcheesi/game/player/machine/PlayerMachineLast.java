@@ -16,6 +16,8 @@ import java.util.List;
  * Created by devondapuzzo on 5/8/17.
  */
 public class PlayerMachineLast extends PlayerMachine{
+
+
     public PlayerMachineLast() {
         super();
         this.name = "LAST";
@@ -38,7 +40,7 @@ public class PlayerMachineLast extends PlayerMachine{
         if(nest.getSize() > 0){
             try{
                 return enterPiece(brd, dice, nest);
-            } catch (Exception ignored){}//can't enter and just continue on..
+            } catch (Exception ignored){}//can't enter and just continue on..}
         }
 
         Space leastAdvancedSpace = findBestSpace(brd, dice, originalBlockadeList);
@@ -47,7 +49,9 @@ public class PlayerMachineLast extends PlayerMachine{
             throw new NoMoveFoundException();
         }
 
+
         return chooseBestMoveGivenSpaceAndDice(dice, leastAdvancedSpace, brd, originalBlockadeList);
+
     }
 
     private static Statistics stats = new Statistics();
@@ -61,6 +65,7 @@ public class PlayerMachineLast extends PlayerMachine{
     public void incrementKickedOuts() {
         stats.incrementKickedOuts();
     }
+
 
     public static int getWins() {
         return stats.getWins();

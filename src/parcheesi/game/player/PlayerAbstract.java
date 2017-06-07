@@ -5,7 +5,10 @@ import parcheesi.game.board.Home;
 import parcheesi.game.board.Space;
 import parcheesi.game.enums.Color;
 import parcheesi.game.enums.MoveResult;
-import parcheesi.game.exception.*;
+import parcheesi.game.exception.BlockadeMovesException;
+import parcheesi.game.exception.DuplicatePawnException;
+import parcheesi.game.exception.InvalidMoveException;
+import parcheesi.game.exception.NoMoveFoundException;
 import parcheesi.game.gameplay.RulesChecker;
 import parcheesi.game.gui.Messages;
 import parcheesi.game.moves.Move;
@@ -23,6 +26,7 @@ public abstract class PlayerAbstract implements Player {
     protected String name;
     protected final Pawn[] pawns = new Pawn[4];
     protected boolean kickedOut = false;
+    private int individualWins = 0;
 
     @Override
     public String startGame(Color color) {
@@ -66,26 +70,33 @@ public abstract class PlayerAbstract implements Player {
         return;
     }
 
-    public ArrayList<Move> doMove(Board originalBoard, ArrayList<Integer> dice, ArrayList<Space> originalBlockadeList) throws NoMoveFoundException, InvalidMoveException, DuplicatePawnException, BlockadeMovesException, SpaceNotFoundException {
+    public ArrayList<Move> doMove(Board originalBoard, ArrayList<Integer> dice, ArrayList<Space> originalBlockadeList) throws NoMoveFoundException, InvalidMoveException, DuplicatePawnException, BlockadeMovesException {
+
+        Move currentMove;
         ArrayList<Move> moveObjects = new ArrayList<>();
         Board brd = new Board(originalBoard);
+        MoveResult mr;
         RulesChecker.checkForDoubles(dice, pawns, brd);
+
+        ArrayList<Integer> tester= new ArrayList<>();
+        tester.add(20);
 
         while(dice.size() != 0 && canMove(dice, brd, originalBlockadeList)){
             try{
-                Move currentMove =  this.doMiniMove(brd, dice, originalBlockadeList);
-                MoveResult mr = currentMove.run(brd);
+                currentMove =  this.doMiniMove(brd, dice, originalBlockadeList);
+                mr = currentMove.run(brd);
                 handleMoveResult(mr, brd, currentMove, dice, moveObjects, originalBlockadeList);
             } catch (NoMoveFoundException e) {
                 return moveObjects;
+            } catch (InvalidMoveException e){
+                throw e;
             }
         }
 
-
         try{
             RulesChecker.isSetOfMovesOkay(originalBoard, moveObjects, this);
-        }catch( BlockadeMovesException e) {
-            RulesChecker.resolveBlockadeMoved(moveObjects, originalBlockadeList, brd, this);
+        } catch (DuplicatePawnException | BlockadeMovesException e) {
+            throw e;
         }
 
         return moveObjects;
@@ -151,31 +162,36 @@ public abstract class PlayerAbstract implements Player {
 
     public abstract Move doMiniMove(Board brd, List<Integer> dice, ArrayList<Space> originalBlockadeList) throws NoMoveFoundException, InvalidMoveException, DuplicatePawnException;
 
-    protected void handleMoveResult(MoveResult mr, Board brd, Move currentMove, ArrayList<Integer> dice, ArrayList<Move> moveObjects, ArrayList<Space> originalBlockadeList) throws InvalidMoveException, NoMoveFoundException, DuplicatePawnException, BlockadeMovesException, SpaceNotFoundException {
-        if (mr == MoveResult.BOP) {
-           handleBop(brd, originalBlockadeList, currentMove, moveObjects, dice);
-        } else if(mr == MoveResult.ENTERED){
+
+
+    protected void handleMoveResult(MoveResult mr, Board brd, Move currentMove, ArrayList<Integer> dice, ArrayList<Move> moveObjects, ArrayList<Space> originalBlockadeList) throws InvalidMoveException, NoMoveFoundException, DuplicatePawnException, BlockadeMovesException {
+//        if (mr == MoveResult.BOP) {
+//           handleBop(brd, originalBlockadeList, currentMove, moveObjects, dice);
+//        } else
+
+        if(mr == MoveResult.ENTERED){
            handleEnter(moveObjects, currentMove, dice);
         }
         else if (mr == MoveResult.BLOCKED || mr == MoveResult.OVERSHOT) {
             moveObjects.remove(currentMove);
             messagePlayer(Messages.failedMove(mr));
         } else{
-            if(mr == MoveResult.HOME){
-                handleMoveHome(dice);
-
-            }
-            currentMove.editDice(dice);
-            moveObjects.add(currentMove);
-            messagePlayer(Messages.successfulMove(currentMove));
+            handleSuccessfulMove(dice, currentMove, mr, moveObjects);
         }
     }
 
-    private void handleMoveHome(ArrayList<Integer> dice) {
-        dice.add(10);
-    }
+    protected void handleSuccessfulMove(ArrayList<Integer> dice, Move currentMove, MoveResult mr, ArrayList<Move> moveObjects) throws InvalidMoveException {
+        if(mr == MoveResult.HOME){
+            dice.add(10);
+        }else if(mr == MoveResult.BOP){
+            dice.add(20);
+        }
+        currentMove.editDice(dice);
+        moveObjects.add(currentMove);
+        messagePlayer(Messages.successfulMove(currentMove));
+    };
 
-    public void handleBop(Board brd, ArrayList<Space> originalBlockadeList, Move currentMove, ArrayList<Move> moveObjects, ArrayList<Integer> dice ) throws InvalidMoveException, DuplicatePawnException, BlockadeMovesException, NoMoveFoundException, SpaceNotFoundException {
+    public void handleBop(Board brd, ArrayList<Space> originalBlockadeList, Move currentMove, ArrayList<Move> moveObjects, ArrayList<Integer> dice ) throws InvalidMoveException, DuplicatePawnException, BlockadeMovesException, NoMoveFoundException {
         ArrayList<Integer> bonusMoveDice = new ArrayList<>();
         bonusMoveDice.add(20);
         messagePlayer(Messages.bop);
@@ -191,6 +207,11 @@ public abstract class PlayerAbstract implements Player {
 
         currentMove.editDice(dice);
         return;
+
+//        dice.add(20);
+//        currentMove.editDice(dice);
+//        moveObjects.add(currentMove);
+//        messagePlayer(Messages.successfulMove(currentMove));
     }
 
 
@@ -225,4 +246,14 @@ public abstract class PlayerAbstract implements Player {
 
     @Override
     public void incrementKickedOuts(){throw new NotImplementedException();}
+
+    @Override
+    public void incrementIndividualWins() {
+        this.individualWins++;
+    }
+
+    @Override
+    public int getIndividualWins() {
+        return individualWins;
+    }
 }
